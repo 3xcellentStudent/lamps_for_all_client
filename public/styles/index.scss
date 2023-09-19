@@ -1,0 +1,6 @@
+$index: calc(1vw + 1vh);
+.btn-buy {background: #000;}
+
+.wrapper_big {
+  padding: 0 calc($index * 2);
+}

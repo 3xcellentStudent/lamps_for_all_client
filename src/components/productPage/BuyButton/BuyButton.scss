@@ -1,0 +1,17 @@
+$index: calc(1vw + 1vh);
+.btn {
+  &__container {
+  }
+  &__buy-button {
+    text-wrap: nowrap;
+    padding: calc($index / 2) calc($index * 4);
+    font-weight: 700;
+    transition: .2s;
+    box-shadow: 0 0 1px 1px #000;
+
+    &:hover {
+      background: #000;
+      color: #fff;
+    }
+  }
+}
