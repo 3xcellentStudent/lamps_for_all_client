@@ -6,6 +6,9 @@ import { Inter } from 'next/font/google'
 import Header from '@/components/Header'
 import {ThemeProvider, createTheme} from '@mui/material'
 
+import {Provider} from 'react-redux'
+import store from '@/redux/store'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -21,18 +24,17 @@ const theme = createTheme({
   }
 })
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({children,}: {children: React.ReactNode}) {
+
   return (
     <html lang="en">
       <ThemeProvider theme={theme}>
-        <body className={inter.className}>
-          <Header/>
-          {children}
-        </body>
+        <Provider store={store}>
+          <body className={inter.className}>
+            <Header/>
+            {children}
+          </body>
+        </Provider>
       </ThemeProvider>
     </html>
   )
