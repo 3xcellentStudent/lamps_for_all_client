@@ -3,7 +3,7 @@ import './globals.css'
 import '../../public/styles/index.scss'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import Header from '@/components/Header'
+import Header from '@/components/Header/Header'
 import {ThemeProvider, createTheme} from '@mui/material'
 
 import {Provider} from 'react-redux'

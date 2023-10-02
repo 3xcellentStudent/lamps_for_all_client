@@ -8,7 +8,7 @@ export default function SectionDetails({data}: {data: [{}, {}]}){
   console.log(data)
   return(
     <section className='wrapper_big'>
-      <ul className="flex w-full justify-around mx-auto">
+      <ul className="flex w-full justify-center mx-auto">
         {data?.map((array, idx) => <Block key={idx} array={array} />)}
       </ul>
     </section>

@@ -1,10 +1,21 @@
-export default function Block({array}: {array: string[]}){
+import '../SectionDetails.scss'
+
+interface Props {
+  array: {name: string, value: string}[]
+}
+
+export default function Block({array}: Props){
   
   console.log(array)
   return(
-    <div className="w-3/12 bg-gray-950 x1-1">
-      {array?.map((string, idx) => {
-        return <p className="text-white" key={idx}>{string}</p>
+    <div className="block_detail py1-05 mx2-11 bg-gray-950">
+      {array?.map((obj, idx) => {
+        return(
+          <div className="block_flex flex" key={idx}>
+            <span className='block_flex__text whitespace-nowrap w-6/12 block'>{obj.name}:</span>
+            <span className='block_flex__text'>{obj.value}</span>
+          </div>
+        )
       })}
     </div>
   )

@@ -1,0 +1,55 @@
+$index: calc(1vw + 1vh);
+
+@mixin sizesX($f, $s){
+  margin-left: $f;
+  margin-right: $s;
+}
+@mixin sizesY($f, $s){
+  margin-top: $f;
+  margin-bottom: $s;
+}
+
+.mx1-01{@include sizesX(calc($index * .1), calc($index * .1))}
+.my1-01{@include sizesY(calc($index * .1), calc($index * .1))}
+.mx1-02{@include sizesX(calc($index * .2), calc($index * .2))}
+.my1-02{@include sizesY(calc($index * .2), calc($index * .2))}
+.mx1-03{@include sizesX(calc($index * .3), calc($index * .3))}
+.my1-03{@include sizesY(calc($index * .3), calc($index * .3))}
+.mx1-04{@include sizesX(calc($index * .4), calc($index * .4))}
+.my1-04{@include sizesY(calc($index * .4), calc($index * .4))}
+.mx1-05{@include sizesX(calc($index * .5), calc($index * .5))}
+.my1-05{@include sizesY(calc($index * .5), calc($index * .5))}
+.mx1-06{@include sizesX(calc($index * .6), calc($index * .6))}
+.my1-06{@include sizesY(calc($index * .6), calc($index * .6))}
+.mx1-07{@include sizesX(calc($index * .7), calc($index * .7))}
+.my1-07{@include sizesY(calc($index * .7), calc($index * .7))}
+.mx1-08{@include sizesX(calc($index * .8), calc($index * .8))}
+.my1-08{@include sizesY(calc($index * .8), calc($index * .8))}
+.mx1-09{@include sizesX(calc($index * .9), calc($index * .9))}
+.my1-09{@include sizesY(calc($index * .9), calc($index * .9))}
+.mx1-1{@include sizesX($index, $index)}
+.my1-1{@include sizesY($index, $index)}
+
+.mx2-11{@include sizesX(calc($index * 1.1), calc($index * 1.1))}
+.my2-11{@include sizesY(calc($index * 1.1), calc($index * 1.1))}
+.mx2-12{@include sizesX(calc($index * 1.2), calc($index * 1.2))}
+.my2-12{@include sizesY(calc($index * 1.2), calc($index * 1.2))}
+.mx2-13{@include sizesX(calc($index * 1.3), calc($index * 1.3))}
+.my2-13{@include sizesY(calc($index * 1.3), calc($index * 1.3))}
+.mx2-14{@include sizesX(calc($index * 1.4), calc($index * 1.4))}
+.my2-14{@include sizesY(calc($index * 1.4), calc($index * 1.4))}
+.mx2-15{@include sizesX(calc($index * 1.5), calc($index * 1.5))}
+.my2-15{@include sizesY(calc($index * 1.5), calc($index * 1.5))}
+.mx2-16{@include sizesX(calc($index * 1.6), calc($index * 1.6))}
+.my2-16{@include sizesY(calc($index * 1.6), calc($index * 1.6))}
+.mx2-17{@include sizesX(calc($index * 1.7), calc($index * 1.7))}
+.my2-17{@include sizesY(calc($index * 1.7), calc($index * 1.7))}
+.mx2-18{@include sizesX(calc($index * 1.8), calc($index * 1.8))}
+.my2-18{@include sizesY(calc($index * 1.8), calc($index * 1.8))}
+.mx2-19{@include sizesX(calc($index * 1.9), calc($index * 1.9))}
+.my2-19{@include sizesY(calc($index * 1.9), calc($index * 1.9))}
+.mx2-2{@include sizesX(calc($index * 2), calc($index * 2))}
+.my2-2{@include sizesY(calc($index * 2), calc($index * 2))}
+
+.mx3-3{@include sizesX(calc($index * 3), calc($index * 3))}
+.my3-3{@include sizesY(calc($index * 3), calc($index * 3))}

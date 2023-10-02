@@ -1,0 +1,12 @@
+$index: calc(1vw + 1vh);
+
+.fos-x05 {font-size: calc($index / .5);}
+.fos-x06 {font-size: calc($index / .6);}
+.fos-x07 {font-size: calc($index / .7);}
+.fos-x08 {font-size: calc($index / .8);}
+.fos-x09 {font-size: calc($index / .9);}
+.fos-x1 {font-size: calc($index);}
+.fos-x1_25 {font-size: calc($index * 1.25);}
+.fos-x1_5 {font-size: calc($index * 1.5);}
+.fos-x1_75 {font-size: calc($index * 1.75);}
+.fos-x2 {font-size: calc($index * 2);}

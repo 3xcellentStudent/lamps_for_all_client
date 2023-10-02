@@ -1,4 +1,7 @@
 @import './paddings.scss';
+@import './margins.scss';
+@import './fos.scss';
+@import './colors.scss';
 
 $index: calc(1vw + 1vh);
 .btn-buy {background: #000;}
@@ -6,3 +9,5 @@ $index: calc(1vw + 1vh);
 .wrapper_big {
   padding: 0 calc($index * 2);
 }
+
+body {background: #eee;}

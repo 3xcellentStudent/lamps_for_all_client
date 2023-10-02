@@ -1,0 +1,26 @@
+$index: calc(1vw + 1vh);
+
+.block {
+  &_detail {
+    flex: 1 1;
+  }
+
+  &_flex {
+    color: #fff;
+    white-space: nowrap;
+    position: relative;
+    padding-left: calc($index * 2);
+    font-size: $index;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: $index;
+      top: calc($index / 2);
+      width: calc($index / 4);
+      height: calc($index / 4);
+      border-radius: 50%;
+      background: #fff;
+    }
+  }
+}

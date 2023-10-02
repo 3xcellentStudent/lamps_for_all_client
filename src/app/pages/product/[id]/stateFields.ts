@@ -12,17 +12,25 @@ import {
   Specifications,
 } from '@/typesComp/productID.type'
 
+// export const fieldProductID = {
+//   status: {} as Status,
+//   localization: {} as Localization,
+//   settings: {} as Settings,
+//   fieldsInfo: <FieldsInfo[]>[],
+//   images: <string[]>[],
+//   video: {} as Video,
+//   description: <Description[]>[],
+//   service: <Service[]>[],
+//   reviews: {} as Reviews,
+//   delivery: {} as Delivery,
+//   seller: {} as Seller,
+//   specifications: <Specifications[]>[]
+// }
+
 export const fieldProductID = {
-  status: {} as Status,
-  localization: {} as Localization,
-  settings: {} as Settings,
-  fieldsInfo: <FieldsInfo[]>[],
-  images: <string[]>[],
-  video: {} as Video,
-  description: <Description[]>[],
-  service: <Service[]>[],
-  reviews: {} as Reviews,
-  delivery: {} as Delivery,
-  seller: {} as Seller,
-  specifications: <Specifications[]>[]
+  settings: {status: 400},
+  title: "",
+  stars: 0,
+  items: [],
+  menuInfo: []
 }
