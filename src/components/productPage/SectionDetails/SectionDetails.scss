@@ -1,26 +1,20 @@
 $index: calc(1vw + 1vh);
 
-.block {
-  &_detail {
-    flex: 1 1;
-  }
+:root {
+  --maxHeight: 0;
+}
 
-  &_flex {
-    color: #fff;
-    white-space: nowrap;
+.details_part {
+  
+  &_accordion {
+    max-height: 0px;
+    transition: .3s;
     position: relative;
-    padding-left: calc($index * 2);
-    font-size: $index;
+    overflow: hidden;
 
-    &::before {
-      content: '';
-      position: absolute;
-      left: $index;
-      top: calc($index / 2);
-      width: calc($index / 4);
-      height: calc($index / 4);
-      border-radius: 50%;
-      background: #fff;
+    &.active {
+      max-height: var(--maxHeight);
+      transition: .3s;
     }
   }
 }

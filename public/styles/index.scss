@@ -4,10 +4,51 @@
 @import './colors.scss';
 
 $index: calc(1vw + 1vh);
+
+input {outline: none;}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
 .btn-buy {background: #000;}
 
 .wrapper_big {
   padding: 0 calc($index * 2);
 }
 
-body {background: #eee;}
+.P_product_common {
+  min-height: calc(100vh - 128px);
+  margin-top: 96px;
+  padding: 0 calc($index * 2);
+}
+
+
+.line {
+  &_title {
+
+    &_left::after {
+      content: '';
+      width: 130%;
+      height: 2px;
+      margin: $index 0 calc($index * 2);
+      display: block;
+      background: $bg-darkBlue;
+    }
+
+    &_center::after {
+      content: '';
+      width: 60%;
+      height: 2px;
+      margin: $index auto calc($index * 2) auto;
+      display: block;
+      background: $bg-darkBlue;
+    }
+  }
+}
+
+// body {background: #eee;}
+// body {background: #727d9b;}
+// body {background: #6774a1;}

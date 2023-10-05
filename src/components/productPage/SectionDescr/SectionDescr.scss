@@ -1,0 +1,11 @@
+
+.section {
+  &_descr {
+
+    .img_wrap {
+      max-height: calc(100vh - 128px);
+    }
+    
+    &__content_left {margin-right: calc((1vw + 1vh) * 3);}
+  }
+}

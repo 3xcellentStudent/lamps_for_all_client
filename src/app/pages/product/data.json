@@ -2,8 +2,56 @@
   "settings": {
     "status": 200
   },
-  "title": "Lamp For Cabinet",
-  "stars": 4.7,
+  "rating": 4.7,
+  "sectionTitle": {
+    "title": "Lamp For Cabinet",
+    "price": 20,
+    "purchaseDetails": {
+      "quantityMax": 5,
+      "fields": [
+        {"name": "Colors & Sizes", "items": [
+          {"text": "Black 20cm", "color": "#000"},
+          {"text": "White 20cm", "color": "#fff"}]
+        }
+      ]  
+    }
+  },
+  "sectionDescr": {
+    "img": "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png",
+    "description": [
+      "There is nothing to confuse with a one-touch control function. Simply tap the switch once it turns on and hold down a second to adjust the desired mood of brightness.", "Tap more to switch the turn-OFF. The ultimate user-friendly lighting solution.", "There is nothing to confuse with a one-touch control function. Simply tap the switch once it turns on and hold down a second to adjust the desired mood of brightness. Tap more to switch the turn-OFF. The ultimate user-friendly lighting solution."
+    ]
+  },
+  "sectionDetails": [
+    {
+      "title": "Specifications",
+      "items": [
+        {"name": "Model", "value": "Motion Sensor Light"},
+        {"name": "Voltage", "value": "5V"},
+        {"name": "Light Source", "value": "LED Bulbs"},
+        {"name": "Body Material", "value": "Aluminum"},
+        {"name": "Battery Type", "value": "Lithium Metal"},
+        {"name": "Power Source", "value": "Rechargeable Battery"},
+        {"name": "Wattage", "value": "0-5W"}
+      ]
+    },
+    {
+      "title": "Size & Weight",
+      "items": [
+        {"name": "Width", "value": "2cm"},
+        {"name": "Height", "value": "2cm"},
+        {"name": "Length", "value": "20cm"},
+        {"name": "Weight", "value": "1kg"}
+      ]
+    }
+  ],
+  "sectionReviews": {
+    "reviewsCount": 33,
+    "reviewsList": [
+      {"name": "Alina H.", "text": "Very good", "rating": 5},
+      {"name": "Andrew P.", "text": "Very bed", "rating": 1}
+    ]
+  },
   "items": [
     {
       "title": "Lamp For Cabinet",
@@ -45,6 +93,5 @@
         {"name": "Alina", "stars": 4.5, "text": "Very beautiful lamp and good package !"}
       ]
     }
-  ],
-  "menuInfo": ["first", "second", "third", "fourth"]
+  ]
 }

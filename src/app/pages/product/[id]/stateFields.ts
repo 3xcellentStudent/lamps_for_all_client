@@ -29,8 +29,9 @@ import {
 
 export const fieldProductID = {
   settings: {status: 400},
-  title: "",
-  stars: 0,
-  items: [],
-  menuInfo: []
+  rating: 0,
+  sectionTitle: {},
+  sectionDescr: {},
+  sectionDetails: [],
+  sectionReviews: {},
 }
