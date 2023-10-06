@@ -23,28 +23,49 @@ input[type="number"]::-webkit-outer-spin-button {
   min-height: calc(100vh - 128px);
   margin-top: 96px;
   padding: 0 calc($index * 2);
+  position: relative;
 }
 
+.btn_black_hover {
+  box-shadow: 0 0 1px 1px #000;
+  transition: .2s;
+  font-weight: 700;
+  
+  &:hover {
+    background: #000;
+    color: #fff;
+  }
+}
 
 .line {
   &_title {
 
-    &_left::after {
+    &_left::after, &_center::after {
       content: '';
-      width: 130%;
       height: 2px;
-      margin: $index 0 calc($index * 2);
       display: block;
       background: $bg-darkBlue;
     }
-
+    &_left::after {
+      width: 130%;
+      margin: $index 0 calc($index * 2);
+    }
     &_center::after {
-      content: '';
       width: 60%;
-      height: 2px;
       margin: $index auto calc($index * 2) auto;
-      display: block;
-      background: $bg-darkBlue;
+    }
+  }
+
+  &_section_divider {
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      width: calc(100% - 4 * $index);
+      height: 2px;
+      top: -46px;
+      background: #d1d5db;
     }
   }
 }

@@ -18,7 +18,7 @@ export default function BuyButton(){
 
   return(
     <div className="btn__container">
-      <button onClick={e => handleClick(e)} className="btn__buy-button">Buy Now</button>
+      <button onClick={e => handleClick(e)} className="btn__buy-button btn_black_hover">Buy Now</button>
     </div>
   )
 }

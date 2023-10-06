@@ -1,5 +1,6 @@
 import {useEffect, useRef} from 'react'
 import './SectionDetails.scss'
+import SVGArrowDown from '@/components/SVG/SVGArrowDown'
 
 interface Props {
   data: {
@@ -15,8 +16,11 @@ export default function SectionDetails({data}: Props){
 
   const listRef = useRef(null)
 
-  function handleClick(idx: number){
-    const result = listRef.current[idx].classList.toggle('active')
+  // function handleClick(idx: number){
+  function handleClick(e){
+    const parent = e.target.parentElement
+    // const result = listRef.current[idx].classList.toggle('active')
+    const result = parent.classList.toggle('active')
   }
 
   useEffect(() => {
@@ -29,18 +33,21 @@ export default function SectionDetails({data}: Props){
   }, [data])
 
   return(
-    <section className='wrapper_big P_product_common details_part'>
-      <div className='w-full flex flex-wrap items-start justify-start'>
+    <section className='wrapper_big mt-24 details_part line_section_divider'>
+      <div className='w-full flex flex-col items-end'>
         {data.map((obj, idx) => {
           return(
-            <div key={idx} className='w-4/12 relative'>
-              <h4 className='font-medium whitespace-nowrap mx-auto fos-x1_25 px1-1 mb-6' 
-              onClick={() => handleClick(idx)}>{obj.title}</h4>
-              <ul className="details_part_accordion w-full px1-1">
+            <div key={idx} className='details_part_element bg-gray-300 rounded-2xl py1-05 my1-05 w-4/12 relative'>
+              <button className='details_part_element_button relative text-start font-regular whitespace-nowrap text-lg 
+              px1-1 w-full' onClick={e => handleClick(e)}>
+                {obj.title}
+                <SVGArrowDown cls='absolute w-8 h-8 object-cover block top-0 right-3' />
+              </button>
+              <ul className="details_part_element_accordion w-full px1-1">
                 {obj.items?.map((obj, idx) => {
                   const {name, value} = obj
                   return(
-                    <li className='flex w-full' key={idx}>
+                    <li className='flex w-full py1-03 border-b-gray-400' key={idx}>
                       <div className='flex-1'>{name}:</div>
                       <div className='flex-1'>{value}</div>
                     </li>

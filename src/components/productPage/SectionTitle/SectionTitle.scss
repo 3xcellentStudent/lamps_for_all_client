@@ -12,7 +12,15 @@ $index: calc(1vw + 1vh);
 
   &_quantity {
     box-shadow: 0 0 0 1px #ccc;
-    margin-bottom: $index;
+    border-radius: 4px;
+
+    &__button {
+      transition: .2s;
+
+      &:hover {
+        background: #ccc;
+      }
+    }
 
     &__input {
       width: calc($index * 2);

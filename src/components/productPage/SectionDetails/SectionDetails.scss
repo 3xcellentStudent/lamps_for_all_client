@@ -4,17 +4,35 @@ $index: calc(1vw + 1vh);
   --maxHeight: 0;
 }
 
-.details_part {
-  
+.details_part_element {
+
+  &_button > svg {
+    transition: .2s;
+  }
+
   &_accordion {
     max-height: 0px;
     transition: .3s;
     position: relative;
     overflow: hidden;
+    margin-top: 0;
 
-    &.active {
-      max-height: var(--maxHeight);
-      transition: .3s;
+    // &.active {
+    //   max-height: var(--maxHeight);
+    //   margin-top: $index;
+    // }
+
+    & > li {
+      border-bottom-width: 1px;
     }
+
+    &.active .details_part_element_accordion {
+      max-height: var(--maxHeight);
+      margin-top: $index;
+    }
+
+    // .details_part_element_button > svg {
+    //   transition: .2s;
+    // }
   }
 }

@@ -23,16 +23,16 @@ export default function Quantity({quantity, setQuantity, purchaseDetails}: Props
   }
 
   return (
-    <div>
-      <h6 className='mb-3 fos-x1'>Quantity:</h6>
+    <div className='flex items-center mb-8'>
+      <h6 className='fos-x1 mr-4'>Quantity:</h6>
 
       <div className="section_quantity flex flex-row items-center w-min">
-        <button className="p-2 section_quantity__button" 
+        <button className="py1-03 px1-04 section_quantity__button" 
         onClick={() => checkValue(quantity - 1)}><RemoveIcon/></button>
         <input type="number" onBlur={e => checkValue(e.target.value)} 
         onChange={e => setValue(e.target.value)} value={value}
-        className='section_quantity__input' />
-        <button  className="p-2 section_quantity__button" 
+        className='text-center section_quantity__input' />
+        <button className="py1-03 px1-04 section_quantity__button" 
         onClick={() => checkValue(quantity + 1)}><AddIcon/></button>
       </div>
     </div>
