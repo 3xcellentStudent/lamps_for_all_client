@@ -17,22 +17,15 @@ $index: calc(1vw + 1vh);
     overflow: hidden;
     margin-top: 0;
 
-    // &.active {
-    //   max-height: var(--maxHeight);
-    //   margin-top: $index;
-    // }
+    & > li {border-bottom-width: 1px;}
+  }
 
-    & > li {
-      border-bottom-width: 1px;
+  &.active &_accordion {
+    max-height: var(--maxHeight);
+    margin-top: $index;
     }
-
-    &.active .details_part_element_accordion {
-      max-height: var(--maxHeight);
-      margin-top: $index;
-    }
-
-    // .details_part_element_button > svg {
-    //   transition: .2s;
-    // }
+  &.active &_button > svg {
+    transform: rotate(180deg);
+    transition: .2s;
   }
 }

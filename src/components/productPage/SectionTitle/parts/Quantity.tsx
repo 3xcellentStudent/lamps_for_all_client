@@ -7,11 +7,12 @@ interface Props {
   setQuantity: any
   purchaseDetails: {
     quantityMax: number
-    fields: []
   }
 }
 
-export default function Quantity({quantity, setQuantity, purchaseDetails}: Props){
+export default function Quantity({
+  quantity, setQuantity, purchaseDetails
+}: Props){
 
   const [value, setValue] = useState(quantity)
 
@@ -23,8 +24,10 @@ export default function Quantity({quantity, setQuantity, purchaseDetails}: Props
   }
 
   return (
-    <div className='flex items-center mb-8'>
-      <h6 className='fos-x1 mr-4'>Quantity:</h6>
+    <div className='flex items-center mb-2'>
+      <h6 className='fos-x1 mr-4'>Quantity (max {purchaseDetails?.quantityMax}):</h6>
+      {/* <p>{purchaseDetails?.quantityMax ? 
+      purchaseDetails?.quantityMax : null}</p> */}
 
       <div className="section_quantity flex flex-row items-center w-min">
         <button className="py1-03 px1-04 section_quantity__button" 

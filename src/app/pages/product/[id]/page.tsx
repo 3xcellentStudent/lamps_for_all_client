@@ -11,13 +11,9 @@ import SectionReviews from '@/components/productPage/SectionReviews/SectionRevie
 
 export default function Product(){
 
-  // const {product} = useSelector(state => state)
-
   const [data, setData] = useState(fieldProductID)
 
   useEffect(() => {setData(dataDB)}, [])
-
-  useEffect(() => {console.log('Updated !!!')}, [])
 
   return(
     <div className="product_page_wrapper">

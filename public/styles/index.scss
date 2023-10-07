@@ -48,7 +48,7 @@ input[type="number"]::-webkit-outer-spin-button {
     }
     &_left::after {
       width: 130%;
-      margin: $index 0 calc($index * 2);
+      margin: calc($index) 0;
     }
     &_center::after {
       width: 60%;

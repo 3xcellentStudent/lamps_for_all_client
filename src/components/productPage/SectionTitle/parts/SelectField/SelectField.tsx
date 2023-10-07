@@ -18,12 +18,13 @@ export default function SelectField({name, items}: Props){
     setState(e.target.value as string);
   };
   
-  const $index = (innerWidth + innerHeight) / 170
+  const $index = (innerWidth + innerHeight) / 155
 
   return(
-    <FormControl className='m-0 mr-2' size="small" 
+    <FormControl className='m-0 mr-2 mb-2' size="small" 
     sx={{ m: 1, minWidth: name.length * $index }}>
-      <InputLabel className='font-bold' id="demo-select-small-label">{name}</InputLabel>
+      <InputLabel className='font-bold' 
+      id="demo-select-small-label">{name}</InputLabel>
       <Select
         labelId="demo-select-small-label"
         id="demo-select-small"

@@ -2,7 +2,34 @@ $index: calc(1vw + 1vh);
 
 .section {
   &_title {
-    .img_wrap {
+    .carousel_wrap {
+      overflow: hidden;
+      :root {
+        --amountElems: 0;
+        --carouselPos: 0;
+      }
+
+      & > ul {min-width: calc(100% * var(--amountElems));}
+
+      .img_wrap {
+        transition: .3s ease-in-out;
+        left: var(--carouselPos);
+      }
+
+      &_btn {
+        opacity: .3;
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        transform: translateY(-50%);
+
+        &.-prev {left: 0;}
+        &.-next {right: 0;}
+        &:hover {opacity: 1;}
+      }
+
+    }
+    .img_wrap, .carousel_wrap {
       max-height: calc(100vh - 128px);
     }
     &__content_right {margin-left: calc($index * 3);}

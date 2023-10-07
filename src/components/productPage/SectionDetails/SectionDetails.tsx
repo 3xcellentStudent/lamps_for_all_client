@@ -1,6 +1,6 @@
 import {useEffect, useRef} from 'react'
-import './SectionDetails.scss'
 import SVGArrowDown from '@/components/SVG/SVGArrowDown'
+import './SectionDetails.scss'
 
 interface Props {
   data: {
@@ -16,15 +16,13 @@ export default function SectionDetails({data}: Props){
 
   const listRef = useRef(null)
 
-  // function handleClick(idx: number){
   function handleClick(e){
     const parent = e.target.parentElement
-    // const result = listRef.current[idx].classList.toggle('active')
-    const result = parent.classList.toggle('active')
+    parent.classList.toggle('active')
   }
 
   useEffect(() => {
-    listRef.current = Array.from(document.querySelectorAll('.details_part_accordion'))
+    listRef.current = document.querySelectorAll('.details_part_element_accordion')
     listRef.current.forEach(item => {
       const childs = Array.from(item.children)
       const maxHeight = childs.reduce((acc, value) => acc + value.clientHeight, 0)
@@ -41,7 +39,8 @@ export default function SectionDetails({data}: Props){
               <button className='details_part_element_button relative text-start font-regular whitespace-nowrap text-lg 
               px1-1 w-full' onClick={e => handleClick(e)}>
                 {obj.title}
-                <SVGArrowDown cls='absolute w-8 h-8 object-cover block top-0 right-3' />
+                <SVGArrowDown cls='pointer-events-none absolute 
+                w-8 h-8 object-cover block top-0 right-3' />
               </button>
               <ul className="details_part_element_accordion w-full px1-1">
                 {obj.items?.map((obj, idx) => {
