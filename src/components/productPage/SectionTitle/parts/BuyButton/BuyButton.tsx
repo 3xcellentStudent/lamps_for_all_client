@@ -1,16 +1,36 @@
 import './BuyButton.scss'
 import {useEffect} from 'react'
-import {usePathname} from 'next/navigation'
+import {usePathname, useRouter, } from 'next/navigation'
+import Link from 'next/link'
 // import {useDispatch, useSelector} from 'react-redux'
 // import {actionGETProductID} from '@/redux/actions/actions'
 
-const clientId = "AVn0ULKoBMaRcvml-G9PxmNuWtPj8bDYJvtbyxHDHjyi6XuJFSYZN6B-B7ZKBEW4n2LlyjiFlwx9cBBt"
-const secretId = "EHsON8KCADYDTAW2B_2F6Yr8K2TfWmF-EBSFigd8l7nypz0Wk5Hzqap_5nJejQkNKoud9jFY8o8M98rx"
+interface Response {
+  id: string
+  intent: string
+  state: string
+  payer: {payment_method: string}
+  transactions: {
+    amount: {
+      currency: string
+      total: string
+    }
+  }[]
+  links: {
+    href: string
+    method: string
+    rel: string
+  }[]
+  httpStatusCode: number
+  create_time: string
+}
 
 export default function BuyButton(){
 
   // const pathname = usePathname()
   // const dispatch = useDispatch()
+
+  const router = useRouter()
 
   async function handleClick(e: any){
     // e.preventDefault()
@@ -23,7 +43,7 @@ export default function BuyButton(){
         payment_method: 'paypal'
       },
       redirect_urls: {
-        return_url: 'https://example.com/success',
+        return_url: 'http://localhost:5000/interceptor',
         cancel_url: 'https://example.com/cancel'
       },
       transactions: [
@@ -35,20 +55,23 @@ export default function BuyButton(){
         }
       ]
     };
-    const response = await fetch(url, {
+    const response: Response = await fetch(url, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data)
-    }).then(res => res.json()).then(res => console.log(res))
+    }).then(res => res.json())
+    // router.push(response.links[1].href)
+    console.log(response)
   }
 
 
   return(
     <div className="btn__container">
       <button className="btn__buy-button btn_black_hover" 
-      onClick={e => handleClick(e)}>Buy Now</button>
+      // onClick={e => handleClick(e)}>Buy Now</button>
+      onClick={e => router.replace('/pages/cart')}>Buy Now</button>
     </div>
   )
 }

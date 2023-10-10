@@ -1,6 +1,6 @@
-import {SET_PRODUCT_ID} from '../constants/product'
+import {SET_PRODUCT_ID, SET_BASKET} from '../constants/product'
 
-const initialState = {
+const dataState = {
   product: {
     status: {},
     localization: {},
@@ -14,15 +14,25 @@ const initialState = {
     delivery: {},
     seller: {},
   }
-};
+}
 
-const counterReducer = (state = initialState, action: {type: string, payload: any}) => {
+const basketState = []
+
+const initialState = {
+  dataState,
+  basketState
+}
+
+const reducer = (state = initialState, action: {type: string, payload: any}) => {
   switch (action.type) {
     case SET_PRODUCT_ID:
       return {...state, product: action.payload}
+    case SET_BASKET:
+      console.log(state, action.payload)
+      // return {...state, }
     default:
       return state;
   }
 };
 
-export default counterReducer;
+export default reducer;

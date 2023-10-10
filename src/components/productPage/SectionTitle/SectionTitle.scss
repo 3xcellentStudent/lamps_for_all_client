@@ -35,23 +35,4 @@ $index: calc(1vw + 1vh);
     &__content_right {margin-left: calc($index * 3);}
   }
   // background: linear-gradient(to top, #6774a1, #6b7898, #727d9b);
-
-
-  &_quantity {
-    box-shadow: 0 0 0 1px #ccc;
-    border-radius: 4px;
-
-    &__button {
-      transition: .2s;
-
-      &:hover {
-        background: #ccc;
-      }
-    }
-
-    &__input {
-      width: calc($index * 2);
-      text-align: center;
-    }
-  }
 }

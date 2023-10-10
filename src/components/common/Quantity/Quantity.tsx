@@ -1,6 +1,7 @@
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useState } from 'react';
+import './Quantity.scss'
 
 interface Props {
   quantity: number
@@ -29,13 +30,13 @@ export default function Quantity({
       {/* <p>{purchaseDetails?.quantityMax ? 
       purchaseDetails?.quantityMax : null}</p> */}
 
-      <div className="section_quantity flex flex-row items-center w-min">
-        <button className="py1-03 px1-04 section_quantity__button" 
+      <div className="component_quantity flex flex-row items-center w-min">
+        <button className="py1-03 px1-04 component_quantity_button" 
         onClick={() => checkValue(quantity - 1)}><RemoveIcon/></button>
         <input type="number" onBlur={e => checkValue(e.target.value)} 
         onChange={e => setValue(e.target.value)} value={value}
-        className='text-center section_quantity__input' />
-        <button className="py1-03 px1-04 section_quantity__button" 
+        className='text-center component_quantity_input' />
+        <button className="py1-03 px1-04 component_quantity_button" 
         onClick={() => checkValue(quantity + 1)}><AddIcon/></button>
       </div>
     </div>
