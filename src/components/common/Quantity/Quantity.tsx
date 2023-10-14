@@ -25,11 +25,8 @@ export default function Quantity({
   }
 
   return (
-    <div className='flex items-center mb-2'>
+    <div className='flex items-center mb-6'>
       <h6 className='fos-x1 mr-4'>Quantity (max {purchaseDetails?.quantityMax}):</h6>
-      {/* <p>{purchaseDetails?.quantityMax ? 
-      purchaseDetails?.quantityMax : null}</p> */}
-
       <div className="component_quantity flex flex-row items-center w-min">
         <button className="py1-03 px1-04 component_quantity_button" 
         onClick={() => checkValue(quantity - 1)}><RemoveIcon/></button>

@@ -8,6 +8,7 @@ import {ThemeProvider, createTheme} from '@mui/material'
 
 import {Provider} from 'react-redux'
 import store from '@/redux/store'
+import { ReactNode } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,7 +25,7 @@ const theme = createTheme({
   }
 })
 
-export default function RootLayout({children,}: {children: React.ReactNode}) {
+export default function RootLayout({children,}: {children: ReactNode}) {
 
   return (
     <html lang="en">

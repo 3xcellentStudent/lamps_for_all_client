@@ -1,10 +1,11 @@
 'use client'
 
-import { styled, alpha } from '@mui/material/styles';
-import {AppBar, Box, Toolbar, IconButton, Typography, InputBase} from '@mui/material';
+import {Badge, IconButton, Typography} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import './Header.scss'
+import Search from './parts/Search/Search';
+import BadgeButton from '../common/BadgeButton/BadgeButton';
 
 export default function SearchAppBar() {
   return (
@@ -19,12 +20,10 @@ export default function SearchAppBar() {
         >
           Lamps For All
         </Typography>
-        <div className="header_search">
-          <div className="header_search_icon_wrapper">
-            <SearchIcon htmlColor='#2196F3' />
-          </div>
-          <input className='header_search_input' type="text" placeholder="Search…" />
-        </div>
+        {/* <Search/> */}
+        <BadgeButton count={1} color='primary' cls="pointer-events-none">
+          <ShoppingBasketIcon/>
+        </BadgeButton>
       </div>
     </header>
   );
