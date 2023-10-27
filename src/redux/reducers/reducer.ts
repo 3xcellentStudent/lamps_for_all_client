@@ -1,4 +1,5 @@
-import {SET_PRODUCT_ID, PUT_BASKET, CHANGE_OPEN_CART} from '../constants/product'
+import {SET_PRODUCT_ID, CHANGE_OPEN_CART, REDUCER_CALL_CART} from '../constants'
+import cartReducer from './cartReducer';
 
 const data = {
   product: {
@@ -18,7 +19,7 @@ const data = {
 
 const initialState = {
   data,
-  basket: [],
+  cart: [],
   isOpenCart: false
 }
 
@@ -26,7 +27,15 @@ const reducer = (state = initialState, {type, payload}: {type: string, payload: 
   switch (type) {
     case SET_PRODUCT_ID:
       return {...state, data: payload}
-    case PUT_BASKET:
+    case REDUCER_CALL_CART:
+      if(state.cart.length){
+        const cart = cartReducer(state.cart, payload)
+        // console.log(state.cart)
+        // console.log(cart)
+        return {...state, cart}
+      }
+      else return {...state, cart: [payload.payload]}
+
       // const filtered = state.basket.filter(item => item.productId === payload.productId)
       // console.log('basket', state.basket)
       // console.log('payload', payload)
@@ -37,7 +46,11 @@ const reducer = (state = initialState, {type, payload}: {type: string, payload: 
       //     return value !== payloadChar
       //   })
       // })
-      return {...state, basket: [...state.basket, payload]}
+
+      // const basket = [...state.basket, payload]
+      // localStorage.setItem("basketLS", JSON.stringify(basket))
+      // // console.log(localStorage.getItem("basketLS"))
+      // return {...state, basket}
     case CHANGE_OPEN_CART:
       return {...state, isOpenCart: !state.isOpenCart}
     default:

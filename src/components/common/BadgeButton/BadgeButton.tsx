@@ -1,7 +1,7 @@
 import { Badge } from "@mui/material"
 import { ReactNode } from "react"
 import { useDispatch } from "react-redux"
-import {actionSETOpenCart} from '@/redux/actions/actions'
+import {actionSETOpenCart} from '@/redux/actions'
 
 interface Props {
   count: number

@@ -29,6 +29,10 @@ $index: calc(1vw + 1vh);
       }
 
     }
+    .img_wrap {
+      display: flex;
+      align-items: center;
+    }
     .img_wrap, .carousel_wrap {
       max-height: calc(100vh - 128px);
     }

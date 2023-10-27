@@ -4,21 +4,19 @@ import { useState } from 'react';
 import './Quantity.scss'
 
 interface Props {
+  text: string
   quantity: number
   setQuantity: any
-  purchaseDetails: {
-    quantityMax: number
-  }
+  quantityMax: number
 }
 
 export default function Quantity({
-  quantity, setQuantity, purchaseDetails
+  text, quantity, setQuantity, quantityMax
 }: Props){
 
   const [value, setValue] = useState(quantity)
 
   function checkValue(value: number){
-    const {quantityMax} = purchaseDetails
     const result = value > quantityMax ? quantityMax : value > 0 ? value : 1
     setValue(result)
     setQuantity(result)
@@ -26,7 +24,7 @@ export default function Quantity({
 
   return (
     <div className='flex items-center mb-6'>
-      <h6 className='fos-x1 mr-4'>Quantity (max {purchaseDetails?.quantityMax}):</h6>
+      <h6 className='fos-x1 mr-4'>{text}</h6>
       <div className="component_quantity flex flex-row items-center w-min">
         <button className="py1-03 px1-04 component_quantity_button" 
         onClick={() => checkValue(quantity - 1)}><RemoveIcon/></button>

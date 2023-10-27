@@ -6,7 +6,8 @@ import Quantity from '../../common/Quantity/Quantity'
 import SelectField from './parts/SelectField/SelectField'
 import CarouselImages from './parts/CarouselImages/CarouselImages'
 import { useDispatch, useSelector } from 'react-redux'
-import {actionSETBasket} from '@/redux/actions/actions'
+import {actionCartSaga} from '@/redux/actions'
+import {PUT_CART_ALL} from '@/redux/constants/cartConst'
 
 interface Props {
   pageId: string
@@ -16,46 +17,40 @@ interface Props {
     price: number
     images: string[]
     purchaseDetails: {
+      quantityMax: number
       fields: {
         name: string 
         items: {value: string, color: string}[]
       }[]
     }
   }
+  images: {media: string, src: string}[][]
 }
 
-interface TotalObj {
-  productName: string
-  productId: string
-  quantity: number
-  fields: {name: string, value: string}[]
-}
-
-export default function SectionTitle({pageId, rating, data}: Props){
+export default function SectionTitle({pageId, rating, data, images}: Props){
 
   const dispatch = useDispatch()
-  // const basket = useSelector(state => state)
-  
-  // useEffect(() => {console.log(basket)}, [basket])
   
   const [quantity, setQuantity] = useState(1)
   const fieldsRef = useRef([])
 
   function setTotalObj(idx: number, value: string){fieldsRef.current[idx].value = value}
 
-  function dispatchToBasket(){
+  function dispatchToCart(){
     const resultObj = {
       productName: data.title,
       productId: pageId,
+      productImg: images[0][0].src,
       quantity,
+      quantityMax: data.purchaseDetails.quantityMax,
       fields: fieldsRef.current
     }
-    dispatch(actionSETBasket(resultObj))
+    dispatch(actionCartSaga({type: PUT_CART_ALL, payload: resultObj}))
   }
 
   return(
     <section className='section_title P_product_common flex line_section_divider'>
-      <CarouselImages images={data.images} clsWrap='w-full h-full' />
+      <CarouselImages images={images} clsWrap='w-full h-full' />
       <div className='section_title__content_right w-6/12 my-auto mx-auto'>
         <div className="flex items-start flex-col justify-between line_title_left w-min">
           <h3 className='fos-x1_5 font-bold text-center whitespace-nowrap 
@@ -80,9 +75,14 @@ export default function SectionTitle({pageId, rating, data}: Props){
         </ul>
 
         <Quantity quantity={quantity} setQuantity={setQuantity} 
-        purchaseDetails={data.purchaseDetails} />
-        <MainLargeBtn text="Buy Now" data={""} action={dispatchToBasket} />
+        text={`Quantity (max ${data.purchaseDetails?.quantityMax}):`} 
+        quantityMax={data.purchaseDetails?.quantityMax} />
+        <MainLargeBtn text="Buy Now" data={""} action={dispatchToCart} />
       </div>
     </section>
   )
 }
+
+
+
+// "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png",

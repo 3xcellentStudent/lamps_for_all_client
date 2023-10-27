@@ -1,8 +1,8 @@
-import ImgWrapper from "@/components/productPage/common/ImgWrapper"
+import ImgWrapper from "@/components/common/ImgWrapper"
 import {useRef, useState} from 'react'
 
 interface Props {
-  images: string[]
+  images: {media: string, src: string}[][]
   clsWrap: string
 }
 
@@ -27,12 +27,21 @@ export default function CarouselImages({images, clsWrap}: Props){
 
   return(
     <div ref={carouselWrapRef} className="carousel_wrap relative w-6/12">
+
       <ul style={{'--amountElems': images?.length, '--carouselPos': `${position}px`}} 
       className="flex flex-row absolute h-full top-0 left-0">
-        {images?.map((src, idx) => {
+        {images?.map((array, idx) => {
           return(
             <ImgWrapper key={idx} cls={clsWrap}>
-              <img className='object-cover w-full h-full block' src={src} alt="" />
+              <picture className="w-full h-full block">
+                {array.map((obj, idx) => {
+                  const {media, src} = obj
+                  const styles = "w-full h-full block absolute object-cover"
+                  return media.length ? 
+                  (<source className={styles} key={idx} media={media} srcSet={src} />) : 
+                  <img key={idx} src={src} alt="" className={styles} />
+                })}
+              </picture>
             </ImgWrapper>
           )
         })}

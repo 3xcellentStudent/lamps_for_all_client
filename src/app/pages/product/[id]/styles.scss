@@ -2,6 +2,19 @@
   position: relative;
   padding: 0 0 32px;
 }
+
+.css-1160xiw-MuiPaper-root-MuiDrawer-paper {
+  .cart_list {
+    min-width: 400px;
+    @media screen and (max-width: 560px){
+      min-width: 300px;
+    }
+  }
+  @media screen and (max-width: 560px){
+    width: 100%;
+  }
+}
+
 // .product_page {
 
 //   &_wrapper {

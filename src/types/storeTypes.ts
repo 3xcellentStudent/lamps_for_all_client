@@ -1,10 +1,12 @@
 export interface Store {
-  basket: Basket
+  basket: Cart
 }
 
-export interface Basket {
+export interface Cart {
   productName: string
   productId: string
+  productImg: string
   quantity: number
+  quantityMax: number
   fields: {name: string, value: string}[]
 }

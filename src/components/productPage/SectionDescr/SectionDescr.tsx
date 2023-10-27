@@ -1,4 +1,4 @@
-import ImgWrapper from '../common/ImgWrapper'
+import ImgWrapper from '../../common/ImgWrapper'
 import './SectionDescr.scss'
 
 interface Props {

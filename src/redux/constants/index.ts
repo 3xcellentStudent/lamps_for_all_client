@@ -1,0 +1,8 @@
+export const GET_PRODUCT_ID = 'GET_PRODUCT_ID'
+export const SET_PRODUCT_ID = 'SET_PRODUCT_ID'
+
+export const CART_DATA_SAGA = 'CART_DATA_SAGA'
+export const REDUCER_CALL_CART = 'REDUCER_CALL_CART'
+
+export const CALL_OPEN_CART = 'CALL_OPEN_CART'
+export const CHANGE_OPEN_CART = 'CHANGE_OPEN_CART'

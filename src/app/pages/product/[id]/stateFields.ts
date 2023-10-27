@@ -34,4 +34,5 @@ export const fieldProductID = {
   sectionDescr: {},
   sectionDetails: [],
   sectionReviews: {},
+  images: []
 }

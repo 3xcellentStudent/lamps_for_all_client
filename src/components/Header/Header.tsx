@@ -6,8 +6,12 @@ import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import './Header.scss'
 import Search from './parts/Search/Search';
 import BadgeButton from '../common/BadgeButton/BadgeButton';
+import { useSelector } from 'react-redux';
 
-export default function SearchAppBar() {
+export default function Header(){
+
+  const basket = useSelector(({basket}: {basket: []}) => basket)
+
   return (
     <header className='header'>
       <div className='header_toolbar'>
@@ -21,7 +25,7 @@ export default function SearchAppBar() {
           Lamps For All
         </Typography>
         {/* <Search/> */}
-        <BadgeButton count={1} color='primary' cls="pointer-events-none">
+        <BadgeButton count={basket?.length} color='primary' cls="pointer-events-none">
           <ShoppingBasketIcon/>
         </BadgeButton>
       </div>
