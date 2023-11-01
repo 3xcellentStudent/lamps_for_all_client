@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 interface Props {
   text: string 
-  data: {}
+  cls: string
   action: () => void
 }
 
@@ -30,7 +30,7 @@ interface Response {
   create_time: string
 }
 
-export default function MainLargeBtn({text, data, action}: Props){
+export default function MainLargeBtn({text, cls, action}: Props){
 
   // const pathname = usePathname()
 
@@ -42,7 +42,7 @@ export default function MainLargeBtn({text, data, action}: Props){
 
 
   return(
-    <div className="btn__container">
+    <div className={`btn__container ${cls}`}>
       <button className="btn__buy-button btn_black_hover" 
       onClick={action}>{text}</button>
       {/* onClick={e => router.replace('/pages/cart')}>{text}</button> */}

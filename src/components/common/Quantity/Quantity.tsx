@@ -6,12 +6,12 @@ import './Quantity.scss'
 interface Props {
   text: string
   quantity: number
-  setQuantity: any
+  action: any
   quantityMax: number
 }
 
 export default function Quantity({
-  text, quantity, setQuantity, quantityMax
+  text, quantity, action, quantityMax
 }: Props){
 
   const [value, setValue] = useState(quantity)
@@ -19,7 +19,7 @@ export default function Quantity({
   function checkValue(value: number){
     const result = value > quantityMax ? quantityMax : value > 0 ? value : 1
     setValue(result)
-    setQuantity(result)
+    action(result)
   }
 
   return (

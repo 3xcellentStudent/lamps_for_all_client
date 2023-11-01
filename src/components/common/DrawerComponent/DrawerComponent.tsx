@@ -1,4 +1,5 @@
-import Drawer from '@mui/material/Drawer';
+// import Drawer from '@mui/material/Drawer';
+import { SwipeableDrawer } from '@mui/material';
 import { ReactNode } from 'react';
 
 interface Props {
@@ -11,8 +12,11 @@ interface Props {
 export default function DrawerComponent({anchor, cartOpen, closeCart, children}: Props){
 
   return (
-    <Drawer anchor={anchor} open={cartOpen} onClose={closeCart}>
+    <SwipeableDrawer anchor={anchor} onOpen={() => true} open={cartOpen} onClose={closeCart}>
       {children}
-    </Drawer>
+    </SwipeableDrawer>
+    // <Drawer anchor={anchor} open={cartOpen} onClose={closeCart}>
+    //   {children}
+    // </Drawer>
   );
 }

@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 
 export default function Header(){
 
-  const basket = useSelector(({basket}: {basket: []}) => basket)
+  const cart = useSelector(({cart}: {cart: []}) => cart)
 
   return (
     <header className='header'>
@@ -25,7 +25,7 @@ export default function Header(){
           Lamps For All
         </Typography>
         {/* <Search/> */}
-        <BadgeButton count={basket?.length} color='primary' cls="pointer-events-none">
+        <BadgeButton count={cart?.length} color='primary' cls="pointer-events-none">
           <ShoppingBasketIcon/>
         </BadgeButton>
       </div>

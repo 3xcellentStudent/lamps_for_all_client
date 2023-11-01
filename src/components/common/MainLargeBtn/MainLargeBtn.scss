@@ -1,7 +1,18 @@
 $index: calc(1vw + 1vh);
 .btn {
+  &__container {
+    &.--cart {
+      bottom: 40px;
+      width: calc(100% - 2rem);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
   &__buy-button {
     text-wrap: nowrap;
-    padding: calc($index / 2) calc($index * 4);
+    text-transform: uppercase;
+    padding: calc($index / 2.5) calc($index * 3);
+
   }
 }

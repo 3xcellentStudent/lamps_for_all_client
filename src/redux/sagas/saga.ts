@@ -8,7 +8,6 @@ function* sagaCartData(action: {type: string, payload: any}){
 }
 
 function* sagaIsOpenCart({type}: {type: string}){
-  console.log('sagaIsOpenCartsagaIsOpenCart')
   yield put(actionCHANGEOpenCart())
 }
 

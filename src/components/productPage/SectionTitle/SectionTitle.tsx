@@ -32,9 +32,22 @@ export default function SectionTitle({pageId, rating, data, images}: Props){
   const dispatch = useDispatch()
   
   const [quantity, setQuantity] = useState(1)
+  // const [fields, setFields] = useState([])
   const fieldsRef = useRef([])
 
-  function setTotalObj(idx: number, value: string){fieldsRef.current[idx].value = value}
+  function setTotalObj(idx: number, value: string){
+    fieldsRef.current[idx].value = value
+    // setFields([...fieldsRef.current])
+  }
+
+  const createFieldsArray = () => {
+    const fields: {}[] = []
+    for(let i = 0; i < fieldsRef.current.length; i++){
+      const copyObj = Object.assign({}, fieldsRef.current[i])
+      fields.push(copyObj)
+    }
+    return fields
+  }
 
   function dispatchToCart(){
     const resultObj = {
@@ -43,14 +56,14 @@ export default function SectionTitle({pageId, rating, data, images}: Props){
       productImg: images[0][0].src,
       quantity,
       quantityMax: data.purchaseDetails.quantityMax,
-      fields: fieldsRef.current
+      fields: createFieldsArray()
     }
     dispatch(actionCartSaga({type: PUT_CART_ALL, payload: resultObj}))
   }
 
   return(
     <section className='section_title P_product_common flex line_section_divider'>
-      <CarouselImages images={images} clsWrap='w-full h-full' />
+      <CarouselImages images={images} clsWrap='w-full h-full'/>
       <div className='section_title__content_right w-6/12 my-auto mx-auto'>
         <div className="flex items-start flex-col justify-between line_title_left w-min">
           <h3 className='fos-x1_5 font-bold text-center whitespace-nowrap 
@@ -68,16 +81,19 @@ export default function SectionTitle({pageId, rating, data, images}: Props){
           {data.purchaseDetails?.fields.map((obj, idx, array) => {
             const {name, items} = obj
             const fieldsCompr = fieldsRef.current.length + 1 <= array.length
-            if(fieldsCompr){fieldsRef.current.push({name, value: items[0].value})}
+            if(fieldsCompr){
+              fieldsRef.current.push({name, value: items[0].value})
+              // setFields(prev => [...prev, {name, value: items[0].value}])
+            }
             return <SelectField key={idx} setTotalObj={setTotalObj} 
             idx={idx} name={name} items={items} />
           })}
         </ul>
 
-        <Quantity quantity={quantity} setQuantity={setQuantity} 
+        <Quantity quantity={quantity} action={setQuantity} 
         text={`Quantity (max ${data.purchaseDetails?.quantityMax}):`} 
         quantityMax={data.purchaseDetails?.quantityMax} />
-        <MainLargeBtn text="Buy Now" data={""} action={dispatchToCart} />
+        <MainLargeBtn cls="" text="Add to Cart" action={dispatchToCart} />
       </div>
     </section>
   )
