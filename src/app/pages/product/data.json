@@ -10,18 +10,9 @@
       "purchaseDetails": {
         "quantityMax": 5,
         "fields": [
-          {"name": "Colors & Sizes", "items": [
-            {"value": "Black 20cm", "color": "#000"},
-            {"value": "White 20cm", "color": "#fff"}]
-          },
-          {"name": "Colors & Sizes", "items": [
-            {"value": "Black 20cm", "color": "#000"},
-            {"value": "White 20cm", "color": "#fff"}]
-          },
-          {"name": "Colors & Sizes", "items": [
-            {"value": "Black 20cm", "color": "#000"},
-            {"value": "White 20cm", "color": "#fff"}]
-          }
+          {"name": "Case Color", "items": ["Black 20cm", "White 20cm"]},
+          {"name": "Emitting Color", "items": ["500 LM", "700 LM"]},
+          {"name": "Sizes", "items": ["Weight: 2kg", "Weight: 4.5kg"]}
         ]  
       }
     },

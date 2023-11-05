@@ -1,11 +1,11 @@
 import Rating from '../common/Rating'
 import MainLargeBtn from '../../common/MainLargeBtn/MainLargeBtn'
 import './SectionTitle.scss'
-import { useState, useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import Quantity from '../../common/Quantity/Quantity'
 import SelectField from './parts/SelectField/SelectField'
 import CarouselImages from './parts/CarouselImages/CarouselImages'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import {actionCartSaga} from '@/redux/actions'
 import {PUT_CART_ALL} from '@/redux/constants/cartConst'
 
@@ -20,7 +20,7 @@ interface Props {
       quantityMax: number
       fields: {
         name: string 
-        items: {value: string, color: string}[]
+        items: string[]
       }[]
     }
   }
@@ -31,13 +31,12 @@ export default function SectionTitle({pageId, rating, data, images}: Props){
 
   const dispatch = useDispatch()
   
-  const [quantity, setQuantity] = useState(1)
-  // const [fields, setFields] = useState([])
-  const fieldsRef = useRef([])
+  const quantityRef = useRef(1)
+  const fieldsRef = useRef<{name: string, value: string, index: number}[]>([])
 
-  function setTotalObj(idx: number, value: string){
-    fieldsRef.current[idx].value = value
-    // setFields([...fieldsRef.current])
+  function setTotalObj(elemIdx: number, index: number, value: string){
+    fieldsRef.current[elemIdx].value = value
+    fieldsRef.current[elemIdx].index = index
   }
 
   const createFieldsArray = () => {
@@ -50,13 +49,16 @@ export default function SectionTitle({pageId, rating, data, images}: Props){
   }
 
   function dispatchToCart(){
+    const {name, value} = fieldsRef.current[0]
+    
     const resultObj = {
       productName: data.title,
       productId: pageId,
       productImg: images[0][0].src,
-      quantity,
+      quantity: quantityRef.current,
       quantityMax: data.purchaseDetails.quantityMax,
-      fields: createFieldsArray()
+      fields: createFieldsArray(),
+      displayedField: {name, value}
     }
     dispatch(actionCartSaga({type: PUT_CART_ALL, payload: resultObj}))
   }
@@ -82,17 +84,16 @@ export default function SectionTitle({pageId, rating, data, images}: Props){
             const {name, items} = obj
             const fieldsCompr = fieldsRef.current.length + 1 <= array.length
             if(fieldsCompr){
-              fieldsRef.current.push({name, value: items[0].value})
-              // setFields(prev => [...prev, {name, value: items[0].value}])
+              fieldsRef.current.push({name, value: items[0], index: 0})
             }
             return <SelectField key={idx} setTotalObj={setTotalObj} 
-            idx={idx} name={name} items={items} />
+            elemIdx={idx} name={name} items={items} />
           })}
         </ul>
 
-        <Quantity quantity={quantity} action={setQuantity} 
-        text={`Quantity (max ${data.purchaseDetails?.quantityMax}):`} 
-        quantityMax={data.purchaseDetails?.quantityMax} />
+        <Quantity action={(result: number) => quantityRef.current = result} 
+        text={`Quantity (max ${data.purchaseDetails?.quantityMax}):`}
+        quantityMax={data.purchaseDetails?.quantityMax} quantity={quantityRef.current}  />
         <MainLargeBtn cls="" text="Add to Cart" action={dispatchToCart} />
       </div>
     </section>

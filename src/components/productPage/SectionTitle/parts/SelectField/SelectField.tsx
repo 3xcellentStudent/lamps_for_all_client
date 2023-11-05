@@ -6,20 +6,20 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 interface Props {
   name: string
-  items: {value: string, color: string}[]
-  idx: number
-  setTotalObj: (idx: number, value: string) => void
+  items: string[]
+  elemIdx: number
+  setTotalObj: (idx: number, index: number, value: string) => void
 }
 
-export default function SelectField({name, items, idx, setTotalObj}: Props){
+export default function SelectField({name, items, elemIdx, setTotalObj}: Props){
 
   const [state, setState] = useState('')
 
   const handleChange = (e: SelectChangeEvent) => {
-    const {value} = e.target
-    setState(value);
-    const char = items[value]
-    setTotalObj(idx, char.value)
+    const {value: index} = e.target
+    setState(index);
+    const value = items[index]
+    setTotalObj(elemIdx, index, value)
   };
   
   const $index = (innerWidth + innerHeight) / 155
@@ -36,8 +36,7 @@ export default function SelectField({name, items, idx, setTotalObj}: Props){
         label={name}
         onChange={handleChange}
       >
-        {items.map((obj, idx) => {
-          const {value} = obj
+        {items.map((value, idx) => {
           return <MenuItem key={idx} value={idx}>{value}</MenuItem>
         })}
       </Select>

@@ -27,12 +27,12 @@ export default function Quantity({
       <h6 className='fos-x1 mr-4'>{text}</h6>
       <div className="component_quantity flex flex-row items-center w-min">
         <button className="py1-03 px1-04 component_quantity_button" 
-        onClick={() => checkValue(quantity - 1)}><RemoveIcon/></button>
+        onClick={() => checkValue(value - 1)}><RemoveIcon/></button>
         <input type="number" onBlur={e => checkValue(e.target.value)} 
         onChange={e => setValue(e.target.value)} value={value}
         className='text-center component_quantity_input' />
         <button className="py1-03 px1-04 component_quantity_button" 
-        onClick={() => checkValue(quantity + 1)}><AddIcon/></button>
+        onClick={() => checkValue(value + 1)}><AddIcon/></button>
       </div>
     </div>
   );

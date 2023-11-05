@@ -1,0 +1,16 @@
+rd /s .git - delete .git
+
+"fields": [
+  {"name": "Colors & Sizes", "items": [
+    {"value": "Black 20cm", "color": "#000"},
+    {"value": "White 20cm", "color": "#fff"}]
+  },
+  {"name": "Emitting Color", "items": [
+    {"value": "500 LM", "color": "#000"},
+    {"value": "700 LM", "color": "#fff"}]
+  },
+  {"name": "Sizes", "items": [
+    {"value": "Weight: 2kg", "color": "#000"},
+    {"value": "Weight: 4.5kg", "color": "#fff"}]
+  }
+]  

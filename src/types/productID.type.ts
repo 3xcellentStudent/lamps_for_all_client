@@ -86,3 +86,12 @@ export interface Specifications {
   name: string
   value: string
 }
+
+export interface StoreObj {
+  productName: string,
+  productId: string,
+  productImg: string,
+  quantity: number,
+  quantityMax: number,
+  fields: {name: string, value: string}[]
+}
