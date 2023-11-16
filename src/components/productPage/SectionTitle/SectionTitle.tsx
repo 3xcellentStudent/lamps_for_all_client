@@ -19,12 +19,27 @@ interface Props {
     purchaseDetails: {
       quantityMax: number
       fields: {
-        name: string 
-        items: string[]
+        name: string
+        type: string 
+        items: {value: string, cartInfo: string}[]
       }[]
     }
   }
   images: {media: string, src: string}[][]
+}
+
+interface FieldsRefType {
+  name: string
+  type: string
+  value: string
+  cartInfo: string
+  index: number
+}
+
+interface SetTotalObjType {
+  elemIdx: number
+  index: number
+  data: {value: string, cartInfo: string}
 }
 
 export default function SectionTitle({pageId, rating, data, images}: Props){
@@ -32,10 +47,12 @@ export default function SectionTitle({pageId, rating, data, images}: Props){
   const dispatch = useDispatch()
   
   const quantityRef = useRef(1)
-  const fieldsRef = useRef<{name: string, value: string, index: number}[]>([])
+  const fieldsRef = useRef<FieldsRefType[]>([])
 
-  function setTotalObj(elemIdx: number, index: number, value: string){
+  function setTotalObj({elemIdx, index, data}: SetTotalObjType){
+    const {value, cartInfo} = data
     fieldsRef.current[elemIdx].value = value
+    fieldsRef.current[elemIdx].cartInfo = cartInfo
     fieldsRef.current[elemIdx].index = index
   }
 
@@ -81,10 +98,11 @@ export default function SectionTitle({pageId, rating, data, images}: Props){
 
         <ul className='flex flex-wrap w-full'>
           {data.purchaseDetails?.fields.map((obj, idx, array) => {
-            const {name, items} = obj
+            const {name, type, items} = obj
+            const {value, cartInfo} = items[0]
             const fieldsCompr = fieldsRef.current.length + 1 <= array.length
             if(fieldsCompr){
-              fieldsRef.current.push({name, value: items[0], index: 0})
+              fieldsRef.current.push({name, type, value, cartInfo, index: 0})
             }
             return <SelectField key={idx} setTotalObj={setTotalObj} 
             elemIdx={idx} name={name} items={items} />
@@ -92,8 +110,9 @@ export default function SectionTitle({pageId, rating, data, images}: Props){
         </ul>
 
         <Quantity action={(result: number) => quantityRef.current = result} 
-        text={`Quantity (max ${data.purchaseDetails?.quantityMax}):`}
-        quantityMax={data.purchaseDetails?.quantityMax} quantity={quantityRef.current}  />
+        text={`Quantity (max ${data.purchaseDetails?.quantityMax}):`} 
+        clsBtn='w-9 h-9' clsInput='' cls="mb-6" clsIcons=''
+        quantityMax={data.purchaseDetails?.quantityMax} quantity={quantityRef.current} />
         <MainLargeBtn cls="" text="Add to Cart" action={dispatchToCart} />
       </div>
     </section>

@@ -4,12 +4,19 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
+interface SetTotalObjType {
+  elemIdx: number 
+  index: number
+  data: {value: string, cartInfo: string}
+}
+
 interface Props {
   name: string
-  items: string[]
+  items: {value: string, cartInfo: string}[]
   elemIdx: number
-  setTotalObj: (idx: number, index: number, value: string) => void
+  setTotalObj: ({elemIdx, index, data}: SetTotalObjType) => void
 }
+
 
 export default function SelectField({name, items, elemIdx, setTotalObj}: Props){
 
@@ -18,8 +25,8 @@ export default function SelectField({name, items, elemIdx, setTotalObj}: Props){
   const handleChange = (e: SelectChangeEvent) => {
     const {value: index} = e.target
     setState(index);
-    const value = items[index]
-    setTotalObj(elemIdx, index, value)
+    const data = items[index]
+    setTotalObj({elemIdx, index, data})
   };
   
   const $index = (innerWidth + innerHeight) / 155
@@ -36,7 +43,7 @@ export default function SelectField({name, items, elemIdx, setTotalObj}: Props){
         label={name}
         onChange={handleChange}
       >
-        {items.map((value, idx) => {
+        {items.map(({value}, idx) => {
           return <MenuItem key={idx} value={idx}>{value}</MenuItem>
         })}
       </Select>

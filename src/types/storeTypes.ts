@@ -14,6 +14,6 @@ export interface Cart {
   productImg: string
   quantity: number
   quantityMax: number
-  fields: FieldItemType[]
+  fields: []
   displayedField: FieldItemType
 }

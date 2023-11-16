@@ -21,7 +21,7 @@ const theme = createTheme({
   palette: {
     primary: {main: '#000'},
     secondary: {main: '#000'},
-    success: {main: '#000'},
+    // success: {main: '#000'},
   }
 })
 

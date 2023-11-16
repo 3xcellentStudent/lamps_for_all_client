@@ -15,8 +15,5 @@ export default function DrawerComponent({anchor, cartOpen, closeCart, children}:
     <SwipeableDrawer anchor={anchor} onOpen={() => true} open={cartOpen} onClose={closeCart}>
       {children}
     </SwipeableDrawer>
-    // <Drawer anchor={anchor} open={cartOpen} onClose={closeCart}>
-    //   {children}
-    // </Drawer>
   );
 }

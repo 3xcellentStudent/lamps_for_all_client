@@ -5,10 +5,22 @@
 
 .css-1160xiw-MuiPaper-root-MuiDrawer-paper {
   .cart_list {
-    min-width: 500px;
+    min-width: 516px;
+    max-width: 516px;
 
     @media screen and (max-width: 560px){
       min-width: 300px;
+      max-width: 300px;
+
+      &__btn_buy {
+        min-width: inherit;
+        max-width: inherit;
+      }
+    }
+
+    &__btn_buy {
+      min-width: inherit;
+      max-width: inherit;
     }
   }
   @media screen and (max-width: 560px){

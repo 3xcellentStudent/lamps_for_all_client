@@ -8,11 +8,18 @@
 import {useLayoutEffect, ReactNode} from 'react'
 import {usePathname} from 'next/navigation'
 import {useDispatch, useSelector} from 'react-redux'
+import SnackbarComp from '@/components/common/SnackbarComp/SnackbarComp'
+import CartList from '@/components/common/CartList/CartList'
+import DrawerComponent from '@/components/common/DrawerComponent/DrawerComponent'
+import { actionSETOpenCart } from '@/redux/actions'
 // import {actionGETDataFromDB} from '../../redux/actions'
 
 export default function RootLayout({children,}: {children: ReactNode}) {
 
   const pathname = usePathname()
+  const dispatch = useDispatch()
+  const statusCode = useSelector(({statusCode}: {statusCode: number}) => statusCode)
+  const isOpenCart = useSelector(({isOpenCart}: {isOpenCart: boolean}) => isOpenCart)
   // const dispatch = useDispatch()
 
   // function getDataFromDB(){
@@ -25,7 +32,14 @@ export default function RootLayout({children,}: {children: ReactNode}) {
   //   getDataFromDB()
   // }, [])
 
-  return (
-    <>{children}</>
+  return(
+    <>
+      {children}
+      <DrawerComponent closeCart={() => dispatch(actionSETOpenCart())} 
+      anchor='right' cartOpen={isOpenCart}>
+        <CartList/>
+      </DrawerComponent>
+      <SnackbarComp status={statusCode} />
+    </>
   )
 }

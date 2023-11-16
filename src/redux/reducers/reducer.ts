@@ -18,11 +18,10 @@ const data = {
   }
 }
 
-// const cart: {}[] = []
-
 const initialState = {
   data,
   cart: [],
+  statusCode: 100,
   isOpenCart: false
 }
 
@@ -31,13 +30,8 @@ const reducer = (state = initialState, {type, payload}: {type: string, payload: 
     case SET_PRODUCT_ID:
       return {...state, data: payload}
     case REDUCER_CALL_CART:
-      const cart = cartReducer(state.cart, payload)
-      return {...state, cart}
-      // if(state.cart.length){
-      //   const cart = cartReducer(state.cart, payload)
-      //   return {...state, cart}
-      // }
-      // else return {...state, cart: [...state.cart, payload.payload]};
+      const {status: statusCode, result} = cartReducer(state.cart, payload)
+      return {...state, statusCode, cart: result}
     case CHANGE_OPEN_CART:
       return {...state, isOpenCart: !state.isOpenCart}
     default:

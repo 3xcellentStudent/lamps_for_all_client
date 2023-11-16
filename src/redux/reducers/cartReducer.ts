@@ -1,6 +1,5 @@
-import {PUT_CART_ALL, PUT_CART_QUANTITY} from '../constants/cartConst'
+import {PUT_CART_ALL, PUT_CART_QUANTITY, DELETE_CART} from '../constants/cartConst'
 import {Cart} from '@/types/storeTypes'
-// import {StoreObj} from '@/types/productID.type'
 
 function filtration(state: Cart[], payload: Cart){
   let uniqueId: boolean = false
@@ -29,25 +28,29 @@ function filtration(state: Cart[], payload: Cart){
       continue
     }
   }
-  if(coincidences.length > 0 || uniqueId) return [...state, payload]
-  return state
+  if(coincidences.length > 0 || uniqueId) return {status: 201, result: [...state, payload]}
+  return {status: 409, result: state}
 }
 
 export default function cartReducer(state: Cart[], 
-  {type, payload}: {type: string, payload: Cart}
-){
+  {type, payload}: {type: string, payload: any}
+): {status: number, result: {}[]}{
   switch(type){
     case PUT_CART_ALL:
       if(state.length > 0){
         const response = filtration(state, payload)
         return response
       }
-      else return [payload]
-      // const response = filtration(state, payload)
-      // return response
+      else {
+        return {status: 201, result: [payload]}
+      }
     case PUT_CART_QUANTITY:
       console.log(type, payload)
-      return state
-    default: return state
+      return {status: 100, result: state}
+    case DELETE_CART:
+      const {idx}: {idx: number} = payload
+      const newState = state.filter((item, index) => index !== idx)
+      return {status: 204, result: newState}
+    default: return {status: 100, result: state}
   }
 }
