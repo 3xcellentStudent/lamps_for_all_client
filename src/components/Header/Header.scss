@@ -5,25 +5,24 @@ $index: calc(1vw + 1vh);
 .header {
   position: fixed;
   width: 100%;
-  backdrop-filter: blur(5px);
+  // backdrop-filter: blur(5px);
   z-index: 10;
   padding: 0 calc($index * 2);
-  background: rgba($bg-darkGrey, .8);
   color: #fff;
-  transition: .3s;
+  // transition: .3s;
   left: 0;
   top: 0;
 
-  &::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background: $bg-darkBlue;
-    bottom: -2px;
-    left: -100%;
-    transition: .3s ease-in-out;
-  }
+  // &::before {
+  //   content: '';
+  //   position: absolute;
+  //   width: 100%;
+  //   height: 2px;
+  //   background: $bg-darkBlue;
+  //   bottom: -2px;
+  //   left: -100%;
+  //   transition: .3s ease-in-out;
+  // }
   
   &_toolbar {
     display: flex;

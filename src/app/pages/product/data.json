@@ -1,35 +1,58 @@
 {
   "lRfAcb2l6dJ1NPP8PF2R": {
     "settings": {
-      "status": 200
+      "rating": 4.5,
+      "title": "Mini humidifier",
+      "textColor": "#fff",
+      "img": "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png"
     },
-    "rating": 4.7,
     "sectionTitle": {
-      "title": "Lamp For Cabinet",
+      "subtitle": {"text": "LARQ", "cls":""},
+      "title": {"text": "Lamp For Cabinet", "cls": "font-bold whitespace-nowrap"},
+      "shortDescription": {"cls": "", "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam iusto natus consectetur ducimus, dolore in atque aliquid veritatis ab voluptates exercitationem distinctio minima dolorem, a provident itaque ipsa obcaecati vitae."},
       "price": 20,
-      "purchaseDetails": {
-        "quantityMax": 5,
-        "fields": [
-          {"name": "Case Color", "type": "color", "items": [
-            {"value": "Black 20cm", "cartInfo": {"border": "#000", "bg": "#000"}},
-            {"value": "White 20cm", "cartInfo": {"border": "#000", "bg": "#fff"}}
-            ]
-          },
-          {"name": "Emitting Color", "items": [
-            {"value": "500 LM"},
-            {"value": "700 LM"}
-            ]
-          },
-          {"name": "Sizes", "items": [
-            {"value": "Weight: 2kg"},
-            {"value": "Weight: 4.5kg"}
+      "quantityMax": 5,
+      "purchasePartStyles": "rounded-2xl bg-[#fff] px-8 py-8 my-auto mx-auto",
+      "components": {
+        "quantityC": {"text": "Quantity", "clsCont": "mb-6 text-[#fff]", "clsHead": "text-center font-bold", "clsIcons": "", "clsInput": "", "clsBtn": "w-9 h-9"},
+        "ratingC": {"color": "text-emerald-800", "text": "100 rewievs", "size": "small", "textCls": "mx-10", "ratingCls": "", "clsCont": "h-min fos-14 whitespace-nowrap font-bold uppercase"},
+        "selectionC": [
+          {
+            "fieldProps": {"clsCont": "", "formLabel": "font-bold", "radioGroup": {"flexDirection": "row"}, "radio": {"margin": "4px 8px 4px 0", "position": "relative", "width": "28px", "height": "28px"}},
+            "svgProps": {"position": "absolute", "width": "100%", "height": "100%", "left": 0, "top": 0},
+            "name": "Color", "type": "circle", "viewBox": "0 0 24 24", "items": [
+            {"value": "Blue", "fill": "#29B6F6", "stroke": "#fff", "properties": {"checkedProps": {"r": 11, "cx": 12, "cy": 12}, "uncheckedProps": {
+              "internal": {"r": 8, "cx": 12, "cy": 12}, "external": {"r": 11, "cx": 12, "cy": 12}
+            }}},
+            {"value": "White", "fill": "#fff", "stroke": "#fff", "properties": {"checkedProps": {"r": 11, "cx": 12, "cy": 12}, "uncheckedProps": {
+              "internal": {"r": 8, "cx": 12, "cy": 12}, "external": {"r": 11, "cx": 12, "cy": 12}
+            }}},
+            {"value": "Yellow", "fill": "#FFEB3B", "stroke": "#fff", "properties": {"checkedProps": {"r": 11, "cx": 12, "cy": 12}, "uncheckedProps": {
+              "internal": {"r": 8, "cx": 12, "cy": 12}, "external": {"r": 11, "cx": 12, "cy": 12}
+            }}}
             ]
           }
-        ]  
+        ]
       }
     },
     "sectionDescr": {
-      "img": "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png",
+      "images": [
+        [
+          {"media": "(max-width: 480px)", "src": "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png"},
+          {"media": "(max-width: 768px)", "src": "https://www.simplelighting.co.uk/media/webp_image/catalog/product/cache/716cb71e4a7f1a549f7cc6339f6037ad/t/b/tbar-led-lifestyle-compressed.effectsresult-scene-4.webp"},
+          {"media": "", "src": "https://m.media-amazon.com/images/I/61x-SSuP10S._AC_UF894,1000_QL80_.jpg"}
+        ],
+        [
+          {"media": "(max-width: 480px)", "src": "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png"},
+          {"media": "(max-width: 768px)", "src": "https://www.simplelighting.co.uk/media/webp_image/catalog/product/cache/716cb71e4a7f1a549f7cc6339f6037ad/t/b/tbar-led-lifestyle-compressed.effectsresult-scene-4.webp"},
+          {"media": "", "src": "https://m.media-amazon.com/images/I/61x-SSuP10S._AC_UF894,1000_QL80_.jpg"}
+        ],
+        [
+          {"media": "(max-width: 480px)", "src": "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png"},
+          {"media": "(max-width: 768px)", "src": "https://www.simplelighting.co.uk/media/webp_image/catalog/product/cache/716cb71e4a7f1a549f7cc6339f6037ad/t/b/tbar-led-lifestyle-compressed.effectsresult-scene-4.webp"},
+          {"media": "", "src": "https://m.media-amazon.com/images/I/61x-SSuP10S._AC_UF894,1000_QL80_.jpg"}
+        ]
+      ],
       "description": [
         "There is nothing to confuse with a one-touch control function. Simply tap the switch once it turns on and hold down a second to adjust the desired mood of brightness.", "Tap more to switch the turn-OFF. The ultimate user-friendly lighting solution.", "There is nothing to confuse with a one-touch control function. Simply tap the switch once it turns on and hold down a second to adjust the desired mood of brightness. Tap more to switch the turn-OFF. The ultimate user-friendly lighting solution."
       ]
@@ -63,28 +86,13 @@
         {"name": "Alina H.", "text": "Very good", "rating": 5},
         {"name": "Andrew P.", "text": "Very bed", "rating": 1}
       ]
-    },
-    "images": [
-      [
-        {"media": "(max-width: 480px)", "src": "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png"},
-        {"media": "(max-width: 768px)", "src": "https://www.simplelighting.co.uk/media/webp_image/catalog/product/cache/716cb71e4a7f1a549f7cc6339f6037ad/t/b/tbar-led-lifestyle-compressed.effectsresult-scene-4.webp"},
-        {"media": "", "src": "https://m.media-amazon.com/images/I/61x-SSuP10S._AC_UF894,1000_QL80_.jpg"}
-      ],
-      [
-        {"media": "(max-width: 480px)", "src": "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png"},
-        {"media": "(max-width: 768px)", "src": "https://www.simplelighting.co.uk/media/webp_image/catalog/product/cache/716cb71e4a7f1a549f7cc6339f6037ad/t/b/tbar-led-lifestyle-compressed.effectsresult-scene-4.webp"},
-        {"media": "", "src": "https://m.media-amazon.com/images/I/61x-SSuP10S._AC_UF894,1000_QL80_.jpg"}
-      ],
-      [
-        {"media": "(max-width: 480px)", "src": "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png"},
-        {"media": "(max-width: 768px)", "src": "https://www.simplelighting.co.uk/media/webp_image/catalog/product/cache/716cb71e4a7f1a549f7cc6339f6037ad/t/b/tbar-led-lifestyle-compressed.effectsresult-scene-4.webp"},
-        {"media": "", "src": "https://m.media-amazon.com/images/I/61x-SSuP10S._AC_UF894,1000_QL80_.jpg"}
-      ]
-    ]
+    }
   },
   "F2R2l6dJ1NlRfAcbPP8P": {
     "settings": {
-      "status": 200
+      "textColor": "#fff",
+      "title": "Mini humidifier",
+      "img": "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png"
     },
     "rating": 5.0,
     "sectionTitle": {

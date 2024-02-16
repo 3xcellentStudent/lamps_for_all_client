@@ -1,9 +1,20 @@
-export interface PostProduct {
-  collection: string
-  data: {}
-}
+// export interface PostProduct {
+//   collection: string
+//   data: {}
+// }
 
-export interface ProductID {
+// export interface ProductID {
+//   collection: string
+//   productID: string
+// }
+
+export interface TypePostReviews {
   collection: string
-  productID: string
+  productId: string
+  productDescription: string
+  email: string
+  name: string
+  sername: string
+  publicationTime: string
+  message: string
 }

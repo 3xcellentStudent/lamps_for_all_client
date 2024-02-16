@@ -2,17 +2,23 @@ import {Rating, Stack} from '@mui/material';
 
 interface Props {
   rating: number
-  cls: string
-  text: string | number
+  props: {
+    color: string
+    clsCont: string
+    ratingCls: string
+    textCls: string | number
+    text: string
+    size: "small" | "medium" | "large"
+  }
 }
 
-export default function CardTop({rating, text, cls}: Props){
+export default function CardTop({rating, props}: Props){
   return (
-    <div className={`flex whitespace-nowrap font-bold uppercase ${cls}`}>
+    <div className={`flex ${props?.color} ${props?.clsCont}`}>
       <Stack spacing={1}>
-        <Rating name="read-only" value={rating} precision={.1} readOnly />
+        <Rating className={`${props?.ratingCls} ${props?.color}`} size={props?.size} value={rating} precision={.1} readOnly />
       </Stack>
-      <span className='mx1-1'>{text}</span>
+      <span className={`${props?.textCls} ${props?.color}`}>{props?.text}</span>
     </div>
   )
 }

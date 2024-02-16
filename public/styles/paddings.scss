@@ -1,52 +1,24 @@
 $index: calc(1vw + 1vh);
 
-@mixin sizesX($f, $s){
-  padding-left: $f;
-  padding-right: $s;
+@mixin sizesX($size){
+  padding-left: $size;
+  padding-right: $size;
 }
-@mixin sizesY($f, $s){
-  padding-top: $f;
-  padding-bottom: $s;
+@mixin sizesY($size){
+  padding-top: $size;
+  padding-bottom: $size;
 }
 
-.px1-01{@include sizesX(calc($index * .1), calc($index * .1))}
-.py1-01{@include sizesY(calc($index * .1), calc($index * .1))}
-.px1-02{@include sizesX(calc($index * .2), calc($index * .2))}
-.py1-02{@include sizesY(calc($index * .2), calc($index * .2))}
-.px1-03{@include sizesX(calc($index * .3), calc($index * .3))}
-.py1-03{@include sizesY(calc($index * .3), calc($index * .3))}
-.px1-04{@include sizesX(calc($index * .4), calc($index * .4))}
-.py1-04{@include sizesY(calc($index * .4), calc($index * .4))}
-.px1-05{@include sizesX(calc($index * .5), calc($index * .5))}
-.py1-05{@include sizesY(calc($index * .5), calc($index * .5))}
-.px1-06{@include sizesX(calc($index * .6), calc($index * .6))}
-.py1-06{@include sizesY(calc($index * .6), calc($index * .6))}
-.px1-07{@include sizesX(calc($index * .7), calc($index * .7))}
-.py1-07{@include sizesY(calc($index * .7), calc($index * .7))}
-.px1-08{@include sizesX(calc($index * .8), calc($index * .8))}
-.py1-08{@include sizesY(calc($index * .8), calc($index * .8))}
-.px1-09{@include sizesX(calc($index * .9), calc($index * .9))}
-.py1-09{@include sizesY(calc($index * .9), calc($index * .9))}
-.px1-1{@include sizesX($index, $index)}
-.py1-1{@include sizesY($index, $index)}
+.px-10 {@include sizesX(10px)}
+.px-12 {@include sizesX(12px)}
+.px-14 {@include sizesX(14px)}
+.px-16 {@include sizesX(16px)}
+.px-18 {@include sizesX(18px)}
+.px-20 {@include sizesX(20px)}
 
-.px2-11{@include sizesX(calc($index * 1.1), calc($index * 1.1))}
-.py2-11{@include sizesY(calc($index * 1.1), calc($index * 1.1))}
-.px2-12{@include sizesX(calc($index * 1.2), calc($index * 1.2))}
-.py2-12{@include sizesY(calc($index * 1.2), calc($index * 1.2))}
-.px2-13{@include sizesX(calc($index * 1.3), calc($index * 1.3))}
-.py2-13{@include sizesY(calc($index * 1.3), calc($index * 1.3))}
-.px2-14{@include sizesX(calc($index * 1.4), calc($index * 1.4))}
-.py2-14{@include sizesY(calc($index * 1.4), calc($index * 1.4))}
-.px2-15{@include sizesX(calc($index * 1.5), calc($index * 1.5))}
-.py2-15{@include sizesY(calc($index * 1.5), calc($index * 1.5))}
-.px2-16{@include sizesX(calc($index * 1.6), calc($index * 1.6))}
-.py2-16{@include sizesY(calc($index * 1.6), calc($index * 1.6))}
-.px2-17{@include sizesX(calc($index * 1.7), calc($index * 1.7))}
-.py2-17{@include sizesY(calc($index * 1.7), calc($index * 1.7))}
-.px2-18{@include sizesX(calc($index * 1.8), calc($index * 1.8))}
-.py2-18{@include sizesY(calc($index * 1.8), calc($index * 1.8))}
-.px2-19{@include sizesX(calc($index * 1.9), calc($index * 1.9))}
-.py2-19{@include sizesY(calc($index * 1.9), calc($index * 1.9))}
-.px2-2{@include sizesX(calc($index * 2), calc($index * 2))}
-.py2-2{@include sizesY(calc($index * 2), calc($index * 2))}
+.py-10 {@include sizesY(10px)}
+.py-12 {@include sizesY(12px)}
+.py-14 {@include sizesY(14px)}
+.py-16 {@include sizesY(16px)}
+.py-18 {@include sizesY(18px)}
+.py-20 {@include sizesY(20px)}

@@ -4,11 +4,15 @@ import Link from "next/link"
 import ImgWrapper from "../ImgWrapper"
 import Quantity from "@/components/common/Quantity/Quantity"
 import { Fragment, useState, useEffect } from "react"
-import { actionCartReducer, actionSETOpenCart } from "@/redux/actions"
-import { PUT_CART_QUANTITY, DELETE_CART } from "@/redux/constants/cartConst"
-import { Delete as DeleteIcon, OpenInNew as OpenInNewIcon } from '@mui/icons-material';
-import { IconButton, Tooltip } from "@mui/material"
-import ModalComp from "./parts/ModalComp/ModalComp"
+import { actionCartReducer, actionCartSelectedReducer, actionSETOpenCart } from "@/redux/actions"
+import { PUT_CART_QUANTITY } from "@/redux/constants/cartConst"
+import {
+  OpenInNew as OpenInNewIcon, 
+  CheckCircle as CheckCircleIcon,
+  CheckCircleOutline as CheckCircleOutlineIcon
+} from '@mui/icons-material';
+import TooltipHOC from "../TooltipHOC/TooltipHOC"
+import CheckBoxComp from '@mui/material/Checkbox'
 
 interface FieldsLocalType {
   type: string
@@ -18,17 +22,16 @@ interface FieldsLocalType {
 
 export default function CartList(){
   
-  
   const dispatch = useDispatch()
   const cart = useSelector(({cart}: {cart: Cart[]}) => cart)
 
   const [cartState, setCartState] = useState(cart)
-  const [modalOpen, setModalOpen] = useState(false)
   
   useEffect(() => {setCartState(cart)}, [cart])
   
   const specificationsCls = "border-solid border border-black rounded-md font-bold mr-1 text-xs w-min whitespace-nowrap px-1 py-0.5 h-min"
   const quantityCls = "flex flex-col justify-between items-end ml-2 pl-2 border-l border-black py-1"
+  const label = {inputProps: {'aria-label': 'Checkbox demo'}}
 
   return(
     <ul className="cart_list py-4 h-full">
@@ -69,11 +72,13 @@ export default function CartList(){
                     <Quantity text="" clsBtn="w-5 h-5" cls="h-min" 
                     clsInput="text-sm font-bold" clsIcons="absolute w-full h-full left-0 top-0"
                     quantityMax={quantityMax} action={dispatchQuantity} quantity={quantity} />
-                    <Tooltip title="Delete">
-                      <IconButton onClick={() => setModalOpen(true)}>
-                        <DeleteIcon className="text-rose-600" />
-                      </IconButton>
-                    </Tooltip>
+                    <TooltipHOC title="Select" cls="p-0" 
+                    action={() => dispatch(actionCartSelectedReducer(
+                      {type: 'ADD', idx}
+                    ))}>
+                      <CheckBoxComp {...label} icon={<CheckCircleOutlineIcon color="disabled"/>} 
+                      checkedIcon={<CheckCircleIcon className="text-emerald-500 border-2 border-emerald-500 rounded-full"/>} />
+                    </TooltipHOC>
                   </div>
                 </div>
               </li>
@@ -84,7 +89,6 @@ export default function CartList(){
                   className="btn__buy-button btn_black_hover" >Buy Now</Link>
                 </div>
               </div>
-              <ModalComp open={modalOpen} action={setModalOpen} idx={idx} />
             </Fragment>
           )
         })

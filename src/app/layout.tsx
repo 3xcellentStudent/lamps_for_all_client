@@ -31,7 +31,7 @@ export default function RootLayout({children,}: {children: ReactNode}) {
     <html lang="en">
       <ThemeProvider theme={theme}>
         <Provider store={store}>
-          <body className={inter.className}>
+          <body>
             <Header/>
             {children}
           </body>

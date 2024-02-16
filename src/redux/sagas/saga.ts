@@ -1,7 +1,7 @@
 import { takeLatest, takeEvery, put } from 'redux-saga/effects';
-import {GET_PRODUCT_ID, CART_DATA_SAGA, CALL_OPEN_CART} from '../constants'
-import {actionCartReducer, actionSETProductID, actionCHANGEOpenCart} from '../actions'
-import {getProductID} from '../../api/post_product'
+import {GET_PRODUCT_ID, CART_DATA_SAGA, CALL_OPEN_CART, SELECTED_CART_ELEMENTS} from '../constants'
+import {actionCartReducer, actionSETProductID, actionCHANGEOpenCart, actionCartSelectedSaga} from '../actions'
+// import {getProduct} from '../../api/services/products'
 
 function* sagaCartData(action: {type: string, payload: any}){
   yield put(actionCartReducer(action.payload))
@@ -12,8 +12,8 @@ function* sagaIsOpenCart({type}: {type: string}){
 }
 
 function* sagaGetProductID(action: {type: string, payload: any}){
-  const data = yield getProductID(action.payload)
-  yield put(actionSETProductID(data))
+  // const data = yield getProduct(action.payload)
+  // yield put(actionSETProductID(data))
 }
 
 export default function* rootSaga(){

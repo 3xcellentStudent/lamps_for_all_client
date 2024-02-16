@@ -2,6 +2,23 @@ $index: calc(1vw + 1vh);
 
 .section {
   &_title {
+    &__purchase_part {width: 300px;}
+    &__subtitle {font-size: 14px;}
+    &__title {font-size: 26px;}
+    &__short_descr {font-size: 14px;}
+
+    @media screen and (min-width: 768px) {width: 340px;}
+    @media screen and (min-width: 1024px) {width: 500px;}
+    @media screen and (min-width: 1366px) {width: 600px;}
+    @media screen and (min-width: 1600px) {width: 800px;}
+    @media screen and (min-width: 1920px) {width: 1000px;}
+    &__subtitle {}
+    &__title {}
+
+    // &__purchase_part {
+    //   min-width: 300px;
+    // }
+
     .carousel_wrap {
       overflow: hidden;
       :root {

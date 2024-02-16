@@ -2,27 +2,19 @@ import SVGSettings from '@/components/SVG/SVGSettings';
 import Rating from '../common/Rating'
 import WriteReview from './parts/WriteReview/WriteReview'
 import './SectionReviews.scss'
+// import { postReview } from '@/api/services/reviews';
+import { Props } from '@/types/productPage.types/sectionReviews';
 
-interface Props {
-  data: {
-    reviewsCount: number
-    reviewsList: {
-      name: string
-      text: string
-      rating: number
-    }[]
-  }
-}
-
-export default function SectionReviews({data}: Props){
+export default function SectionReviews({sectionData}: Props){
 
   return(
     <section className='section_reviews P_product_common line_section_divider'>
       <div className="section_reviews_top items-center">
         <div className='section_reviews_rating'>
-          <Rating text={`Reviews: ${data.reviewsCount}`} 
+          <Rating text={`Reviews: ${sectionData.reviewsCount}`} 
           rating={4.7} cls='h-min fos-x1' />
         </div>
+        {/* <div onClick={() => postReview(review)}  */}
         <div className='section_reviews_write-rev h-full mr-3 flex justify-end items-center'>
           <WriteReview/>
         </div>

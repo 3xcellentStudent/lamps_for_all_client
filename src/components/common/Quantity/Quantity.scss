@@ -1,5 +1,5 @@
 .component_quantity {
-  box-shadow: 0 0 0 1px #ccc;
+  // box-shadow: 0 0 0 1px #ccc;
   border-radius: 4px;
   
   &_button {
@@ -7,12 +7,13 @@
     position: relative;
 
     &:hover {
-      background: #ccc;
+      // background: #;
     }
   }
 
   &_input {
     width: calc((1vw + 1vh) * 2);
     text-align: center;
+    background: transparent;
   }
 }

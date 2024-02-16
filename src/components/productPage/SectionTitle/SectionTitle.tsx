@@ -1,58 +1,30 @@
 import Rating from '../common/Rating'
 import MainLargeBtn from '../../common/MainLargeBtn/MainLargeBtn'
 import './SectionTitle.scss'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Quantity from '../../common/Quantity/Quantity'
-import SelectField from './parts/SelectField/SelectField'
+import SelectionField from './parts/SelectField/SelectionField'
 import CarouselImages from './parts/CarouselImages/CarouselImages'
 import { useDispatch } from 'react-redux'
 import {actionCartSaga} from '@/redux/actions'
 import {PUT_CART_ALL} from '@/redux/constants/cartConst'
+import {Props, FieldsRefType, SetTotalObjType, ComponentsType} from '@/types/productPage.types/sectionTitle/sectionTitle'
 
-interface Props {
-  pageId: string
-  rating: number
-  data: {
-    title: string
-    price: number
-    images: string[]
-    purchaseDetails: {
-      quantityMax: number
-      fields: {
-        name: string
-        type: string 
-        items: {value: string, cartInfo: string}[]
-      }[]
-    }
-  }
-  images: {media: string, src: string}[][]
-}
-
-interface FieldsRefType {
-  name: string
-  type: string
-  value: string
-  cartInfo: string
-  index: number
-}
-
-interface SetTotalObjType {
-  elemIdx: number
-  index: number
-  data: {value: string, cartInfo: string}
-}
-
-export default function SectionTitle({pageId, rating, data, images}: Props){
+export default function SectionTitle({pageId, settings, sectionData, images}: Props){
 
   const dispatch = useDispatch()
-  
-  const quantityRef = useRef(1)
+  const quantityRef = useRef<number>(1)
   const fieldsRef = useRef<FieldsRefType[]>([])
 
+  const [sectionDataS, setSectionDataS] = useState(sectionData)
+  useEffect(() => setSectionDataS(sectionData), [sectionData])
+
   function setTotalObj({elemIdx, index, data}: SetTotalObjType){
-    const {value, cartInfo} = data
+    const {value, properties} = data
+    console.log(fieldsRef.current[elemIdx])
+    console.log(value, properties, index)
     fieldsRef.current[elemIdx].value = value
-    fieldsRef.current[elemIdx].cartInfo = cartInfo
+    fieldsRef.current[elemIdx].properties = properties
     fieldsRef.current[elemIdx].index = index
   }
 
@@ -69,11 +41,11 @@ export default function SectionTitle({pageId, rating, data, images}: Props){
     const {name, value} = fieldsRef.current[0]
     
     const resultObj = {
-      productName: data.title,
+      productName: sectionData?.title,
       productId: pageId,
       productImg: images[0][0].src,
       quantity: quantityRef.current,
-      quantityMax: data.purchaseDetails.quantityMax,
+      quantityMax: sectionData?.quantityMax,
       fields: createFieldsArray(),
       displayedField: {name, value}
     }
@@ -81,40 +53,38 @@ export default function SectionTitle({pageId, rating, data, images}: Props){
   }
 
   return(
-    <section className='section_title P_product_common flex line_section_divider'>
-      <CarouselImages images={images} clsWrap='w-full h-full'/>
-      <div className='section_title__content_right w-6/12 my-auto mx-auto'>
-        <div className="flex items-start flex-col justify-between line_title_left w-min">
-          <h3 className='fos-x1_5 font-bold text-center whitespace-nowrap 
-          w-min relative'>{data.title}</h3>
-          <p className=' fos-x1_25 mb-1'>
-            {/* <span className='text-blue-600'>Price per unit:</span>  */}
-            <span className='text-blue-600'>Price:</span> 
-            <span className='line-through'>{data.oldPrice ? `${data.oldPrice}$` : ''}</span>
-            <span className='mx1-1'>{data.price}$</span>
-          </p>
-          <Rating text={rating} cls='h-min fos-x1' rating={rating} />
+    <section className='section_title P_product_common flex'>
+      <div className={`section_title__purchase_part ${sectionDataS?.purchasePartStyles}`}>
+        <div className="flex items-start flex-col justify-between w-min">
+          <h5 className={`section_title__subtitle ${sectionData?.subtitle?.cls}`} >{sectionData?.subtitle?.text}</h5>
+          <h3 className={`section_title__title ${sectionData?.title?.cls}`} >{sectionData?.title?.text}</h3>
+          <Rating rating={settings?.rating} props={sectionData?.components?.ratingC}/>
         </div>
 
-        <ul className='flex flex-wrap w-full'>
-          {data.purchaseDetails?.fields.map((obj, idx, array) => {
-            const {name, type, items} = obj
-            const {value, cartInfo} = items[0]
-            const fieldsCompr = fieldsRef.current.length + 1 <= array.length
-            if(fieldsCompr){
-              fieldsRef.current.push({name, type, value, cartInfo, index: 0})
-            }
-            return <SelectField key={idx} setTotalObj={setTotalObj} 
-            elemIdx={idx} name={name} items={items} />
-          })}
-        </ul>
+        <p className={`section_title__short_descr ${sectionData?.shortDescription?.cls}`}>{sectionData?.shortDescription?.text}</p>
 
-        <Quantity action={(result: number) => quantityRef.current = result} 
-        text={`Quantity (max ${data.purchaseDetails?.quantityMax}):`} 
-        clsBtn='w-9 h-9' clsInput='' cls="mb-6" clsIcons=''
-        quantityMax={data.purchaseDetails?.quantityMax} quantity={quantityRef.current} />
+        <div className='flex'>
+          <ul className='flex flex-wrap w-full'>
+            {sectionData?.components?.selectionC.map((obj, idx, array) => {
+              const {fieldProps, svgProps, name, type, viewBox, items} = obj
+              const {value, properties} = items[0]
+              const fieldsCompr = fieldsRef.current.length + 1 <= array.length
+              if(fieldsCompr){
+                fieldsRef.current.push({name, type, value, properties, index: 0})
+              }
+              return <SelectionField fieldProps={fieldProps} svgProps={svgProps} items={items}
+              key={idx} setTotalObj={setTotalObj} elemIdx={idx} viewBox={viewBox} name={name} />
+            })}
+          </ul>
+          <Quantity action={(result: number) => quantityRef.current = result} 
+          props={sectionData?.components?.quantityC} quantity={quantityRef.current}
+          quantityMax={sectionData?.quantityMax} />
+        </div>
+        
+
         <MainLargeBtn cls="" text="Add to Cart" action={dispatchToCart} />
       </div>
+      <CarouselImages images={images} clsWrap='w-full h-full'/>
     </section>
   )
 }

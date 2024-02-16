@@ -45,12 +45,12 @@ export default function cartReducer(state: Cart[],
         return {status: 201, result: [payload]}
       }
     case PUT_CART_QUANTITY:
-      console.log(type, payload)
       return {status: 100, result: state}
     case DELETE_CART:
-      const {idx}: {idx: number} = payload
-      const newState = state.filter((item, index) => index !== idx)
-      return {status: 204, result: newState}
+      const {idx, type}: {idx: number, type: string} = payload
+      if(type === ''){}
+      else {}
+      // return {status: 204, result: newState}
     default: return {status: 100, result: state}
   }
 }
