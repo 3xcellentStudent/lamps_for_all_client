@@ -1,52 +1,30 @@
-import {useEffect, useRef} from 'react'
-import SVGArrowDown from '@/components/SVG/SVGArrowDown'
 import './SectionDetails.scss'
 import { Props } from '@/types/productPage.types/sectionDetails'
+import Button from '@/components/common/Button/Button'
+import SpecificationsList from './parts/SpecificationsList/SpecificationsList'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-export default function SectionDetails({sectionData}: Props){
+export default function SectionDetails({sectionData: {sx, array}}: Props){
 
-  const listRef = useRef(null)
-
-  function handleClick(e){
+  function handleClick(e: any){
     const parent = e.target.parentElement
     parent.classList.toggle('active')
   }
 
-  useEffect(() => {
-    listRef.current = document.querySelectorAll('.details_part_element_accordion')
-    listRef.current.forEach(item => {
-      const childs = Array.from(item.children)
-      const maxHeight = childs.reduce((acc, value) => acc + value.clientHeight, 0)
-      item.style = `--maxHeight: ${maxHeight}px`
-    })
-  }, [sectionData])
-
   return(
     <section className='wrapper_big mt-24 details_part line_section_divider'>
       <div className='w-full flex flex-col items-end'>
-        {sectionData.map((obj, idx) => {
+        {array.map(({title, items}, idx) => {
           return(
-            <div key={idx} 
-            // className='details_part_element bg-gray-300 rounded-2xl py1-05 my1-05 w-4/12 relative'>
-            className='details_part_element rounded-2xl py1-05 my1-05 w-4/12 relative'>
-              <button className='details_part_element_button relative text-start font-regular whitespace-nowrap text-lg 
-              px1-1 w-full' onClick={e => handleClick(e)}>
-                {obj.title}
-                <SVGArrowDown cls='pointer-events-none absolute 
-                w-8 h-8 object-cover block top-0 right-3' />
-              </button>
-              <ul className="details_part_element_accordion w-full px1-1">
-                {obj.items?.map((obj, idx) => {
-                  const {name, value} = obj
-                  return(
-                    <li className='flex w-full py1-03 border-b-gray-400' key={idx}>
-                      <div className='flex-1'>{name}:</div>
-                      <div className='flex-1'>{value}</div>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
+            <Button key={idx} sx={{}} handleClick={handleClick} cls='details_part_element rounded-2xl mb-4 py-3 px-4 relative'>
+              <div className='details_part_element_button relative flex items-center
+              text-start font-regular whitespace-nowrap text-lg px1-1 w-full'>
+                {title}
+                <KeyboardArrowDownIcon sx={sx?.sxIcon} fontSize="large"
+                className='pointer-events-none absolute object-cover block right-2' />
+              </div>
+              <SpecificationsList sx={sx} items={items} />
+            </Button>
           )
         })}
       </div>

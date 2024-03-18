@@ -2,50 +2,55 @@ $index: calc(1vw + 1vh);
 
 .section {
   &_title {
-    &__purchase_part {width: 300px;}
-    &__subtitle {font-size: 14px;}
-    &__title {font-size: 26px;}
-    &__short_descr {font-size: 14px;}
-
-    @media screen and (min-width: 768px) {width: 340px;}
-    @media screen and (min-width: 1024px) {width: 500px;}
-    @media screen and (min-width: 1366px) {width: 600px;}
-    @media screen and (min-width: 1600px) {width: 800px;}
-    @media screen and (min-width: 1920px) {width: 1000px;}
-    &__subtitle {}
-    &__title {}
-
-    // &__purchase_part {
-    //   min-width: 300px;
-    // }
-
-    .carousel_wrap {
-      overflow: hidden;
-      :root {
-        --amountElems: 0;
-        --carouselPos: 0;
-      }
-
-      & > ul {min-width: calc(100% * var(--amountElems));}
-
-      .img_wrap {
-        transition: .3s ease-in-out;
-        left: var(--carouselPos);
-      }
-
-      &_btn {
-        opacity: .3;
-        position: absolute;
-        z-index: 1;
-        top: 50%;
-        transform: translateY(-50%);
-
-        &.-prev {left: 0;}
-        &.-next {right: 0;}
-        &:hover {opacity: 1;}
-      }
-
+    &__purchase_part {
+      width: 55%;
+      padding: 0 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100svh;
+      height: 100%;
     }
+
+    &__short_descr {
+      
+    }
+//     &__purchase_part {width: 300px;}
+//     &__subtitle {font-size: 14px;}
+//     &__title {font-size: 26px;}
+//     &__short_descr {font-size: 14px;}
+
+//     @media screen and (min-width: 768px) {
+//       &__purchase_part {width: 340px;}
+//       &__subtitle {font-size: 14px;}
+//       &__title {font-size: 26px;}
+//       &__short_descr {font-size: 14px;}
+//     }
+//     @media screen and (min-width: 1024px) {
+//       &__purchase_part {width: 400px;}
+//       &__subtitle {font-size: 14px;}
+//       &__title {font-size: 26px;}
+//       &__short_descr {font-size: 14px;}
+//     }
+//     @media screen and (min-width: 1366px) {
+//       &__purchase_part {width: 500px}
+//       &__subtitle {font-size: 14px;}
+//       &__title {font-size: 26px;}
+//       &__short_descr {font-size: 14px;}
+//     }
+//     @media screen and (min-width: 1600px) {
+//       &__purchase_part {width: 800px;}
+//       &__subtitle {font-size: 14px;}
+//       &__title {font-size: 26px;}
+//       &__short_descr {font-size: 14px;}
+//     }
+//     @media screen and (min-width: 1920px) {
+//       &__purchase_part {width: 1000px;}
+//       &__subtitle {font-size: 14px;}
+//       &__title {font-size: 26px;}
+//       &__short_descr {font-size: 14px;}
+//     }
+
     .img_wrap {
       display: flex;
       align-items: center;

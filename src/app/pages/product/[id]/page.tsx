@@ -17,42 +17,57 @@ import { ProductIdType } from '@/types/productPage.types/mainTypes'
 export default function Product(){
 
   const dataTemplate: ProductIdType = {
+    common: {
+      rating: 0,
+      title: "",
+      category: {id: "", name: ""},
+      textColor: "#fff",
+    },
     sectionTitle: {
-      subtitle: {cls: "", text: ""},
-      title: {cls: "", text: ""},
-      shortDescription: {cls: "", text: ""},
-      price: 0,
+      description: "",
+      price: "",
       quantityMax: 0,
-      purchasePartStyles: "",
-      components: {
-        quantityC: {text: "", clsCont: "", clsHead: "", clsIcons: "", clsInput: "", clsBtn: ""},
-        ratingC: {color: "", text: "", size: "small", textCls: "", ratingCls: "", clsCont: ""},
-        selectionC: [{
-            fieldProps: {clsCont: "", formLabel: "", radioGroup: {}, radio: {}},
-            svgProps: {position: "", width: "", height: "", left: 0, top: 0},
-            name: "", type: "", viewBox: "", items: [
-              {value: "", fill: "", stroke: "", properties: {
-                uncheckedProps: {internal: {r: 0, cx: 0, cy: 0}, external: {r: 0, cx: 0, cy: 0}},
-                checkedProps: {r: 0, cx: 0, cy: 0}
-              }}
-            ]}
-        ]
-      }
+      sx: {},
+      purchasePart: {
+        sxCont: {},
+        sxBox: {},
+        components: {
+          titleC: {
+            sxBox: {},
+            ratingC: {content: "", sxText: {}, sxRating: {}, sxBox: {}},
+          },
+          addCartC: {sxBox: {}, btnC: {sx: {}, sxWrap: {}}, sxPrice: {}},
+          selectionC: {
+            sxBox: {},
+            sxList: {},
+            quantityC: {sxBox: {}, sxIcon: {}, sxBtn: {}},
+            fieldC: [
+              {
+                sxField: {sxBox: {}, sxFormLabel: {sxSpan: {}}, sxRadioGroup: {}, sxRadio: {}},
+                sxSVG: {position: "", width: "", height: "", left: 0, top: 0},
+                name: "", type: "", viewBox: "", items: [
+                {value: "", fill: "", stroke: "", properties: {checkedProps: {r: 0, cx: 0, cy: 0}, uncheckedProps: {
+                  internal: {r: 0, cx: 0, cy: 0}, external: {r: 0, cx: 0, cy: 0}
+                }}},
+                ]
+              }
+            ]
+          }
+        }
+      },
     },
     sectionDescr: {
-      img: "",
+      sx: {sxImgWraper: {}, sxBtn: {}, sxIcon: {}, sxSection: {}},
+      images: [[{media: "", src: ""}]],
       description: [],
     },
-    sectionDetails: [],
+    sectionDetails: {
+      sx: {sxItem: {}, sxList: {}, sxText: {}, sxIcon: {}},
+      array: []
+    },
     sectionReviews: {
       reviewsCount: 0,
       reviewsList: [],
-    },
-    settings: {
-      rating: 0,
-      title: "",
-      textColor: "#fff",
-      img: "",
     },
     images: [],
   }
@@ -72,7 +87,7 @@ export default function Product(){
   
   return(
     <div className="product_page_wrapper">
-      <SectionTitle images={data.images} pageId={id} settings={data.settings} sectionData={data.sectionTitle}/>
+      <SectionTitle images={data.images} productId={id} common={data.common} sectionData={data.sectionTitle}/>
       <SectionDescr sectionData={data.sectionDescr}/>
       <SectionDetails sectionData={data.sectionDetails} />
       <SectionReviews sectionData={data.sectionReviews} />

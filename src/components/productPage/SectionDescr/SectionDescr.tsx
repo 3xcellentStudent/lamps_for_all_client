@@ -1,33 +1,21 @@
+import TypographyComp from '@/components/common/TypographyComp'
 import ImgWrapper from '../../common/ImgWrapper'
 import './SectionDescr.scss'
+import CarouselImages from './parts/CarouselImages/CarouselImages'
+import { ImagesType, SectionDescrType } from '@/types/productPage.types/sectionDescr'
+import Description from './parts/Description'
 
 interface Props {
-  sectionData: {
-    description: string[]
-    img: string
-  }
+  sectionData: SectionDescrType
 }
 
-export default function SectionDescr({sectionData}: Props){
+export default function SectionDescr({sectionData: {images, description, sx}}: Props){
 
   return(
-    <section className='wrapper_big P_product_common 
-    section_descr flex line_section_divider' style={{'--pseudoColor': '#d1d5db'}}>
-      <div className='section_descr__content_left w-6/12 my-auto'>
-        <h2 className='text-center fos-x1_5 font-bold line_title_center 
-        w-min mx-auto whitespace-nowrap'>Product Description</h2>
-        {sectionData.description?.map((text, idx) => {
-          return(
-            <div key={idx}>
-              <p className='fos-x1'>{text}</p>
-              <br />
-            </div>
-          )
-        })}
-      </div>
-      <ImgWrapper cls='w-6/12'>
-        <img className='object-cover w-full h-full block' src={sectionData.img} alt="" />
-      </ImgWrapper>
-    </section>
+    <TypographyComp sx={sx?.sxSection} comp='section' cls='wrapper_big P_product_common 
+    section_descr flex line_section_divider'>
+      <Description description={description} />
+      <CarouselImages images={images} sx={sx} />
+    </TypographyComp>
   )
 }

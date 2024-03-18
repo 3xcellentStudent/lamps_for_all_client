@@ -1,11 +1,12 @@
 export interface Props {
-  sectionData: SectionDetailsType[]
+  sectionData: SectionDetailsType
 }
 
 export interface SectionDetailsType {
-  title: string 
-  items: {
-    name: string
-    value: string
-  }[]
+  sx: SectionDetailsSxType
+  array: SectionDetailsArrayType[]
 }
+
+export interface SectionDetailsSxType {sxList: {}, sxItem: {}, sxText: {}, sxIcon: {}}
+
+export interface SectionDetailsArrayType {title: string ,items: {name: string, value: string}[]}

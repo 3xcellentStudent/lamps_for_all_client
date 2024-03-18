@@ -1,14 +1,17 @@
 import {useEffect, useState} from 'react'
 import FormControl from '@mui/material/FormControl';
 import { SelectChangeEvent } from '@mui/material/Select';
-import { Props, SvgPropsType, FieldPropsType } from '@/types/productPage.types/sectionTitle/parts/SelectField';
-import { FormLabel, Radio, RadioGroup } from '@mui/material';
+import { Props } from '@/types/productPage.types/sectionTitle/purchasePart/fieldComp';
+import { Box, FormLabel, Radio, RadioGroup } from '@mui/material';
 import SelectIcon from './SelectedIcon';
 import FilledCircleSVG from '@/components/common/Radio/FilledCircleSVG';
+import TypographyComp from '@/components/common/TypographyComp';
 
 export default function SelectionField(
-  {name, viewBox, svgProps, fieldProps, items, elemIdx, setTotalObj}: Props
+  {name, viewBox, sxSVG, sxField: {sxBox, sxFormLabel, sxRadio, sxRadioGroup}, items, elemIdx, setTotalObj}: Props
 ){
+
+  const newSxSpan = {margin: "0 6px 0 0", ...sxFormLabel}
 
   const [indexS, setIndexS] = useState<number>(0)
 
@@ -40,24 +43,23 @@ export default function SelectionField(
     //   </Select>
     // </FormControl>
 
-    <div className={fieldProps?.clsCont}>
+    <Box sx={sxBox}>
       <FormControl>
-        <FormLabel className={fieldProps?.formLabel} id="demo-controlled-radio-buttons-group">{name}</FormLabel>
-        <RadioGroup sx={fieldProps?.radioGroup}
-          aria-labelledby="demo-controlled-radio-buttons-group"
-          name="controlled-radio-buttons-group"
-          value={indexS}
-          onChange={handleChange}
-        >
+        <FormLabel className='mb-2' sx={sxFormLabel} id="demo-controlled-radio-buttons-group" focused={false}>
+          <TypographyComp cls='' comp='span' sx={newSxSpan}>{name}:</TypographyComp>
+          <TypographyComp cls='' comp='span' sx={sxFormLabel?.sxSpan}>{items[indexS].value}</TypographyComp>
+        </FormLabel>
+        <RadioGroup sx={sxRadioGroup} aria-labelledby="demo-controlled-radio-buttons-group"
+          name="controlled-radio-buttons-group" value={indexS} onChange={handleChange} >
           {items.length && items.map(({value, fill, stroke, properties}, idx) => {
             const {checkedProps, uncheckedProps} = properties
-            return <Radio sx={fieldProps?.radio} 
+            return <Radio sx={sxRadio} 
             size='small' key={idx} value={idx} onChange={handleChange}
-            checkedIcon={<FilledCircleSVG props={{fill, stroke, viewBox, styles: svgProps, properties: checkedProps}} />} 
-            icon={<SelectIcon props={{fill, stroke, viewBox, styles: svgProps, properties: uncheckedProps}} />} />
+            checkedIcon={<FilledCircleSVG props={{fill, stroke, viewBox, sx: sxSVG, properties: checkedProps}} />} 
+            icon={<SelectIcon props={{fill, stroke, viewBox, sx: sxSVG, properties: uncheckedProps}} />} />
           })}
         </RadioGroup>
       </FormControl>
-    </div>
+    </Box>
   )
 }

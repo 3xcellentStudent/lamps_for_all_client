@@ -7,7 +7,7 @@ interface Props {
 
 export default function ImgWrapper({cls, children}: Props){
   return(
-    <div className={`img_wrap relative ${cls}`}>
+    <div className={`img_wrap relative w-full ${cls}`}>
       {children}
     </div>
   )
