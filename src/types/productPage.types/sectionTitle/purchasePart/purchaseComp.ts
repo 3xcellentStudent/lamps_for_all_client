@@ -6,9 +6,11 @@ export type Props = {
   purchasePart: PurchasePartType
   price: string
   productId: string | string[]
-} & SectionTitleType
+  description: string
+  quantityMax: number,
+} 
 
-export interface PurchasePartType {sxCont: {}, sxBox: {}, components: ComponentsType}
+export interface PurchasePartType {sxCont: {}, components: ComponentsType}
 
 export interface ComponentsType {
   titleC: TitleCompType
@@ -17,11 +19,10 @@ export interface ComponentsType {
 }
 
 export interface TitleCompType {
-  sxBox: {}
   ratingC: RatingCompType
 }
 
-export interface AddCartType {sxBox: {}, btnC: {sxWrap: {}, sx: {}}, sxPrice: {}}
+export interface AddCartType {sxBtn: {}}
 
 export interface RatingCompType {
   content: string
@@ -32,7 +33,6 @@ export interface RatingCompType {
 
 export interface SelectionComponentType {
   sxBox: {}
-  sxList: {}
-  quantityC: {sxBox: {}, sxIcon: {}, sxBtn: {}},
+  // sxQuantity: {},
   fieldC: FieldComponentType[]
 }

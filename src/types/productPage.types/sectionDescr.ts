@@ -4,7 +4,7 @@ export interface SectionDescrType {
   sx: SectionDescrSxType
 }
 
-export interface SectionDescrSxType {sxImgWraper: {}, sxBtn: {}, sxIcon: {}, sxSection: {}}
+export interface SectionDescrSxType {sxBtn: {}, sxIcon: {}, sxSection: {}}
 
 export type ImagesArrayType = Array<Array<ImagesType>>
 

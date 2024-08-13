@@ -1,7 +1,7 @@
 import { Badge } from "@mui/material"
 import { ReactNode } from "react"
 import { useDispatch } from "react-redux"
-import {actionSETOpenCart} from '@/redux/actions'
+import {actionChangeOpenCart} from '@/redux/actions'
 
 interface Props {
   count: number
@@ -14,7 +14,7 @@ export default function BadgeButton({count, color, cls, children}: Props){
 
   const dispatch = useDispatch()
 
-  function handleClick(){dispatch(actionSETOpenCart())}
+  function handleClick(){dispatch(actionChangeOpenCart())}
 
   return(
     <button onClick={handleClick}>

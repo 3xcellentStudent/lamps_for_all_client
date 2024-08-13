@@ -1,4 +1,4 @@
-import { IconButton, Tooltip } from "@mui/material";
+import { IconButton, Tooltip, TooltipProps } from "@mui/material";
 import { ReactNode } from "react";
 
 interface Props {
@@ -6,12 +6,13 @@ interface Props {
   cls: string
   children: ReactNode
   action: () => void
+  placement: TooltipProps["placement"]
 }
 
-export default function TooltipHOC({title, cls, children, action}: Props){
+export default function TooltipHOC({title, cls, children, action, placement}: Props){
 
   return(
-    <Tooltip title={title} className={cls}>
+    <Tooltip placement={placement} title={title} className={cls}>
       <IconButton onClick={action}>
         {children}
       </IconButton>

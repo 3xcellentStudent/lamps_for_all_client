@@ -15,21 +15,6 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .btn-buy {background: #000;}
 
-.wrapper_big {
-  padding: 0 calc($index * 2);
-}
-
-.btn_black_hover {
-  box-shadow: 0 0 1px 1px #000;
-  transition: .2s;
-  font-weight: 700;
-  
-  &:hover {
-    background: #000;
-    color: #fff;
-  }
-}
-
 .line {
   &_title {
 

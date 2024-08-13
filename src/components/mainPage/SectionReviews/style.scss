@@ -1,0 +1,9 @@
+$index: calc(1vw + 1vh);
+
+.section_reviews {
+  &_top {
+    display: grid;
+    grid-template: calc(2.45 * $index) / 250px 10fr 1fr;
+  }
+
+}

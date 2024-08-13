@@ -1,10 +1,10 @@
 import { Button, Modal } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import './ModalComp.scss'
 import { actionCartReducer } from "@/redux/actions";
 import { DELETE_CART } from "@/redux/constants/cartConst";
 import ClearIcon from '@mui/icons-material/Clear';
 import TooltipHOC from "@/components/common/TooltipHOC/TooltipHOC";
+import './style.scss'
 
 interface Props {
   open: boolean

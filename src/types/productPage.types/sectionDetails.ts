@@ -7,6 +7,6 @@ export interface SectionDetailsType {
   array: SectionDetailsArrayType[]
 }
 
-export interface SectionDetailsSxType {sxList: {}, sxItem: {}, sxText: {}, sxIcon: {}}
+export interface SectionDetailsSxType {sxBtn: {}, sxList: {}, sxItem: {}, sxText: {}, sxIcon: {}}
 
 export interface SectionDetailsArrayType {title: string ,items: {name: string, value: string}[]}

@@ -1,23 +1,40 @@
-import { takeLatest, takeEvery, put } from 'redux-saga/effects';
-import {GET_PRODUCT_ID, CART_DATA_SAGA, CALL_OPEN_CART, SELECTED_CART_ELEMENTS} from '../constants'
-import {actionCartReducer, actionSETProductID, actionCHANGEOpenCart, actionCartSelectedSaga} from '../actions'
-// import {getProduct} from '../../api/services/products'
+import { takeLatest, takeEvery, put, take } from 'redux-saga/effects';
+import {GET_PRODUCT_ID, SAVE_DATA_FROM_DB_REDUCER, SAVE_DATA_FROM_DB} from '../constants'
+import {
+  actionSETProductID, actionChangeOpenCart, actionSaveDataFromDbReducer
+} from '../actions'
+import { CALL_OPEN_CART, REDUCER_PUT_CART_ITEM } from '../reducers/cart/constants';
+import { ProductIdType } from '@/types/productPage.types/mainTypes';
+import { actionChangeCartReducer } from '../reducers/cart/actions';
+import { SHIPPING_DATA } from '../reducers/payment/constants';
+import { actionChangeShippingData } from '../reducers/payment/actions';
 
-function* sagaCartData(action: {type: string, payload: any}){
-  yield put(actionCartReducer(action.payload))
+function* putCartItem({payload}: {type: string, payload: {type: string, payload: {}}}){
+  yield put(actionChangeCartReducer(payload))
 }
 
-function* sagaIsOpenCart({type}: {type: string}){
-  yield put(actionCHANGEOpenCart())
+function* isOpenCart({type}: {type: string}){
+  yield put(actionChangeOpenCart())
 }
 
-function* sagaGetProductID(action: {type: string, payload: any}){
+function* getProductID(action: {type: string, payload: any}){
   // const data = yield getProduct(action.payload)
   // yield put(actionSETProductID(data))
 }
 
+function* saveDataFromDb({payload: {data}}: {payload: {data: ProductIdType}}){
+  yield put(actionSaveDataFromDbReducer(data));
+}
+
+function* shippingData({payload}: {type: string, payload: any}){
+  yield put(actionChangeShippingData(payload))
+}
+
 export default function* rootSaga(){
-  yield takeEvery(CART_DATA_SAGA, sagaCartData)
-  yield takeEvery(CALL_OPEN_CART, sagaIsOpenCart)
-  yield takeLatest(GET_PRODUCT_ID, sagaGetProductID)
+  yield takeLatest(SAVE_DATA_FROM_DB, saveDataFromDb)
+  yield takeEvery(REDUCER_PUT_CART_ITEM, putCartItem)
+  yield takeEvery(CALL_OPEN_CART, isOpenCart)
+  yield takeLatest(GET_PRODUCT_ID, getProductID)
+  yield takeEvery(SHIPPING_DATA, shippingData)
+  // yield takeLatest(SAVE_DATA_FROM_DB, getProductID)
 }

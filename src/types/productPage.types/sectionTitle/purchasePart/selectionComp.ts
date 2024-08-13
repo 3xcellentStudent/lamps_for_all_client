@@ -1,16 +1,17 @@
-import { FieldComponentType, FieldsRefType, ItemPropertiesType } from "./fieldComp"
+import { FieldComponentType, FieldsRefType } from "./fieldComp"
 
 export interface SetTotalObjType {
-  elemIdx: number 
+  elemIdx: number
   index: number
-  data: {value: string, properties: ItemPropertiesType}
+  // data: FieldComponentType & {background: string}
+  data: {background: string, boxShadow: string, name: string, type: string, value: string}
 }
 
 export interface Props {
   selectionC: {
-    sxList: {}
     fieldC: FieldComponentType[]
   }
+  boxShadow: string
   fieldsRef: {current: FieldsRefType[]}
   setTotalObj: ({}: SetTotalObjType) => void
 }

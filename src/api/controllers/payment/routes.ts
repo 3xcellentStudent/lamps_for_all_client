@@ -1,0 +1,1 @@
+export const CREATE_ORDER = "https://api-m.paypal.com/v2/checkout/orders";

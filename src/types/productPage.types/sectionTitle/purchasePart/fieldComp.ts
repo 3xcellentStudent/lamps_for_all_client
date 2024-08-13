@@ -1,37 +1,33 @@
 import { SetTotalObjType } from "./selectionComp"
 
+// export interface Props {
+//   name: string
+//   sxField: SxFieldType
+//   items: {value: string, fill: string, stroke: string}[]
+//   elemIdx: number
+//   setTotalObj: ({elemIdx, index, data}: SetTotalObjType) => void
+//   boxShadow: string
+// }
+
 export interface Props {
-  name: string
-  viewBox: string
-  sxSVG: SxSVGType
-  sxField: SxFieldType
-  items: {value: string, fill: string, stroke: string, properties: ItemPropertiesType}[]
+  data: FieldComponentType & {boxShadow: string}
   elemIdx: number
   setTotalObj: ({elemIdx, index, data}: SetTotalObjType) => void
 }
 
 export interface FieldComponentType {
-  sxField: {sxBox: {}, sxFormLabel: {sxSpan: {}}, sxRadioGroup: {}, sxRadio: {}},
-  sxSVG: {position: string, width: string, height: string, left: number, top: number},
-  name: string, type: string, viewBox: string, 
-  items: {value: string, fill: string, stroke: string, properties: ItemPropertiesType}[]
+  sxField: SxFieldType,
+  name: string, type: string, 
+  items: {value: string, fill: string, stroke: string}[]
 }
-
-export interface ItemPropertiesType {
-  uncheckedProps: {internal: QuantitiesType, external: QuantitiesType}
-  checkedProps: QuantitiesType
-}
-
-export interface QuantitiesType {r: number, cx: number, cy: number}
 
 export interface FieldsRefType {
+  boxShadow: string
+  background: string
   name: string
   type: string
   value: string
-  properties: ItemPropertiesType
   index: number
 }
 
-export interface SxSVGType {position: string, width: string, height: string, left: string | number, top: string | number}
-
-export interface SxFieldType {sxBox: {}, sxFormLabel: {sxSpan: {}}, sxRadioGroup: {}, sxRadio: {}}
+export interface SxFieldType {colorLabel: string}

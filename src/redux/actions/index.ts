@@ -1,28 +1,30 @@
 import {
   GET_PRODUCT_ID,
+  SAVE_DATA_FROM_DB,
+  SAVE_DATA_FROM_DB_REDUCER,
   SET_PRODUCT_ID,
-  REDUCER_CALL_CART,
-  CHANGE_OPEN_CART,
-  CALL_OPEN_CART,
-  CART_DATA_SAGA,
-  CART_SELECTED_SAGA,
-  SELECTED_CART_ELEMENTS
 } from '../constants'
+import {
+  PUT_CART_ITEM, CHANGE_OPEN_CART, SELECTED_CART_ELEMENTS, REDUCER_PUT_CART_ITEM
+} from '../reducers/cart/constants';
 
 export const actionGETProductID = (payload: {collection: string, productID: string}) => (
   {type: GET_PRODUCT_ID, payload}
 )
 export const actionSETProductID = (payload: any) => ({type: SET_PRODUCT_ID, payload});
-export const actionSETOpenCart = () => ({type: CALL_OPEN_CART});
-export const actionCHANGEOpenCart = () => ({type: CHANGE_OPEN_CART});
-export const actionCartReducer = (payload: {}) => ({type: REDUCER_CALL_CART, payload})
-export const actionCartSaga = (payload: {}) => (
-  {type: CART_DATA_SAGA, payload}
+export const actionChangeOpenCart = () => ({type: CHANGE_OPEN_CART});
+
+// export const actionCartSelectedSaga = (payload: {}) => (
+//   {type: CART_SELECTED_SAGA, payload}
+// )
+export const actionCartDeleteReducer = (payload: {}) => (
+  {type: SELECTED_CART_ELEMENTS, payload}
 )
 
-export const actionCartSelectedSaga = (payload: {}) => (
-  {type: CART_SELECTED_SAGA, payload}
+export const actionSaveDataFromDb = (payload: {}) => (
+  {type: SAVE_DATA_FROM_DB, payload}
 )
-export const actionCartSelectedReducer = (payload: {}) => (
-  {type: SELECTED_CART_ELEMENTS, payload}
+
+export const actionSaveDataFromDbReducer = (payload: {}) => (
+  {type: SAVE_DATA_FROM_DB_REDUCER, payload}
 )
