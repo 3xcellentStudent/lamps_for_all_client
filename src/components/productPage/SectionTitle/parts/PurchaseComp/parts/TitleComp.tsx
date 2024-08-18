@@ -1,4 +1,4 @@
-import RatingComp from "@/components/mainPage/common/RatingComp";
+import RatingComp from "@/components/productPage/common/RatingComp";
 import { TitleCompType } from "@/types/productPage.types/sectionTitle/purchasePart/purchaseComp";
 import { Box } from "@mui/material";
 

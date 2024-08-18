@@ -6,7 +6,7 @@ import {
 } from '../constants'
 import {
   PUT_CART_ITEM, CHANGE_OPEN_CART, SELECTED_CART_ELEMENTS, REDUCER_PUT_CART_ITEM
-} from '../reducers/cart/constants';
+} from '../cart/constants';
 
 export const actionGETProductID = (payload: {collection: string, productID: string}) => (
   {type: GET_PRODUCT_ID, payload}

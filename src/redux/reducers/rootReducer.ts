@@ -112,10 +112,10 @@
 
 import { combineReducers } from 'redux';
 // import {cartReducer, statusCodeReducer} from './cart/cartReducer';
-import cartReducer from './cart/reducer';
+import cartReducer from '../cart/reducer';
 import dataReducer from './database/dataReducer';
 import openCartReducer from './openCart/openCartReducer';
-import shippingReducer from './payment/reducer';
+import shippingReducer from '../payment/reducer';
 // import statusCodeReducer from './cart/statusCodeReducer';
 
 const rootReducer = combineReducers({

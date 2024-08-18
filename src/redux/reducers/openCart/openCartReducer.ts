@@ -1,4 +1,4 @@
-import { CHANGE_OPEN_CART } from "@/redux/constants/cartConst";
+import { CHANGE_OPEN_CART } from "@/redux/cart/constants";
 
 let isOpenCart: boolean = false
 

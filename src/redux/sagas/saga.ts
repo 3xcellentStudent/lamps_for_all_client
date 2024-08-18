@@ -3,13 +3,13 @@ import {GET_PRODUCT_ID, SAVE_DATA_FROM_DB_REDUCER, SAVE_DATA_FROM_DB} from '../c
 import {
   actionSETProductID, actionChangeOpenCart, actionSaveDataFromDbReducer
 } from '../actions'
-import { CALL_OPEN_CART, REDUCER_PUT_CART_ITEM } from '../reducers/cart/constants';
 import { ProductIdType } from '@/types/productPage.types/mainTypes';
-import { actionChangeCartReducer } from '../reducers/cart/actions';
-import { SHIPPING_DATA } from '../reducers/payment/constants';
-import { actionChangeShippingData } from '../reducers/payment/actions';
+import { actionChangeCartReducer } from '../cart/actions';
+import { actionChangeShippingData } from '../payment/actions';
+import { ACTION_CHANGE_OPEN_CART, SAGA_CHANGE_CART } from '../cart/constants';
+import { SHIPPING_DATA } from '../payment/constants';
 
-function* putCartItem({payload}: {type: string, payload: {type: string, payload: {}}}){
+function* changeCartItem({payload}: {type: string, payload: {type: string, payload: {}}}){
   yield put(actionChangeCartReducer(payload))
 }
 
@@ -32,8 +32,8 @@ function* shippingData({payload}: {type: string, payload: any}){
 
 export default function* rootSaga(){
   yield takeLatest(SAVE_DATA_FROM_DB, saveDataFromDb)
-  yield takeEvery(REDUCER_PUT_CART_ITEM, putCartItem)
-  yield takeEvery(CALL_OPEN_CART, isOpenCart)
+  yield takeEvery(SAGA_CHANGE_CART, changeCartItem)
+  yield takeEvery(ACTION_CHANGE_OPEN_CART, isOpenCart)
   yield takeLatest(GET_PRODUCT_ID, getProductID)
   yield takeEvery(SHIPPING_DATA, shippingData)
   // yield takeLatest(SAVE_DATA_FROM_DB, getProductID)

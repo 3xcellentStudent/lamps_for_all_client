@@ -3,8 +3,8 @@ import { ContactSupport as ContactSupportIcon } from "@mui/icons-material";
 import TextMaskCustom from "../../TextMaskCustom";
 import { ChangeEvent, useState } from "react";
 import { useDispatch } from "react-redux";
-import { actionShippingData } from "@/redux/reducers/payment/actions";
-import { CHANGE_SHIPPING_DATA } from "@/redux/reducers/payment/constants";
+import { actionShippingData } from "@/redux/payment/actions";
+import { CHANGE_SHIPPING_DATA } from "@/redux/payment/constants";
 
 export default function PhoneNumber(){
 

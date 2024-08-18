@@ -1,7 +1,7 @@
 import { createOrder } from "@/api/controllers/payment/payment";
 import { CreateOrderActionType } from "@/types/payment/payment";
 import { InitialState } from "@/types/storeTypes";
-import { PayPalButtonsComponentOptions } from "@paypal/paypal-js";
+import { AttachMoney } from '@mui/icons-material';
 import { 
   PayPalScriptProvider, usePayPalScriptReducer, DISPATCH_ACTION, SCRIPT_LOADING_STATE 
 } from "@paypal/react-paypal-js";
@@ -58,24 +58,16 @@ export default function PaymentButton(){
       try {
         dispatch({type: DISPATCH_ACTION.LOADING_STATUS, value: SCRIPT_LOADING_STATE.RESOLVED})
         const orderID = await createOrder(orderObject);
-        const paypal = window.paypal;
-        // const options: PayPalButtonsComponentOptions = {
-        //   createOrder: () => orderID,
-        //   onApprove: async (data, actions) => {
-        //     if (actions && actions.order) {
-        //       await actions.order.capture();
-        //       alert('Transaction completed');
-        //     }
-        //   },
-        // };
-        if (paypal && paypal.Buttons) {
+        const {paypal} = window;
+
+        if (paypal && paypal.Buttons){
           paypal?.Buttons({
             createOrder: () => orderID,
             onApprove: async (data, actions) => {
-              await actions.order?.capture(); // Завершение оплаты
+              await actions.order?.capture();
               alert('Transaction completed');
             },
-          }).render();
+          }).render("#payment-button");
         } else {
           console.error("PayPal Buttons is not available.");
         }
@@ -96,9 +88,13 @@ export default function PaymentButton(){
     };
 
     return(
-      <button onClick={handleClick} disabled={isPending} className="custom-paypal-button">
-        Buy
-      </button>
+      <div className="flex items-center justify-center w-full mt-5">
+        <button id="payment-button" onClick={handleClick} disabled={isPending} 
+        className="px-5 py-2 font-bold flex justify-around max-w-80 min-w-64">
+          <div>Pay</div>
+          <div>Icon</div>
+        </button>
+      </div>
     )
   }
 

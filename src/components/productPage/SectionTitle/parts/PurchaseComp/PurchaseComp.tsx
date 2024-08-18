@@ -8,8 +8,9 @@ import { useDispatch } from "react-redux"
 import SelectionComp from "./parts/SelectionComp"
 import TitleComp from "./parts/TitleComp"
 import AddCartComp from "./parts/AddCartComp"
-import { PUT_CART_ITEM } from "@/redux/constants/cartConst"
-import { actionChangeCartSaga } from "@/redux/reducers/cart/actions"
+import { actionChangeCartSaga } from "@/redux/cart/actions"
+import { PUT_CART_ITEM } from "@/redux/cart/constants"
+import { CartProduct } from "@/types/storeTypes"
 
 export default function PurchaseComp({
   common: {title, rating, category, productLogo, sxQuantity, theme},
@@ -60,16 +61,16 @@ export default function PurchaseComp({
     
     const fields = createFieldsArray();
 
-    const resultObj = {
+    const resultObj: CartProduct = {
       productName: title,
       productId,
       productImg: productLogo,
       quantity: quantityRef.current,
       quantityMax: quantityMax,
       fields: fields[0].value ? fields : fieldsRefFunction(),
-      displayedField: {name, value}
+      displayedField: {name, value},
+      checked: true,
     }
-    console.log(resultObj.fields)
 
     dispatch(actionChangeCartSaga({type: PUT_CART_ITEM, payload: resultObj}))
   }

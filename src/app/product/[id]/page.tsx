@@ -10,10 +10,10 @@ import CartList from '@/components/common/CartList/CartList'
 import { actionChangeOpenCart, actionSaveDataFromDb } from '@/redux/actions'
 import { SnackbarProvider } from 'notistack'
 import { CartObjectType } from '@/types/cartTypes/cartObject.types'
-import SectionTitle from '@/components/mainPage/SectionTitle/SectionTitle'
-import SectionDescr from '@/components/mainPage/SectionDescr/SectionDescr'
-import SectionDetails from '@/components/mainPage/SectionDetails/SectionDetails'
-import SectionReviews from '@/components/mainPage/SectionReviews/SectionReviews'
+import SectionTitle from '@/components/productPage/SectionTitle/SectionTitle'
+import SectionDescr from '@/components/productPage/SectionDescr/SectionDescr'
+import SectionDetails from '@/components/productPage/SectionDetails/SectionDetails'
+import SectionReviews from '@/components/productPage/SectionReviews/SectionReviews'
 
 export default function Product(){
 

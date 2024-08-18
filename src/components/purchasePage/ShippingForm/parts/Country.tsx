@@ -1,8 +1,8 @@
 import { Box, FormControl, InputLabel, MenuItem, Select, SvgIconOwnProps, TextField } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 import PublicIcon from '@mui/icons-material/Public';
-import { actionShippingData } from "@/redux/reducers/payment/actions";
-import { CHANGE_SHIPPING_DATA } from "@/redux/reducers/payment/constants";
+import { actionShippingData } from "@/redux/payment/actions";
+import { CHANGE_SHIPPING_DATA } from "@/redux/payment/constants";
 import { useDispatch } from "react-redux";
 
 export default function Country(){

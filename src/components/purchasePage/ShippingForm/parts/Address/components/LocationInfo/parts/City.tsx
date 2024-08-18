@@ -1,5 +1,5 @@
-import { actionShippingData } from "@/redux/reducers/payment/actions";
-import { CHANGE_SHIPPING_DATA } from "@/redux/reducers/payment/constants";
+import { actionShippingData } from "@/redux/payment/actions";
+import { CHANGE_SHIPPING_DATA } from "@/redux/payment/constants";
 import { TextField } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 import { useDispatch } from "react-redux";

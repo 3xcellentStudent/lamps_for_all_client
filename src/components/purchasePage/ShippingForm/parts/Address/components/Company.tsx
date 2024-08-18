@@ -1,5 +1,5 @@
-import { actionShippingData } from "@/redux/reducers/payment/actions";
-import { CHANGE_SHIPPING_DATA } from "@/redux/reducers/payment/constants";
+import { actionShippingData } from "@/redux/payment/actions";
+import { CHANGE_SHIPPING_DATA } from "@/redux/payment/constants";
 import { Business as BusinessIcon } from "@mui/icons-material";
 import { Box, TextField } from "@mui/material";
 import { ChangeEvent } from "react";

@@ -2,8 +2,8 @@ import { Box, SvgIconOwnProps, TextField } from "@mui/material";
 import { Apartment as ApartmentIcon } from "@mui/icons-material"
 import { ChangeEvent, useState } from "react";
 import { useDispatch } from "react-redux";
-import { actionShippingData } from "@/redux/reducers/payment/actions";
-import { CHANGE_SHIPPING_DATA } from "@/redux/reducers/payment/constants";
+import { actionShippingData } from "@/redux/payment/actions";
+import { CHANGE_SHIPPING_DATA } from "@/redux/payment/constants";
 
 export default function Apartment(){
 

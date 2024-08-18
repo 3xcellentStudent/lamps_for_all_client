@@ -16,8 +16,8 @@ import ViewCartButton from "./parts/ViewCartButton/ViewCartButton"
 import { usePathname } from "next/navigation"
 import { CartObjectType } from "@/types/cartTypes/cartObject.types"
 import { enqueueSnackbar } from "notistack"
-import { DELETE_CART_ELEMENT, HANDLE_CHANGE_QUANTITY_INTO_CART } from "@/redux/reducers/cart/constants"
-import { actionChangeCartSaga } from "@/redux/reducers/cart/actions"
+import { DELETE_CART_ELEMENT, HANDLE_CHANGE_QUANTITY_INTO_CART, SELECT_CART_ITEM } from "@/redux/cart/constants"
+import { actionCartSelectedReducer, actionChangeCartSaga } from "@/redux/cart/actions"
 
 
 interface Props {
@@ -50,10 +50,10 @@ export default function CartList({sxQuantity, theme}: Props){
     )
   }, [response])
 
-  // function selectHandleClick(idx: number){
-  //   dispatch(actionCartSelectedReducer({type: 'SELECTED', idx}))
-  //   itemRef.current?.classList.toggle("backdrop-brightness-90")
-  // }
+  function selectHandleClick(value: boolean, idx: number){
+    dispatch(actionChangeCartSaga({type: SELECT_CART_ITEM, payload: {value, idx}}))
+    // itemRef.current?.classList.toggle("backdrop-brightness-90")
+  }
 
   function deleteHandleClick(idx: number){
     dispatch(actionChangeCartSaga({type: DELETE_CART_ELEMENT, payload: idx}))
@@ -90,7 +90,9 @@ export default function CartList({sxQuantity, theme}: Props){
                 const payload = {quantity: +quantity, idx}
                 dispatch(actionChangeCartSaga({type: HANDLE_CHANGE_QUANTITY_INTO_CART, payload}))
               }
-              const {productName, productImg, productId, quantity, quantityMax, fields} = obj
+              const {
+                productName, productImg, productId, quantity, quantityMax, fields, checked
+              } = obj
 
               return(
                 <Fragment key={idx}>
@@ -98,7 +100,7 @@ export default function CartList({sxQuantity, theme}: Props){
 
                     <Grid container className="text-xs font-bold h-full flex">
                       <Typography component="div" className="flex items-center mr-2">
-                        <Checkbox onClick={() => selectHandleClick(idx)} 
+                        <Checkbox onClick={() => selectHandleClick(!checked, idx)} 
                         sx={{boxShadow: theme.shadows.sxCircle?.boxShadow}} 
                         className="w-[30px] h-[30px]" {...label} 
                         icon={<CheckCircleOutlineIcon color="success"/>} 
