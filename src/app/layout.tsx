@@ -3,14 +3,12 @@
 import './globals.css'
 import '../../public/styles/index.scss'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Roboto } from 'next/font/google'
 import {ThemeProvider, createTheme} from '@mui/material'
 
 import {Provider} from 'react-redux'
 import store from '@/redux/store'
 import { ReactNode } from 'react'
-
-// const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -25,17 +23,20 @@ const theme = createTheme({
   }
 })
 
+const roboto = Roboto({
+  weight: '400',
+  subsets: ['latin'],
+})
+
 export default function RootLayout({children}: {children: ReactNode}) {
 
   return (
     <html lang="en">
       <Provider store={store}>
         <ThemeProvider theme={theme}>
-          {/* <Provider store={store}> */}
-            <body>
-              {children}
-            </body>
-          {/* </Provider> */}
+          <body className={roboto.className}>
+            {children}
+          </body>
         </ThemeProvider>
       </Provider>
     </html>

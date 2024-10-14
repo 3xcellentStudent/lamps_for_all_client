@@ -19,7 +19,7 @@
     },
     "sectionTitle": {
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam iusto natus consectetur ducimus, dolore in atque aliquid veritatis ab voluptates exercitationem distinctio minima dolorem, a provident itaque ipsa obcaecati vitae.",
-      "price": "$20.00",
+      "price": 20,
       "quantityMax": 5,
       "sx": {"borderBottom": "1px solid #060b17"},
       "purchasePart": {

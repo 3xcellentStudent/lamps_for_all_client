@@ -28,7 +28,7 @@ export interface CommonType {
 
 export interface SectionTitleType {
   description: string
-  price: string,
+  price: number,
   quantityMax: number,
   sx: {}
   purchasePart: PurchasePartType

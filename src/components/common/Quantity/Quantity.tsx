@@ -1,7 +1,7 @@
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useEffect, useState } from 'react';
-import Button from '../Button/Button';
+import Button from '../Buttons/Button';
 import { styled } from '@mui/material';
 // import { styled } from '@mui/material';
 
@@ -10,7 +10,7 @@ interface Props {
   quantity: number
   action: any
   quantityMax: number
-  text: string
+  text?: string
   btnSize: number
   inputProps?: {}
 }

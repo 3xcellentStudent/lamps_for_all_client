@@ -1,3 +1,3 @@
 import { ReactNode } from "react";
 
-export interface TabsListType {label: string, element: ReactNode}
+export interface StepsListType {label: string, element: ReactNode}

@@ -1,14 +1,14 @@
 'use client'
 
+import ButtonCircleArrow from "@/components/common/Buttons/ButtonCircleArrow";
 import Header from "@/components/common/Header/Header";
-import AdditionalInfo from "@/components/purchasePage/AdditionalInfo/AdditionalInfo";
-import CartItems from "@/components/purchasePage/CartItems/CartItems";
-import PaymentButton from "@/components/purchasePage/PaymentMethods/components/PaymentButton/PaymentButton";
-import TabsList from "@/components/purchasePage/PaymentMethods/components/TabsList/TabsList";
-import PaymentMethods from "@/components/purchasePage/PaymentMethods/PaymentMethods";
-import ContinueShoppingButton from "@/components/purchasePage/ShippingForm/parts/ContinueShoppingButton/ContinueShoppingButton";
-import ShippingForm from "@/components/purchasePage/ShippingForm/ShippingForm";
-import { TabsListType } from "@/types/payment/elements";
+// import AdditionalInfo from "@/components/purchasePage/AdditionalInfo/AdditionalInfo";
+import CartItems from "@/components/pages/purchasePage/CartItems/CartItems";
+// import PaymentButton from "@/components/purchasePage/PaymentMethods/components/PaymentButton/PaymentButton";
+import StepperList from "@/components/pages/purchasePage/PaymentMethods/components/StepperList/StepperList";
+import PaymentMethods from "@/components/pages/purchasePage/PaymentMethods/PaymentMethods";
+import ShippingForm from "@/components/pages/purchasePage/ShippingForm/ShippingForm";
+import { StepsListType } from "@/types/payment/elements";
 import { InitialState } from "@/types/storeTypes";
 import { useSelector } from "react-redux";
 
@@ -16,12 +16,11 @@ export default function Cart(){
 
   const {data: {common: {theme}}, cartObject: {cart}} = useSelector((state: InitialState) => state);
 
-  const continueShoppingButtonCls = "w-min whitespace-nowrap hover:text-emerald-500 duration-200 mb-4 min-h-[40px] ml-10";
-
-  const tabsList: TabsListType[] = [
+  const tabsList: StepsListType[] = [
     {label: "Shipping Address", element: <ShippingForm/>}, 
     {label: "Check Out", element: <PaymentMethods/>}
   ]
+
   return(
     <>
       <Header/>
@@ -29,10 +28,10 @@ export default function Cart(){
       w-[100svw] h-[calc(100svh-56px)] overflow-x-hidden">
         <div className="flex flex-col justify-between">
           <CartItems/>
-          <ContinueShoppingButton btnProps={{className: continueShoppingButtonCls}} />
+          <ButtonCircleArrow text="Continue Shopping" action={() => history.back()}/>
         </div>
-        <div className="max-w-[450px] min-w-[320px] relative py-2 px-4 h-[93%] overflow-y-auto">
-          <TabsList childrens={tabsList} />
+        <div>
+          <StepperList />
         </div>
       </main>
     </>

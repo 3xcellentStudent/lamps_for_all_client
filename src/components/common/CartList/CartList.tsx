@@ -11,13 +11,17 @@ import {Checkbox, Grid, List, Typography} from '@mui/material'
 import Title from "./parts/Title/Title"
 import SpecificationsList from "./parts/Specifications/SpecificationsList"
 import { CommonType } from "@/types/productPage.types/sectionTitle/sectionTitle"
-import Button from "../Button/Button"
+import Button from "../Buttons/Button"
 import ViewCartButton from "./parts/ViewCartButton/ViewCartButton"
 import { usePathname } from "next/navigation"
 import { CartObjectType } from "@/types/cartTypes/cartObject.types"
 import { enqueueSnackbar } from "notistack"
 import { DELETE_CART_ELEMENT, HANDLE_CHANGE_QUANTITY_INTO_CART, SELECT_CART_ITEM } from "@/redux/cart/constants"
 import { actionCartSelectedReducer, actionChangeCartSaga } from "@/redux/cart/actions"
+import "./styles.scss"
+import ItemSelectionButtom from "./components/ItemSelectionButton";
+import ItemImage from "./components/ItemImage";
+import ItemSpecificationsList from "./components/ItemSpecificationsList";
 
 
 interface Props {
@@ -30,6 +34,8 @@ interface Props {
 //   value: string
 //   cartInfo: {border: string, bg: string}
 // }
+
+const quantityCls = "flex w-min flex-col justify-between items-end ml-2 pl-2 border-l border-black"
 
 export default function CartList({sxQuantity, theme}: Props){
 
@@ -58,13 +64,10 @@ export default function CartList({sxQuantity, theme}: Props){
   function deleteHandleClick(idx: number){
     dispatch(actionChangeCartSaga({type: DELETE_CART_ELEMENT, payload: idx}))
   }
-  
-  const quantityCls = "flex w-min flex-col justify-between items-end ml-2 pl-2 border-l border-black"
-  const label = {inputProps: {'aria-label': 'Checkbox demo'}}
 
   return(
     <div className="h-full">
-      <Grid container className="p-2 text-xs font-bold border-b border-slate-400">
+      {/* <Grid container className="p-2 text-xs font-bold border-b border-slate-400">
         <Grid className="py-2 w-[150px]">
           <div>Product</div>
         </Grid>
@@ -79,9 +82,9 @@ export default function CartList({sxQuantity, theme}: Props){
         </Grid>
         <Grid className="py-2 w-[24px]">
         </Grid>
-      </Grid>
+      </Grid> */}
 
-      <List className="cart_list py-4 h-[calc(100%-49px)] overflow-y-auto relative">
+      <List className="cart_list py-4 h-[calc(100%-49px)] overflow-y-auto relative backdrop-blur-xl">
         {
           cartState?.length ? (
             cartState?.map((obj, idx) => {
@@ -99,31 +102,16 @@ export default function CartList({sxQuantity, theme}: Props){
                   <li ref={itemRef} className="w-full p-2" key={idx}>
 
                     <Grid container className="text-xs font-bold h-full flex">
-                      <Typography component="div" className="flex items-center mr-2">
-                        <Checkbox onClick={() => selectHandleClick(!checked, idx)} 
-                        sx={{boxShadow: theme.shadows.sxCircle?.boxShadow}} 
-                        className="w-[30px] h-[30px]" {...label} 
-                        icon={<CheckCircleOutlineIcon color="success"/>} 
-                        checkedIcon={<CheckCircleIcon 
-                        className="text-emerald-500 border-2 border-emerald-500 rounded-full"/>} />
-                      </Typography>
-                      <Grid className="w-[150px] text-center flex items-center">
-                        <ImgWrapper cls="relative min-w-[60px] h-[60px]">
-                          <img className="absolute w-full h-full object-scale-down" 
-                          src={productImg} alt={productName} />
-                        </ImgWrapper>
+                      <ItemSelectionButtom action={() => selectHandleClick(!checked, idx)} 
+                      boxShadow={theme.shadows.sxCircle?.boxShadow}/>
+                      
+                      <ItemImage productId={productId} productImg={productImg} productName={productName} />
 
-                        <Title productId={productId} productName={productName} />
-                      </Grid>
-
-                      <Grid className="w-[240px] text-center flex items-center">
-                        <SpecificationsList fields={fields} />
-                      </Grid>
+                      <ItemSpecificationsList fields={fields} />
 
                       <Grid className="w-[100px] text-center flex items-center justify-center">
-                        <Quantity inputProps={{disabled: true}} text="" 
-                        sxQuantity={{fontSize: 20}} btnSize={24} quantityMax={quantityMax} 
-                        action={dispatchQuantity} quantity={quantity} />
+                        <Quantity inputProps={{disabled: true}} action={dispatchQuantity} btnSize={24} 
+                        quantity={quantity} sxQuantity={{fontSize: 20}} quantityMax={quantityMax} />
                       </Grid>
 
                       <Grid className="w-[100px] text-center flex items-center">

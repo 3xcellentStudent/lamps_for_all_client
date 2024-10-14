@@ -40,10 +40,11 @@ export interface FieldItemType {
 
 export interface CartProduct {
   productName: string
-  productId: string | string[]
+  productId: string
   productImg: string
   quantity: number
   quantityMax: number
+  price: number
   // fields: {value: string, index: number}[]
   fields: FieldItemType[]
   displayedField: FieldItemType | {name: string, value: string}

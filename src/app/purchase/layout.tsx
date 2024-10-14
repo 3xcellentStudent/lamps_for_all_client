@@ -1,5 +1,5 @@
 import Head from "next/head"
-import { ReactNode } from "react"
+import { ReactNode, useEffect } from "react"
 
 export default function Layout({children}: {children: ReactNode}){
 

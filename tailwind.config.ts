@@ -13,6 +13,12 @@ const config: Config = {
         'gradient-conic':
         'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      keyframes: {
+        iconsOpactiy: {
+          "0%": {"opacity": "0", "right": "100%"},
+          "100%": {"opacity": "1", "right": "-10px"},
+        }
+      }
     },
     screens: {
       'tablet': {max: '640px'},

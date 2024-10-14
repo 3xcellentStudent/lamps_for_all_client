@@ -1,5 +1,5 @@
 import { PURCHASE_PAGE_ROUTE } from "@/constats/pageRoutes";
-import Button from "@/components/common/Button/Button";
+import Button from "@/components/common/Buttons/Button";
 import Link from "next/link";
 import { MAIN_BUTTON_CLS } from "@/constats/tailwindClasses";
 

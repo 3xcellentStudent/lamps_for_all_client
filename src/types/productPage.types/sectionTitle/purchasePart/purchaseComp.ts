@@ -4,7 +4,7 @@ import { FieldComponentType } from "./fieldComp"
 export type Props = {
   common: CommonType
   purchasePart: PurchasePartType
-  price: string
+  price: number
   productId: string | string[]
   description: string
   quantityMax: number,
