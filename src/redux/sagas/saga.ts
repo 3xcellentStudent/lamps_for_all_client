@@ -31,8 +31,8 @@ function* shippingData({payload}: {type: string, payload: any}){
 }
 
 export default function* rootSaga(){
-  yield takeLatest(SAVE_DATA_FROM_DB, saveDataFromDb)
   yield takeEvery(SAGA_CHANGE_CART, changeCartItem)
+  yield takeLatest(SAVE_DATA_FROM_DB, saveDataFromDb)
   yield takeEvery(ACTION_CHANGE_OPEN_CART, isOpenCart)
   yield takeLatest(GET_PRODUCT_ID, getProductID)
   yield takeEvery(SHIPPING_DATA, shippingData)

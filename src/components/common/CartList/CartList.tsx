@@ -22,6 +22,7 @@ import "./styles.scss"
 import ItemSelectionButtom from "./components/ItemSelectionButton";
 import ItemImage from "./components/ItemImage";
 import ItemSpecificationsList from "./components/ItemSpecificationsList";
+import { ProductIdType } from "@/types/productPage.types/mainTypes";
 
 
 interface Props {
@@ -37,12 +38,17 @@ interface Props {
 
 const quantityCls = "flex w-min flex-col justify-between items-end ml-2 pl-2 border-l border-black"
 
-export default function CartList({sxQuantity, theme}: Props){
+// export default function CartList({sxQuantity, theme}: Props){
+export default function CartList(){
+
+  const {
+    sxQuantity, theme, cart, response
+  } = useSelector(({data: {common}, cartObject}: {data: ProductIdType, cartObject: CartObjectType}) => ({...common, ...cartObject}));
 
   const pathname = usePathname()
   const dispatch = useDispatch()
 
-  const {cart, response} = useSelector(({cartObject}: CartObjectType) => cartObject)
+  // const {cart, response} = useSelector(({cartObject}: CartObjectType) => cartObject)
 
   const itemRef = useRef(null)
 

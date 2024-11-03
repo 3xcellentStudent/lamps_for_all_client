@@ -96,14 +96,33 @@ export default function Product(){
   // console.log("isOpenCart", isOpenCart)
   // const statusCode = useSelector(({statusCode}: {statusCode: number}) => statusCode)
   
-  const [data, setData] = useState<ProductIdType>(dataTemplate)
+  // const [data, setData] = useState<ProductIdType>(dataTemplate)
 
   // const {enqueueSnackbar} = useSnackbar()
+  async function getDataFromDB(){
+    const url = "http://localhost:5000/mongodb-products/get/lRfAcb2l6dJ1NPP8PF2R";
+    const request = await fetch(url, {})
+    const body = await request.json()
+    console.log(body)
+    // setData(body);
+    dispatch(actionSaveDataFromDb(body));
+    console.log("AHSDJKASJKHDKJASHDKJASJKDHASKJDHASKJDHKAJSHDKAJSHDKJASDHKJASHDKJASHDKJASHDKJASHDKAJSHDAKJSDHAKJSDH")
+    return body;
+  }
 
+  // useEffect(() => {
+  //   getDataFromDB()
+  //   dispatch(actionSaveDataFromDb({data: dataDB[id]}));
+  //   // const secondId = "F2R2l6dJ1NlRfAcbPP8P"
+  //   setData(dataDB[id])
+  // }, [])
+  let lock = true;
   useEffect(() => {
-    dispatch(actionSaveDataFromDb({data: dataDB[id]}));
+    if(lock){
+      lock = false;
+      getDataFromDB();
+    }
     // const secondId = "F2R2l6dJ1NlRfAcbPP8P"
-    setData(dataDB[id])
   }, [])
 
   // useEffect(() => {
@@ -113,13 +132,14 @@ export default function Product(){
   return(
     <SnackbarProvider maxSnack={3}>
       <div className="relative">
-        <SectionTitle productId={id} common={data.common} sectionData={data.sectionTitle}/>
-        <SectionDescr sectionData={data.sectionDescr}/>
-        <SectionDetails sectionData={data.sectionDetails} />
-        <SectionReviews sectionData={data.sectionReviews} common={data.common} />
+        <SectionTitle productId={id}/>
+        <SectionDescr />
+        <SectionDetails />
+        <SectionReviews />
         <DrawerComponent anchor='right' cartOpen={isOpenCart}
         closeCart={() => dispatch(actionChangeOpenCart())}>
-          <CartList sxQuantity={data.common.sxQuantity} theme={data.common.theme} />
+          {/* <CartList sxQuantity={data.common.sxQuantity} theme={data.common.theme} /> */}
+          <CartList />
         </DrawerComponent>
       </div>
     </SnackbarProvider>

@@ -1,22 +1,31 @@
 import Quantity from "@/components/common/Quantity/Quantity"
 import TypographyComp from "@/components/common/TypographyComp"
 import { FieldsRefType } from "@/types/productPage.types/sectionTitle/purchasePart/fieldComp"
-import { Props } from "@/types/productPage.types/sectionTitle/purchasePart/purchaseComp"
 import { SetTotalObjType } from "@/types/productPage.types/sectionTitle/purchasePart/selectionComp"
 import { useEffect, useRef } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import SelectionComp from "./parts/SelectionComp"
 import TitleComp from "./parts/TitleComp"
 import AddCartComp from "./parts/AddCartComp"
 import { actionChangeCartSaga } from "@/redux/cart/actions"
 import { PUT_CART_ITEM } from "@/redux/cart/constants"
 import { CartProduct } from "@/types/storeTypes"
+import { ProductIdType } from "@/types/productPage.types/mainTypes"
 
-export default function PurchaseComp({
-  common: {title, rating, category, productLogo, sxQuantity, theme},
-  purchasePart: {sxCont, components}, 
-  description, quantityMax, price, productId
-}: Props){
+interface Props {
+  productId: string
+}
+// export default function PurchaseComp({
+//   common: {title, rating, category, productLogo, sxQuantity, theme},
+//   purchasePart: {sxCont, components}, 
+//   description, quantityMax, price, productId
+// }: Props){
+export default function PurchaseComp({productId}: Props){
+
+  const {
+    sectionTitle: {description, price, quantityMax, purchasePart: {components, sxCont}}, 
+    common: {title, rating, category, productLogo, sxQuantity, theme}
+  } = useSelector(({data}: {data: ProductIdType}) => data)
 
   function fieldsRefFunction(){
     return components?.selectionC?.fieldC.length ? 

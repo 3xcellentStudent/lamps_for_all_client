@@ -1,16 +1,17 @@
 import { List } from '@mui/material';
 import RatingComp from '../common/RatingComp';
 import './style.scss'
-import { Props } from '@/types/productPage.types/sectionReviews';
 import UserReviewCard from './parts/UserReviewCard/UserReviewCard';
-import { Fragment } from 'react';
 import ReviewsList from './parts/ReviewsList/ReviewsList';
+import { useSelector } from 'react-redux';
+import { ProductIdType } from '@/types/productPage.types/mainTypes';
 
-export default function SectionReviews({
-  sectionData: {
-    reviewsSnaphot, userReviews: {reviewsArray, theme}, sxFilter, sxRating, sxText
-  }, common: {rating}
-}: Props){
+export default function SectionReviews(){
+// export default function SectionReviews(){
+
+  const {
+    common: {rating}, sectionReviews: {reviewsSnaphot, userReviews: {reviewsArray, theme}, sxFilter, sxRating, sxText}
+  } = useSelector(({data}: {data: ProductIdType}) => data)
   
   // const listSx = {
   //   display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridAutoRows: "max-content",

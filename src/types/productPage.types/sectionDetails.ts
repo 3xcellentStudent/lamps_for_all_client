@@ -1,6 +1,3 @@
-export interface Props {
-  sectionData: SectionDetailsType
-}
 
 export interface SectionDetailsType {
   sx: SectionDetailsSxType

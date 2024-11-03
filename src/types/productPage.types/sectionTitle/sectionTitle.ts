@@ -1,12 +1,5 @@
 import { PurchasePartType } from "./purchasePart/purchaseComp"
 
-export interface Props {
-  productId: string | string[]
-  common: CommonType
-  sectionData: SectionTitleType
-  // images: {media: string, src: string}[][]
-}
-
 export interface CommonType {
   rating: number
   title: string

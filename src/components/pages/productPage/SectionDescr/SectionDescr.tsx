@@ -4,12 +4,15 @@ import './SectionDescr.scss'
 import CarouselImages from './parts/CarouselImages/CarouselImages'
 import { ImagesType, SectionDescrType } from '@/types/productPage.types/sectionDescr'
 import Description from './parts/Description'
+import { useSelector } from 'react-redux'
+import { ProductIdType } from '@/types/productPage.types/mainTypes'
 
-interface Props {
-  sectionData: SectionDescrType
-}
+// export default function SectionDescr({sectionData: {images, description, sx}}: Props){
+export default function SectionDescr(){
 
-export default function SectionDescr({sectionData: {images, description, sx}}: Props){
+  const {
+    sectionDescr: {sx, images, description}
+  } = useSelector(({data}: {data: ProductIdType}) => data)
 
   return(
     <TypographyComp sx={sx?.sxSection} comp='section' cls='P_product_common 

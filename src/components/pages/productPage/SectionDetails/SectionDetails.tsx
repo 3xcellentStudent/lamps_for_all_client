@@ -1,11 +1,17 @@
 import './style.scss'
-import { Props } from '@/types/productPage.types/sectionDetails'
 import Button from '@/components/common/Buttons/Button'
 import SpecificationsList from './parts/SpecificationsList/SpecificationsList'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { SyntheticEvent } from 'react';
+import { useSelector } from 'react-redux';
+import { ProductIdType } from '@/types/productPage.types/mainTypes';
 
-export default function SectionDetails({sectionData: {sx, array}}: Props){
+// export default function SectionDetails({sectionData: {sx, array}}: Props){
+export default function SectionDetails(){
+
+  const {
+    sectionDetails: {sx, array}
+  } = useSelector(({data}: {data: ProductIdType}) => data)
 
   const listWrapCls = 'w-full flex justify-center items-start flex-wrap tablet:flex-col tablet:justify-center tablet:items-center'
 

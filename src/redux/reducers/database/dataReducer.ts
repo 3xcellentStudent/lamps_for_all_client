@@ -74,8 +74,9 @@ const initialState: ProductIdType = {
 
 
 export default function dataReducer(state = initialState, {type, payload}: {type: string, payload: any}){
+  console.log(payload)
   switch (type) {
-    case SAVE_DATA_FROM_DB_REDUCER: return {...state, data: payload}
+    case SAVE_DATA_FROM_DB_REDUCER: {if(payload !== undefined) return {...state, data: payload}}
     case SET_PRODUCT_ID: return {...state, data: payload}
     default: return state
   }

@@ -1,11 +1,12 @@
-import {Props} from '@/types/productPage.types/sectionTitle/sectionTitle'
 import { Typography } from '@mui/material'
 import "./style.scss";
 import PurchaseComp from './parts/PurchaseComp/PurchaseComp';
 
-export default function SectionTitle({
-  productId, common, sectionData: {description, price, quantityMax, purchasePart
-}}: Props){
+interface Props {
+  productId: string | string[]
+}
+
+export default function SectionTitle({productId}: Props){
 
   // const dispatch = useDispatch()
   // const quantityRef = useRef<number>(1)
@@ -50,8 +51,7 @@ export default function SectionTitle({
         <img className='w-full h-[60%] absolute left-0 object-scale-down' 
         src="https://m.media-amazon.com/images/I/41RapyiCAFL._AC_SX679_.jpg" alt="" />
       </div>
-      <PurchaseComp common={common} description={description} price={price} productId={productId} 
-      purchasePart={purchasePart} quantityMax={quantityMax} />
+      <PurchaseComp productId={productId as string} />
     </Typography>
   )
 }

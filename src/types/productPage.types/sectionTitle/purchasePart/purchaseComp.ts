@@ -1,15 +1,6 @@
 import { CommonType, SectionTitleType } from "../sectionTitle"
 import { FieldComponentType } from "./fieldComp"
 
-export type Props = {
-  common: CommonType
-  purchasePart: PurchasePartType
-  price: number
-  productId: string | string[]
-  description: string
-  quantityMax: number,
-} 
-
 export interface PurchasePartType {sxCont: {}, components: ComponentsType}
 
 export interface ComponentsType {
