@@ -31,12 +31,12 @@ const roboto = Roboto({
 export default function RootLayout({children}: {children: ReactNode}) {
 
   return (
-    <html lang="en">
+    <html className={roboto.className} lang="en">
       <Provider store={store}>
         <ThemeProvider theme={theme}>
-          <body className={roboto.className}>
+          {/* <body className={roboto.className}> */}
             {children}
-          </body>
+          {/* </body> */}
         </ThemeProvider>
       </Provider>
     </html>

@@ -5,13 +5,46 @@ import UserReviewCard from './parts/UserReviewCard/UserReviewCard';
 import ReviewsList from './parts/ReviewsList/ReviewsList';
 import { useSelector } from 'react-redux';
 import { ProductIdType } from '@/types/productPage.types/mainTypes';
+import { useEffect, useState } from 'react';
+import { ReviewsObject } from '@/types/productPage.types/sectionReviews';
+
+interface DataModel {
+  rating: number,
+  reviewsSnaphot: {
+    five?: number;
+    four?: number;
+    three?: number;
+    two?: number;
+    one?: number;
+  },
+  reviewsArray: ReviewsObject[],
+  theme: {elementsBg: string, cardSx: {}},
+  sxFilter: {sxBtn: {}, sxIcon: {}},
+  sxRating: {},
+  sxText: {}
+}
 
 export default function SectionReviews(){
-// export default function SectionReviews(){
+
+  const dataModel: DataModel = {
+    rating: 0,
+    reviewsSnaphot: {},
+    reviewsArray: [],
+    theme: {elementsBg: "", cardSx: {}},
+    sxFilter: {sxBtn: {}, sxIcon: {}},
+    sxRating: {},
+    sxText: {}
+  }
+
+  const [state, setState] = useState(dataModel);  
 
   const {
     common: {rating}, sectionReviews: {reviewsSnaphot, userReviews: {reviewsArray, theme}, sxFilter, sxRating, sxText}
   } = useSelector(({data}: {data: ProductIdType}) => data)
+
+  const data = useSelector(({data}: {data: ProductIdType}) => data)
+
+  useEffect(() => {setState({rating, reviewsSnaphot, reviewsArray, theme, sxFilter, sxRating, sxText})}, [rating])
   
   // const listSx = {
   //   display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridAutoRows: "max-content",
@@ -33,22 +66,22 @@ export default function SectionReviews(){
           <div className="">
             <h4 className="text-xl">Overall Rating</h4>
             <div className='flex flex-row'>
-              <div className="text-5xl">{rating}</div>
+              <div className="text-5xl">{state?.rating}</div>
               <div className='flex flex-col justify-between pt-2'>
                 <div className='block'>
                   <RatingComp size='small' props={{content: "", sxRating, sxText}} 
-                  rating={rating} />
+                  rating={state?.rating} />
                 </div>
                 <div className="text-base">
-                  {`${Object.values(reviewsSnaphot).reduce((acc, value) => acc += value)} Reviews`}
+                  {state.reviewsSnaphot?.five && `${Object.values(state?.reviewsSnaphot).reduce((acc, value) => acc += value)} Reviews`}
                 </div>
               </div>
-              <p className="text-base">{`${reviewsSnaphot.five + reviewsSnaphot.four} out of `}</p>
+              {<p className="text-base">{`${state.reviewsSnaphot?.five || "" + state.reviewsSnaphot?.four || ""} out of `}</p>}
             </div>
           </div>
         </div>
 
-        <ReviewsList reviewsArray={reviewsArray} theme={theme} />
+        <ReviewsList reviewsArray={state?.reviewsArray} theme={state.theme} />
       </div>
         {/* <div>
           <h4 className="text-xl">Review this product</h4>

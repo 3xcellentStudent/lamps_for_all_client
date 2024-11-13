@@ -1,7 +1,7 @@
 import {
   GET_PRODUCT_ID,
+  DATA_FROM_DB,
   SAVE_DATA_FROM_DB,
-  SAVE_DATA_FROM_DB_REDUCER,
   SET_PRODUCT_ID,
 } from '../constants'
 import {
@@ -21,10 +21,10 @@ export const actionCartDeleteReducer = (payload: {}) => (
   {type: SELECTED_CART_ELEMENTS, payload}
 )
 
-export const actionSaveDataFromDb = (payload: {}) => (
-  {type: SAVE_DATA_FROM_DB, payload}
+export const actionDataFromDb = (payload: {}) => (
+  {type: DATA_FROM_DB, payload}
 )
 
-export const actionSaveDataFromDbReducer = (payload: {}) => (
-  {type: SAVE_DATA_FROM_DB_REDUCER, payload}
+export const actionSaveDataFromDb = (payload: {}) => (
+  {type: SAVE_DATA_FROM_DB, payload}
 )

@@ -10,7 +10,8 @@ export interface CommonType {
   theme: {
     colors: {
       textColor: string
-      elementsBg: string
+      elementsMainBg: string,
+      elementsSecondaryBg: string,
       pageBg: string
     }
     shadows: {
@@ -21,7 +22,7 @@ export interface CommonType {
 
 export interface SectionTitleType {
   description: string
-  price: number,
+  price: string,
   quantityMax: number,
   sx: {}
   purchasePart: PurchasePartType

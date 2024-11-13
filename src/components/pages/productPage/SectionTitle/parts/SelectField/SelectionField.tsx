@@ -40,6 +40,14 @@ export default function SelectionField(
     // </FormControl>
 
     <Box sx={{marginBottom: ".5rem", marginTop: ".5rem"}}>
+
+      <div className='mb-4 text-base'>
+        <span className=''>{data?.name}:</span>
+        <span className='ml-1'>{data?.items[indexS]?.value}</span>
+      </div>
+      {/* <FormLabel id="demo-controlled-radio-buttons-group" focused={false} className='text-base' sx={{color: data?.sxField?.colorLabel}}> */}
+      {/* </FormLabel> */}
+
       <FormControl className='flex flex-row items-end'>
         <RadioGroup aria-labelledby="demo-controlled-radio-buttons-group" value={indexS} 
         sx={{flexDirection: "row"}} name="controlled-radio-buttons-group" onChange={handleChange}>
@@ -55,11 +63,11 @@ export default function SelectionField(
             )
           })}
         </RadioGroup>
-        <FormLabel id="demo-controlled-radio-buttons-group" 
+        {/* <FormLabel id="demo-controlled-radio-buttons-group" 
         focused={false} sx={{color: data?.sxField?.colorLabel}}>
           <span className='ml-2 text-sm'>{data?.name}:</span>
           <span className='ml-1 text-sm'>{data?.items[indexS]?.value}</span>
-        </FormLabel>
+        </FormLabel> */}
       </FormControl>
     </Box>
   )

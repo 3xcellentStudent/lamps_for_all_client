@@ -1,4 +1,4 @@
-import { SAVE_DATA_FROM_DB_REDUCER, SET_PRODUCT_ID } from "@/redux/constants"
+import { SAVE_DATA_FROM_DB, SET_PRODUCT_ID } from "@/redux/constants"
 import { ProductIdType } from "@/types/productPage.types/mainTypes"
 
 
@@ -74,9 +74,10 @@ const initialState: ProductIdType = {
 
 
 export default function dataReducer(state = initialState, {type, payload}: {type: string, payload: any}){
-  console.log(payload)
+  // console.log(state, payload)
   switch (type) {
-    case SAVE_DATA_FROM_DB_REDUCER: {if(payload !== undefined) return {...state, data: payload}}
+    // case SAVE_DATA_FROM_DB: {if(payload !== undefined) return {...state, data: payload}}
+    case SAVE_DATA_FROM_DB: return {...payload}
     case SET_PRODUCT_ID: return {...state, data: payload}
     default: return state
   }

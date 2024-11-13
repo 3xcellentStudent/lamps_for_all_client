@@ -18,6 +18,9 @@ const config: Config = {
           "0%": {"opacity": "0", "right": "100%"},
           "100%": {"opacity": "1", "right": "-10px"},
         }
+      },
+      colors: {
+        // ''
       }
     },
     screens: {

@@ -8,6 +8,10 @@ export interface ProductIdType {
   sectionDescr: SectionDescrType
   sectionDetails: SectionDetailsType
   sectionReviews: SectionReviewsType
-  images: []
+  images: ImagesArrayType
   common: CommonType
 }
+
+export type ImagesArrayType = Array<Array<ImagesType>>
+
+export interface ImagesType {media: string, src: string}

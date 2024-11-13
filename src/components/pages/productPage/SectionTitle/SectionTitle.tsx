@@ -1,12 +1,16 @@
 import { Typography } from '@mui/material'
 import "./style.scss";
 import PurchaseComp from './parts/PurchaseComp/PurchaseComp';
+import { useSelector } from 'react-redux';
+import { ProductIdType } from '@/types/productPage.types/mainTypes';
 
 interface Props {
   productId: string | string[]
 }
 
 export default function SectionTitle({productId}: Props){
+
+  const {productLogo} = useSelector(({data: {common}}: {data: ProductIdType}) => common);
 
   // const dispatch = useDispatch()
   // const quantityRef = useRef<number>(1)
@@ -46,10 +50,10 @@ export default function SectionTitle({productId}: Props){
   // }
 
   return(
-    <Typography sx={{}} component="section" className='section_title flex pt-20'>
+    <Typography sx={{}} component="section" className='section_title flex'>
       <div className='w-[45%] h-svh relative flex items-center'>
-        <img className='w-full h-[60%] absolute left-0 object-scale-down' 
-        src="https://m.media-amazon.com/images/I/41RapyiCAFL._AC_SX679_.jpg" alt="" />
+        <img className='w-full h-[60%] absolute left-0 top-0 object-scale-down' 
+        src={productLogo || ""} alt="" />
       </div>
       <PurchaseComp productId={productId as string} />
     </Typography>

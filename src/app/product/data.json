@@ -7,8 +7,9 @@
       "theme": {
         "colors": {
           "textColor": "#fff",
-          "elementsBg": "#10b981",
-          "pageBg": "#dce1eb"
+          "elementsBg1": "#10b981",
+          "elementsBg2": "#10b981",
+          "pageBg": "#DFF6FF"
         },
         "shadows": {
           "sxCircle": {"boxShadow":"2px 2px 3px 1px #909497, -1px -1px 2px 2px #fff, inset 1px 1px 4px #CACFD2, inset -1px -1px 2px #fff"}

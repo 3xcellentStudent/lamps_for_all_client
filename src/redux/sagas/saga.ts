@@ -1,7 +1,7 @@
 import { takeLatest, takeEvery, put, take } from 'redux-saga/effects';
-import {GET_PRODUCT_ID, SAVE_DATA_FROM_DB_REDUCER, SAVE_DATA_FROM_DB} from '../constants'
+import {GET_PRODUCT_ID, DATA_FROM_DB} from '../constants'
 import {
-  actionSETProductID, actionChangeOpenCart, actionSaveDataFromDbReducer
+  actionSETProductID, actionChangeOpenCart, actionSaveDataFromDb
 } from '../actions'
 import { ProductIdType } from '@/types/productPage.types/mainTypes';
 import { actionChangeCartReducer } from '../cart/actions';
@@ -22,8 +22,8 @@ function* getProductID(action: {type: string, payload: any}){
   // yield put(actionSETProductID(data))
 }
 
-function* saveDataFromDb({payload: {data}}: {payload: {data: ProductIdType}}){
-  yield put(actionSaveDataFromDbReducer(data));
+function* saveDataFromDb({payload}: {payload: {payload: ProductIdType}}){
+  yield put(actionSaveDataFromDb(payload));
 }
 
 function* shippingData({payload}: {type: string, payload: any}){
@@ -32,7 +32,7 @@ function* shippingData({payload}: {type: string, payload: any}){
 
 export default function* rootSaga(){
   yield takeEvery(SAGA_CHANGE_CART, changeCartItem)
-  yield takeLatest(SAVE_DATA_FROM_DB, saveDataFromDb)
+  yield takeLatest(DATA_FROM_DB, saveDataFromDb)
   yield takeEvery(ACTION_CHANGE_OPEN_CART, isOpenCart)
   yield takeLatest(GET_PRODUCT_ID, getProductID)
   yield takeEvery(SHIPPING_DATA, shippingData)

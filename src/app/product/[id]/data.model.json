@@ -1,0 +1,122 @@
+{
+  "common": {
+    "rating": 5,
+    "title": "",
+    "category": {
+      "id": "",
+      "name": ""
+    },
+    "theme": {
+      "colors": {
+        "textColor": "#2B2D42",
+        "elementsMainBg": "#1D7874",
+        "elementsSecondaryBg": "#1D7874",
+        "pageBg": "#F4F9F9"
+      },
+      "shadows": {
+        "sxCircle": {
+          "boxShadow": "none"
+        }
+      }
+    },
+    "productLogo": "",
+    "sxQuantity": {}
+  },
+  "sectionTitle": {
+    "description": "",
+    "price": "",
+    "quantityMax": 0,
+    "sx": {},
+    "purchasePart": {
+      "sxCont": {},
+      "components": {
+        "titleC": {
+          "ratingC": {
+            "content": "",
+            "sxText": {},
+            "sxRating": {},
+            "sxBox": {}
+          }
+        },
+        "addCartC": {
+          "sxBtn": {}
+        },
+        "selectionC": {
+          "sxBox": {},
+          "fieldC": [
+            {
+              "sxField": {
+                "colorLabel": ""
+              },
+              "name": "",
+              "type": "",
+              "items": [
+                {
+                  "value": "",
+                  "fill": "",
+                  "stroke": ""
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "sectionDescr": {
+    "sx": {
+      "sxBtn": {},
+      "sxIcon": {},
+      "sxSection": {}
+    },
+    "images": [
+      [
+        {
+          "media": "",
+          "src": ""
+        }
+      ]
+    ],
+    "description": []
+  },
+  "sectionDetails": {
+    "sx": {
+      "sxBtn": {},
+      "sxItem": {},
+      "sxList": {},
+      "sxText": {},
+      "sxIcon": {}
+    },
+    "array": []
+  },
+  "sectionReviews": {
+    "reviewsSnaphot": {
+      "five": 0,
+      "four": 0,
+      "three": 0,
+      "two": 0,
+      "one": 0
+    },
+    "sxFilter": {
+      "sxBtn": {},
+      "sxIcon": {}
+    },
+    "sxRating": {},
+    "sxText": {},
+    "userReviews": {
+      "reviewsArray": [],
+      "theme": {
+        "elementsBg": "",
+        "cardSx": {}
+      }
+    }
+  },
+  "images": [
+    [
+      {
+        "media": "",
+        "src": ""
+      }
+    ]
+  ]
+}
