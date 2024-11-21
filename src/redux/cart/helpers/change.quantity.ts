@@ -3,7 +3,7 @@ import { CartProduct } from "@/types/storeTypes";
 
 export default function changeQuantityIntoCart(
   cart: CartProduct[], payload: {quantity: number, idx: number}
-): CartObjectType["cartObject"]{
+): CartObjectType{
   console.log(payload)
   const {quantity: quantityCart, quantityMax: quantityMaxCart} = cart[payload.idx]
   const cartItem = cart[payload.idx]

@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import SelectionComp from "./parts/SelectionComp"
 import TitleComp from "./parts/TitleComp"
-import AddCartComp from "./parts/AddCartComp"
+import AddCartComp from "./parts/AddCartComp/AddCartComp"
 import { actionChangeCartSaga } from "@/redux/cart/actions"
 import { PUT_CART_ITEM } from "@/redux/cart/constants"
 import { CartProduct } from "@/types/storeTypes"
@@ -15,6 +15,7 @@ import dataJson from "@/app/product/data.json"
 import { AddCartType, ComponentsType, SelectionComponentType, TitleCompType } from "@/types/productPage.types/sectionTitle/purchasePart/purchaseComp"
 import { CommonType } from "@/types/productPage.types/sectionTitle/sectionTitle"
 import { Typography } from "@mui/material"
+import styles from "../../styles.module.scss"
 
 interface Props {
   productId: string
@@ -56,7 +57,7 @@ export default function PurchaseComp({productId}: Props){
     productLogo: "", 
     sxQuantity: {}, 
     theme: {
-      shadows: {sxCircle: {boxShadow: ""}},
+      shadows: {sxCircle: {boxShadow: ""}}
     }
   }
 
@@ -130,7 +131,7 @@ export default function PurchaseComp({productId}: Props){
 
   return(
     // <Typography sx={state?.sxCont} comp='div' cls="px-11 section_title__purchase_part">
-    <Typography component='div' className="px-11 section_title__purchase_part">
+    <Typography component='div' className={`px-11 ${styles.section_title__purchase_part}`}>
       <div>
         <TitleComp titleC={components?.titleC} title={state?.title} 
         category={state?.category} rating={state?.rating} price={state?.price} />

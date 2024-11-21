@@ -3,10 +3,10 @@ import { CartProduct } from "@/types/storeTypes";
 
 export function addProductToCart(
   cart: CartProduct[], payload: CartProduct
-): CartObjectType["cartObject"]{
+): CartObjectType{
   let uniqueId: boolean = false;
   let coincidences: boolean = false;
-  let resultObject: CartObjectType["cartObject"] = {
+  let resultObject: CartObjectType = {
     response: {severity: "success", message: ""}, cart: [],
   };
 
@@ -53,6 +53,9 @@ export function addProductToCart(
       continue
     }
   }
-  if(coincidences || uniqueId) return resultObject
-  return resultObject;
+  if(coincidences || uniqueId){
+    return resultObject
+  } else {
+    return resultObject;
+  }
 }

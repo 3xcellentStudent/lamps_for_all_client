@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material'
-import "./style.scss";
+import styles from "./styles.module.scss";
 import PurchaseComp from './parts/PurchaseComp/PurchaseComp';
 import { useSelector } from 'react-redux';
 import { ProductIdType } from '@/types/productPage.types/mainTypes';
@@ -50,7 +50,7 @@ export default function SectionTitle({productId}: Props){
   // }
 
   return(
-    <Typography sx={{}} component="section" className='section_title flex'>
+    <Typography sx={{}} component="section" className={`${styles.section_title} flex`}>
       <div className='w-[45%] h-svh relative flex items-center'>
         <img className='w-full h-[60%] absolute left-0 top-0 object-scale-down' 
         src={productLogo || ""} alt="" />

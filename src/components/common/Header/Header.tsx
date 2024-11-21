@@ -1,6 +1,6 @@
 'use client'
 
-import {IconButton, Typography, styled} from '@mui/material';
+import {Box, IconButton, Typography, styled} from '@mui/material';
 import {
   Menu as MenuIcon, ShoppingCart as ShoppingCartIcon
 } from '@mui/icons-material';
@@ -21,15 +21,15 @@ export default function Header(){
 
   const pathname = usePathname()
 
-  const [{elementsMainBg, elementsSecondaryBg}, setHeaderColors] = useState<{elementsMainBg: string, elementsSecondaryBg: string}>({elementsMainBg: "", elementsSecondaryBg: ""})
+  const [{mainBg, secondaryBg}, setColors] = useState<
+    {mainBg: string, secondaryBg: string}
+  >({mainBg: "", secondaryBg: ""})
 
   const data = useSelector(({data}: {data: ProductIdType}) => data)
 
   const cart = useSelector(({cart}: CartObjectType) => cart)
 
   const [headerState, setHeaderState] = useState<boolean>(true)
-
-  const headerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     window.onscroll = () => {
@@ -39,30 +39,33 @@ export default function Header(){
   }, [])
 
   useEffect(() => {
-    const {elementsMainBg, elementsSecondaryBg} = data.common.theme.colors
-    setHeaderColors({elementsMainBg, elementsSecondaryBg})
+    const {mainBg, secondaryBg} = data.common.theme.colors
+    setColors({mainBg, secondaryBg: `rgb(${secondaryBg})`})
   }, [data])
 
   return (
-    // <CustomHeader className={'header px-6'} style={{"--headerOpacity": headerState ? .9 : 0, "--headerBgColor": headerBgColor}}>
-    <CustomHeader className={'header px-6'} 
-    style={{"--headerBg": headerState ? elementsMainBg : "transparent", "--headerBgColor": elementsMainBg}}>
+    <CustomHeader className={'header'} sx={{"--headerBg": mainBg, "--headerOpacity": headerState ? 1 : 0}}>
       <div className='toolbar'>
-        <IconButton size="large" edge="start" color="inherit" 
-        aria-label="open drawer" sx={{ mr: 2 }}>
-          <MenuIcon htmlColor={elementsSecondaryBg} />
-        </IconButton>
-        <Typography variant="h6" noWrap component="div"
-          sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-        >
-          Lamps For All
-        </Typography>
-        {!pathname.includes("purchase") && 
-        <BadgeButton count={cart?.length} color={elementsSecondaryBg} cls="pointer-events-none">
-          <ShoppingCartIcon sx={{color: elementsSecondaryBg}} />
-        </BadgeButton>}
+        <Box className='w-min flex items-center pl-6 pr-8 toolbar_left_side' 
+        sx={{borderColor: headerState ? "transparent" : secondaryBg, borderBottomWidth: 2, borderRightWidth: 2}}>
+          <IconButton size="large" edge="start" color="inherit" 
+          aria-label="open drawer" sx={{ mr: 2 }}>
+            <MenuIcon htmlColor={`rgba(${secondaryBg}, 1)`} />
+          </IconButton>
+          <Typography className='w-min' variant="h6" noWrap component="h6"
+            sx={{display: { xs: 'none', sm: 'block' }, color: secondaryBg}}
+          >Lamps For All</Typography>
+        </Box>
+
+        <Box className="w-min flex items-center pl-8 pr-6 toolbar_right_side" 
+        sx={{borderColor: headerState ? "transparent" : secondaryBg, borderBottomWidth: 2, borderLeftWidth: 2}}>
+          {!pathname.includes("purchase") && 
+          <BadgeButton color={secondaryBg} cls="pointer-events-none">
+            <ShoppingCartIcon sx={{color: secondaryBg, width: "28px", height: "28px"}} />
+          </BadgeButton>}
+        </Box>
       </div>
-      <div className='bottom_line'></div>
+      <Box sx={{backgroundColor: secondaryBg}} className='bottom_line'></Box>
     </CustomHeader>
   );
 }

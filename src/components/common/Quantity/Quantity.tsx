@@ -20,7 +20,7 @@ interface Props {
 interface DisabledType {btn1: boolean, btn2: boolean}
 
 export default function Quantity({
-  btnSize, sxQuantity, quantity, action, quantityMax, text, inputProps, theme
+  btnSize, sxQuantity, quantity, action, quantityMax, text, inputProps, theme: {colors: {mainBg, secondaryBg}}
   }: Props){
 
   const btnCls = `relative duration-200 rounded-md disabled:opacity-50 
@@ -46,22 +46,22 @@ export default function Quantity({
   return (
     <div className='flex flex-row items-end w-[80px]'>
       <div className='flex w-min pb-0.5 flex-row items-center'>
-        <Button sx={{...sxQuantity, backgroundColor: theme.colors?.elementsMainBg, width: btnSize, height: btnSize}} cls={btnCls} 
+        <Button sx={{":hover": {backgroundColor: `rgb(${secondaryBg})`}, width: btnSize, height: btnSize}} cls={btnCls} 
         disabled={+value > 1 ? false : true} handleClick={() => checkValue(`${+value - 1}`)}>
-          <RemoveIcon className='pointer-events-none' 
-          sx={{fontSize: btnSize / 1.25}} />
+          <RemoveIcon htmlColor={`rgb(${mainBg})`} className='pointer-events-none' 
+          sx={{fontSize: btnSize * 1}} />
         </Button>
         <CustomInput type="number" onBlur={e => checkValue(e.target.value)} 
         onChange={e => setQuantity(e.target.value)} value={value} 
-        className="bg-transparent	text-center text-sm mx-1" {...inputProps} />
+        className="bg-transparent	text-center text-lg mx-1" {...inputProps} />
         {/* <input style={{width: btnSize}} type="number" onBlur={e => checkValue(e.target.value)} 
         onChange={e => setQuantity(e.target.value)} value={value} 
         className="bg-transparent	text-center text-lg mx-1" /> */}
-        <Button sx={{...sxQuantity, backgroundColor: theme.colors?.elementsMainBg, width: btnSize, height: btnSize}} 
+        <Button sx={{":hover": {backgroundColor: `rgb(${secondaryBg})`}, width: btnSize, height: btnSize}} 
         handleClick={() => checkValue(`${+value + 1}`)} 
         cls={btnCls} disabled={+value === quantityMax ? true : false} >
           {/* <AddIcon className='pointer-events-none' sx={{fontSize: btnSize / 1.5}} /> */}
-          <AddIcon className='pointer-events-none' sx={{fontSize: btnSize / 1.25}} />
+          <AddIcon htmlColor={`rgb(${mainBg})`} className='pointer-events-none' sx={{fontSize: btnSize * 1}} />
         </Button>
       </div>
       <span className='ml-2 text-sm w-min'>{text}</span>

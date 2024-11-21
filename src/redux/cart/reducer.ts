@@ -84,14 +84,14 @@ import selectCartItem from './helpers/select-card-item';
 
 
 
-const initialState: CartObjectType["cartObject"] = {
+const initialState: CartObjectType = {
   cart: [],
   response: {severity: "success", message: ""},
 }
 
 export default function cartReducer(state = initialState, 
   {type, payload}: {type: string, payload: any}
-): CartObjectType["cartObject"]{
+): CartObjectType{
   const {cart} = state
 
   switch(type){

@@ -15,7 +15,7 @@ import { ProductIdType } from "./productPage.types/mainTypes"
 //   payment: {paymentType: string, shippingAddress: ShippingAddressType}
 // }
 export interface InitialState {
-  cartObject: CartObjectType["cartObject"],
+  cartObject: CartObjectType,
   data: ProductIdType,
   shipping: ShippingAddressType,
   isOpenCart: boolean,
@@ -44,7 +44,7 @@ export interface CartProduct {
   productImg: string
   quantity: number
   quantityMax: number
-  price: number
+  price: string
   // fields: {value: string, index: number}[]
   fields: FieldItemType[]
   displayedField: FieldItemType | {name: string, value: string}

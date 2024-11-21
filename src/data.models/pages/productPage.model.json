@@ -8,9 +8,10 @@
     },
     "theme": {
       "colors": {
-        "textColor": "#2B2D42",
-        "elementsMainBg": "#1D7874",
+        "textColor": "#646E45",
+        "elementsMainBg": "#E9EDC9",
         "elementsSecondaryBg": "#1D7874",
+        "optionalColor": "#FAEDCD",
         "pageBg": "#F4F9F9"
       },
       "shadows": {

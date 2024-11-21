@@ -11,7 +11,7 @@ export default function Home(){
   useEffect(() => {redirect.push('/product/lRfAcb2l6dJ1NPP8PF2R')}, [])
 
   return(
-    <>
+    <body>
       <Header/>
       <main>
         <section id='main-page-title-section'>
@@ -19,6 +19,6 @@ export default function Home(){
         </section>
       </main>
       <footer></footer>
-    </>
+    </body>
   )
 }

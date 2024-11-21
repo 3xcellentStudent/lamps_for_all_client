@@ -7,7 +7,7 @@ import { ProductIdType } from '@/types/productPage.types/mainTypes'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
-import model from "./data.model.json"
+import model from "@/data.models/pages/productPage.model.json"
 import { Typography } from '@mui/material'
 
 // const inter = Inter({ subsets: ['latin'] })

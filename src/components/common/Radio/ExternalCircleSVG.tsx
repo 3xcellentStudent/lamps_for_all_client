@@ -1,10 +1,26 @@
+import { ProductIdType } from "@/types/productPage.types/mainTypes"
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
+import styles from "./styles.module.scss"
+
 interface Props {fill: string, stroke: string}
 
 export default function ExternalCircleSVG({fill, stroke}: Props){
+
+  const [{mainBg}, setTheme] = useState<{mainBg: string}>({mainBg: ""})
+
+  const data = useSelector(({data}: {data: ProductIdType}) => data)
+
+  useEffect(() => {
+    if(data.common){
+      const {mainBg} = data.common.theme.colors
+      setTheme({mainBg})
+    }
+  }, [data])
+
   return(
-    <svg focusable="false" viewBox='0 0 24 24'>
-      <circle r={12} cx={12} cy={12} stroke={stroke} strokeWidth={1} fill="transparent" />
-      {/* <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path> */}
+    <svg focusable="false" className={`absolute w-full h-full flex ${styles.external_svg}`} viewBox='0 0 24 24'>
+      <circle r={12} cx={12} cy={12} stroke={fill} strokeWidth={1} fill="transparent" className="block " />
     </svg>
   )
 }

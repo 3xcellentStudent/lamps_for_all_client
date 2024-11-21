@@ -1,4 +1,4 @@
-import FilledCircleSVG from "@/components/common/Radio/FilledCircleSVG"
+import FilledCircleSVG from "@/components/common/Radio/SelectionIcon"
 import { FieldItemType } from "@/types/storeTypes"
 import { ListItem, Tooltip, Typography } from "@mui/material"
 

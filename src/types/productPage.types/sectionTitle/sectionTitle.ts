@@ -6,17 +6,19 @@ export interface CommonType {
   category: {id: string, name: string}
   productLogo: string
   sxQuantity: {}
+  theme: ThemeType
+}
 
-  theme: {
-    colors: {
-      textColor: string
-      elementsMainBg: string,
-      elementsSecondaryBg: string,
-      pageBg: string
-    }
-    shadows: {
-      sxCircle: {boxShadow:string}
-    }
+export interface ThemeType {
+  colors: {
+    textColor: string
+    mainBg: string,
+    secondaryBg: string,
+    optionalColor: string,
+    pageBg: string
+  }
+  shadows: {
+    sxCircle: {boxShadow:string}
   }
 }
 
