@@ -2,29 +2,29 @@
 
 import Header from '@/components/common/Header/Header'
 import { actionDataFromDb } from '@/redux/actions'
-import { ProductIdType } from '@/types/productPage.types/mainTypes'
-// import { Inter } from 'next/font/google'
+// import { ProductIdType } from '@/types/productPage.types/mainTypes'
+import { ProductIdType } from '@/types/main/product.type'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
-import model from "@/data.models/pages/productPage.model.json"
+import model from "@/data.models/pages/productId.model.json"
 import { Typography } from '@mui/material'
 
 // const inter = Inter({ subsets: ['latin'] })
+
+type ProductIdColors = ProductIdType["theme"]["colors"]
 
 export default function RootLayout({children,}: {children: React.ReactNode}){
   
   const dispatch = useDispatch()
   
   const [state, setState] = useState<{
-    colors: ProductIdType["common"]["theme"]["colors"], title: string
-  }>({colors: model.common.theme.colors, title: ""})
+    text: ProductIdColors["text"], backgrounds: ProductIdColors["backgrounds"], title: string
+  }>({...model.theme.colors, title: ""})
 
-  function setBodyStyles(common: ProductIdType["common"]){
-    const {colors} = common.theme
-    const {title} = common
-    
-    const object = {colors, title}
+  function setBodyStyles({theme, title}: ProductIdType){
+    const {text, backgrounds} = theme.colors
+    const object = {text, backgrounds, title}
 
     setState(object);
     return;
@@ -36,7 +36,7 @@ export default function RootLayout({children,}: {children: React.ReactNode}){
       const request = await fetch(url, {})
       const data: ProductIdType = await request.json()
       dispatch(actionDataFromDb(data));
-      setBodyStyles(data.common)
+      setBodyStyles(data)
       return data;
     } catch(error){
       console.error(error);
@@ -57,7 +57,7 @@ export default function RootLayout({children,}: {children: React.ReactNode}){
       <head>
         <title>{state.title}</title>
       </head>
-      <Typography component="body" sx={{backgroundColor: state.colors?.pageBg, color: state.colors?.textColor}}>
+      <Typography component="body" sx={{backgroundColor: state.backgrounds.primary.hex, color: state.text.primary.hex}}>
         <Header/>
         {children}
       </Typography>

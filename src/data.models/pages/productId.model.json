@@ -1,0 +1,98 @@
+{
+  "id": "lRfAcb2l6dJ1NPP8PF2R",
+  "theme": {
+    "colors": {
+      "text": {
+        "primary": {"hex": "#ccc", "rgb": ""},
+        "secondary": {"hex": "#ccc", "rgb": ""},
+        "optional": {"hex": "#ccc", "rgb": ""}
+      },
+      "backgrounds": {
+        "primary": {"hex": "#ccc", "rgb": "100, 110, 69"},
+        "secondary": {"hex": "#ccc", "rgb": "233, 237, 201"},
+        "optional": {"hex": "#ccc", "rgb": "250, 237, 205"},
+        "elementsPrimary": {"hex": "#ccc", "rgb": "#ccc"},
+        "elementsSecondary": {"hex": "#ccc", "rgb": "#ccc"},
+        "elementsOptional": {"hex": "#ccc", "rgb": "250, 237, 205"}
+      }
+    }
+  },
+  "rating": 4.5,
+  "reviews": {
+    "countOfReviews": 100,
+    "reviewsSnaphot": {"five": 188, "four": 57, "three": 12, "two": 9, "one": 35},
+    "reviewsList": [
+        {"name": "Alina H.", "text": "Very good Very good Very good Very good Very good Very good Very good Very good Very good Very good Very good Very good ", "rating": "5", "attachments": [""]},
+        {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "rating": "1", "attachments": [""]},
+        {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "rating": "1", "attachments": [""]},
+        {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "rating": 1, "attachments": [""]},
+        {"name": "Andrew P.", "text": "", "rating": "1", "attachments": [""]},
+        {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "rating": "1", "attachments": [""]},
+        {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "rating": "1", "attachments": [""]},
+        {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "rating": "1", "attachments": [""]}
+      ]
+  },
+  "category": {"name": "air humidifier"},
+  "title": "LARQ",
+  "descriptions": {
+    "short": "Here is description about this air humidifier. It should be short with most important information about this product (model, type, color etc.)",
+    "presentable": [
+      "Here is should be beatiful description about this thing, beacuse it will be presented for customer.",
+      "So, You have to make like it :)"
+    ]
+  },
+  "stockInfo": {
+    "quantityMax": 5,
+    "price": 20
+  },
+  "productOptions": [
+    {
+      "name": "Color", "type": "color", "items": [
+        {"value": "Blue", "fill": "#29B6F6", "stroke": "transparent", "stockStatus": true},
+        {"value": "White", "fill": "#fff", "stroke": "transparent", "stockStatus": true},
+        {"value": "Yellow", "fill": "#FFEB3B", "stroke": "transparent", "stockStatus": false},
+        {"value": "Brown", "fill": "#9a3412", "stroke": "transparent", "stockStatus": true},
+        {"value": "Black", "fill": "#000", "stroke": "transparent", "stockStatus": true},
+        {"value": "Red", "fill": "#dc2626", "stroke": "transparent", "stockStatus": true}
+      ]
+    }
+  ],
+  "mediaContent": {
+    "titleContent": {
+      "productLogo": "https://example.com"
+    },
+    "images": [
+      [
+        {"media": "", "src": ""},
+        {"media": "", "src": ""},
+        {"media": "", "src": ""}
+      ]
+    ],
+    "videos": [
+      
+    ]
+  },
+  "specifications": [
+    {
+      "name": "Specifications",
+      "array": [
+        {"name": "Model", "value": "Motion Sensor Light"},
+        {"name": "Voltage", "value": "5V"},
+        {"name": "Light Source", "value": "LED Bulbs"},
+        {"name": "Body Material", "value": "Aluminum"},
+        {"name": "Battery Type", "value": "Lithium Metal"},
+        {"name": "Power Source", "value": "Rechargeable Battery"},
+        {"name": "Wattage", "value": "0-5W"}
+      ]
+    },
+    {
+      "name": "Size & Weight",
+      "array": [
+        {"name": "Width", "value": "2cm"},
+        {"name": "Height", "value": "2cm"},
+        {"name": "Length", "value": "20cm"},
+        {"name": "Weight", "value": "1kg"}
+      ]
+    }
+  ]
+}

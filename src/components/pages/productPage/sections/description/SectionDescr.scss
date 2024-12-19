@@ -1,0 +1,26 @@
+.carousel {
+  overflow: hidden;
+  :root {
+    --amountElems: 0;
+    --carouselPos: 0;
+  }
+
+  & > ul {min-width: calc(100% * var(--amountElems));}
+
+  .img_wrap {
+    transition: .3s ease-in-out;
+    left: var(--carouselPos);
+  }
+
+  &_btn {
+    transition: .1s;
+    &:hover {
+      filter: invert(1);
+    }
+
+    &.-prev {left: 0;}
+    &.-next {right: 0;}
+    &:hover {opacity: 1;}
+  }
+
+}

@@ -1,8 +1,6 @@
 import { SvgIcon } from "@mui/material";
 import styles from "./styles.module.scss"
 
-// interface Props {fill: string, sx: {}}
-
 export default function InternalCircleSVG({fill}: {fill: string}){
   
   return(

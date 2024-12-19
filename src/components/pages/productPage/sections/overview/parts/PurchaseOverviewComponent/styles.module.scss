@@ -1,0 +1,33 @@
+.container {
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  height: 100%;
+}
+
+.not_instock_status, .instock_status {
+  position: relative;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  margin-right: 10px;
+  &::before {
+    content: '';
+    left: 50%;
+    top: 50%;
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    border-radius: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+.not_instock_status {
+  background-color: #ab4e52;
+
+  &::before {
+    border: 2px solid #d6aaac;
+  }
+}

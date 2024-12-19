@@ -3,8 +3,9 @@
 // }
 
 import { CartObjectType } from "./cartTypes/cartObject.types"
+import { ProductIdType } from "./main/product.type"
 import { ShippingAddressType } from "./payment/payment"
-import { ProductIdType } from "./productPage.types/mainTypes"
+// import { FieldsRefType } from "./productPage.types/sectionTitle/purchasePart/field.component.type"
 
 // export interface InitialState {
 //   data: ProductIdType
@@ -19,7 +20,11 @@ export interface InitialState {
   data: ProductIdType,
   shipping: ShippingAddressType,
   isOpenCart: boolean,
+  pageCoordinates: {up: UpCoordinates},
 }
+
+export interface MoveCoordinates {pageY: number, pageX: number}
+export interface UpCoordinates {pageY: number, pageX: number, isUped: boolean}
 
 // export interface FieldItemType {
 //   name: string
@@ -44,9 +49,8 @@ export interface CartProduct {
   productImg: string
   quantity: number
   quantityMax: number
-  price: string
-  // fields: {value: string, index: number}[]
-  fields: FieldItemType[]
+  price: number
+  // fields: FieldsRefType[]
   displayedField: FieldItemType | {name: string, value: string}
   checked: boolean
 }

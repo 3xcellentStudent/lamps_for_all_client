@@ -1,0 +1,28 @@
+.big_slider_wrapper {
+  height: calc(100svh - 240px);
+  width: calc(100% - ((1vw + 1vh) * 5));
+}
+
+.big_slider_slide_button {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+}
+
+.big_slider_slide {
+  transition: .6s ease;
+}
+
+.small_slider_container {
+  top: var(--small_slider_position);
+  
+  & .inactive {
+    transition: 50ms;
+  }
+}
+
+.small_slider_wrapper {
+  height: calc(100svh - 240px);
+  width: calc(50% - (50% - ((1vw + 1vh) * 5)));
+}

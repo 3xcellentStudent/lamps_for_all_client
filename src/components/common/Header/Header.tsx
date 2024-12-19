@@ -8,12 +8,11 @@ import {
 // import styles from "./styles.module.scss"
 import "./styles.scss"
 import { useSelector } from 'react-redux';
-import { InitialState } from '@/types/storeTypes';
 import { usePathname } from 'next/navigation';
 import BadgeButton from '../BadgeButton/BadgeButton';
 import { CartObjectType } from '@/types/cartTypes/cartObject.types';
-import { useEffect, useRef, useState } from 'react';
-import { ProductIdType } from '@/types/productPage.types/mainTypes';
+import { useEffect, useState } from 'react';
+import { ProductIdType } from '@/types/main/product.type';
 
 const CustomHeader = styled("header")({});
 
@@ -25,7 +24,7 @@ export default function Header(){
     {mainBg: string, secondaryBg: string}
   >({mainBg: "", secondaryBg: ""})
 
-  const data = useSelector(({data}: {data: ProductIdType}) => data)
+  const {backgrounds, text: {optional}} = useSelector(({data: {theme: {colors}}}: {data: ProductIdType}) => colors)
 
   const cart = useSelector(({cart}: CartObjectType) => cart)
 
@@ -38,34 +37,34 @@ export default function Header(){
     }
   }, [])
 
-  useEffect(() => {
-    const {mainBg, secondaryBg} = data.common.theme.colors
-    setColors({mainBg, secondaryBg: `rgb(${secondaryBg})`})
-  }, [data])
+  // useEffect(() => {
+  //   const {mainBg, secondaryBg} = data.common.theme.colors
+  //   setColors({mainBg, secondaryBg: `rgb(${secondaryBg})`})
+  // }, [data])
 
   return (
-    <CustomHeader className={'header'} sx={{"--headerBg": mainBg, "--headerOpacity": headerState ? 1 : 0}}>
+    <CustomHeader className={'header'} sx={{"--headerBg": backgrounds.elementsPrimary.rgb, "--headerOpacity": headerState ? 1 : 0}}>
       <div className='toolbar'>
         <Box className='w-min flex items-center pl-6 pr-8 toolbar_left_side' 
-        sx={{borderColor: headerState ? "transparent" : secondaryBg, borderBottomWidth: 2, borderRightWidth: 2}}>
+        sx={{borderColor: headerState ? "transparent" : backgrounds.secondary.hex, borderBottomWidth: 2, borderRightWidth: 2}}>
           <IconButton size="large" edge="start" color="inherit" 
           aria-label="open drawer" sx={{ mr: 2 }}>
-            <MenuIcon htmlColor={`rgba(${secondaryBg}, 1)`} />
+            <MenuIcon htmlColor={`rgba(${backgrounds.secondary.rgb}, 1)`} />
           </IconButton>
           <Typography className='w-min' variant="h6" noWrap component="h6"
-            sx={{display: { xs: 'none', sm: 'block' }, color: secondaryBg}}
+            sx={{display: { xs: 'none', sm: 'block' }, color: optional.hex}}
           >Lamps For All</Typography>
         </Box>
 
         <Box className="w-min flex items-center pl-8 pr-6 toolbar_right_side" 
-        sx={{borderColor: headerState ? "transparent" : secondaryBg, borderBottomWidth: 2, borderLeftWidth: 2}}>
+        sx={{borderColor: headerState ? "transparent" : backgrounds.secondary.hex, borderBottomWidth: 2, borderLeftWidth: 2}}>
           {!pathname.includes("purchase") && 
-          <BadgeButton color={secondaryBg} cls="pointer-events-none">
-            <ShoppingCartIcon sx={{color: secondaryBg, width: "28px", height: "28px"}} />
+          <BadgeButton color={backgrounds.elementsPrimary.hex} cls="pointer-events-none">
+            <ShoppingCartIcon sx={{color: optional.hex, width: "28px", height: "28px"}} />
           </BadgeButton>}
         </Box>
       </div>
-      <Box sx={{backgroundColor: secondaryBg}} className='bottom_line'></Box>
+      <Box sx={{backgroundColor: backgrounds.secondary.hex}} className='bottom_line'></Box>
     </CustomHeader>
   );
 }

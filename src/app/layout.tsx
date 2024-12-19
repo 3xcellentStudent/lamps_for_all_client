@@ -8,7 +8,7 @@ import {ThemeProvider, createTheme} from '@mui/material'
 
 import {Provider} from 'react-redux'
 import store from '@/redux/store'
-import { ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
 
 // export const metadata: Metadata = {
 //   title: 'Create Next App',

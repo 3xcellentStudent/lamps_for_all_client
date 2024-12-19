@@ -1,9 +1,5 @@
-import { ImagesArrayType } from "./mainTypes"
 
 export interface SectionDescrType {
   description: string[]
-  images: ImagesArrayType
-  sx: SectionDescrSxType
+  // images: ImagesArrayType
 }
-
-export interface SectionDescrSxType {sxBtn: {}, sxIcon: {}, sxSection: {}}

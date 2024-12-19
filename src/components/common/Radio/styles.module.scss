@@ -1,4 +1,4 @@
-.selection_icon_svg, .external_svg, .internal_svg {
+.selection_icon_svg, .external_svg, .internal_svg, .change_opacity_external_svg {
   border-radius: 50%;
   transition: .4s ease;
 }
@@ -6,6 +6,10 @@
 .selection_icon_svg {
   box-shadow: 2px 2px 3px 1px #909497, inset 2px 2px 3px 1px #909497;
   backdrop-filter: blur(5px);
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: block;
 }
 
 .external_svg {
@@ -22,4 +26,19 @@
 
 .internal_svg {
   box-shadow: 2px 2px 3px 1px #909497, -1px -1px 1px 3px #fff, 3px 3px 1px 4px #fff, inset;
+}
+
+.change_opacity_external_svg {
+
+  box-shadow: 2px 2px 3px 1px #909497, inset 2px 2px 3px 1px #CACFD2, -1px -1px 2px 2px #fff, inset 1px 1px 4px #CACFD2, inset -1px -1px 2px #fff;
+  opacity: 1;
+  animation: change_opacity_external_svg_anim .5s ease-in-out forwards;
+
+  & > circle {stroke-width: 1.5px;}
+
+  @keyframes change_opacity_external_svg_anim {
+    0%{opacity: 1;}
+    25%{opacity: 1;}
+    100%{opacity: 0;}
+  }
 }
