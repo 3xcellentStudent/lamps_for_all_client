@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux"
-import ImgWrapper from "../ImgWrapper"
 import Quantity from "@/components/common/Quantity/Quantity"
 import { Fragment, useState, useEffect, useRef } from "react"
 import {
@@ -22,13 +21,8 @@ import "./styles.scss"
 import ItemSelectionButtom from "./components/ItemSelectionButton";
 import ItemImage from "./components/ItemImage";
 import ItemSpecificationsList from "./components/ItemSpecificationsList";
-import { ProductIdType } from "@/types/productPage.types/mainTypes";
+import { ProductIdType } from "@/types/main/product.type";
 
-
-interface Props {
-  sxQuantity: CommonType["sxQuantity"]
-  theme: CommonType["theme"]
-}
 
 // interface FieldsLocalType {
 //   type: string
@@ -41,9 +35,9 @@ const quantityCls = "flex w-min flex-col justify-between items-end ml-2 pl-2 bor
 // export default function CartList({sxQuantity, theme}: Props){
 export default function CartList(){
 
-  const {
-    sxQuantity, theme, cart, response
-  } = useSelector(({data: {common}, cartObject}: {data: ProductIdType, cartObject: CartObjectType}) => ({...common, ...cartObject}));
+  const {backgrounds, cart, response} = useSelector(({
+    data: {theme: {colors: {backgrounds}}}, cartObject
+  }: {data: ProductIdType, cartObject: CartObjectType}) => ({backgrounds, ...cartObject}));
 
   const pathname = usePathname()
   const dispatch = useDispatch()
@@ -108,16 +102,15 @@ export default function CartList(){
                   <li ref={itemRef} className="w-full p-2" key={idx}>
 
                     <Grid container className="text-xs font-bold h-full flex">
-                      <ItemSelectionButtom action={() => selectHandleClick(!checked, idx)} 
-                      boxShadow={theme.shadows.sxCircle?.boxShadow}/>
+                      <ItemSelectionButtom action={() => selectHandleClick(!checked, idx)} />
                       
                       <ItemImage productId={productId} productImg={productImg} productName={productName} />
 
                       <ItemSpecificationsList fields={fields} />
 
                       <Grid className="w-[100px] text-center flex items-center justify-center">
-                        <Quantity inputProps={{disabled: true}} action={dispatchQuantity} btnSize={24} 
-                        quantity={quantity} sxQuantity={{fontSize: 20}} quantityMax={quantityMax} />
+                        <Quantity theme={backgrounds} inputProps={{disabled: true}} action={dispatchQuantity} btnSize={24} 
+                        quantity={quantity} quantityMax={quantityMax} />
                       </Grid>
 
                       <Grid className="w-[100px] text-center flex items-center">
@@ -125,7 +118,7 @@ export default function CartList(){
                       </Grid>
 
                       <Grid className="w-[24px] flex items-center">
-                        <Button cls="flex items-center justify-center rounded-full 
+                        <Button className="flex items-center justify-center rounded-full 
                           w-[24px] h-[24px] relative p-0.5 group-hover:fill-white" sx={{}} 
                           disabled={false} handleClick={() => deleteHandleClick(idx)}>
                           <CloseOutlinedIcon className="w-[20px] h-[20px] absolute 

@@ -14,7 +14,10 @@ $index: calc(1vw + 1vh);
   &_button > svg {transition: .2s;}
 
   &_accordion {
-    @media screen and (min-width: 640px){max-height: var(--maxHeight);}
+    @media screen and (min-width: 640px){
+      max-height: var(--maxHeight);
+    }
+    
     max-height: 0px;
     transition: .3s;
     position: relative;

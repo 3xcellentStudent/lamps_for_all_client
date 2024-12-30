@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 interface Props {
   rating: string
-  content: string
+  content?: string
   size: "small" | "medium" | "large"
 }
 

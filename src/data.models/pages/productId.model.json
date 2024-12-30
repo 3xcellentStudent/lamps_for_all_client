@@ -3,39 +3,45 @@
   "theme": {
     "colors": {
       "text": {
-        "primary": {"hex": "#ccc", "rgb": ""},
-        "secondary": {"hex": "#ccc", "rgb": ""},
-        "optional": {"hex": "#ccc", "rgb": ""}
+        "primary": {"hex": "#1F2215", "rgb": "31, 34, 21"},
+        "secondary": {"hex": "#F9FBF2", "rgb": "249, 251, 242"},
+        "optional": {"hex": "#646E45", "rgb": "100, 110, 69"}
       },
       "backgrounds": {
-        "primary": {"hex": "#ccc", "rgb": "100, 110, 69"},
-        "secondary": {"hex": "#ccc", "rgb": "233, 237, 201"},
-        "optional": {"hex": "#ccc", "rgb": "250, 237, 205"},
-        "elementsPrimary": {"hex": "#ccc", "rgb": "#ccc"},
-        "elementsSecondary": {"hex": "#ccc", "rgb": "#ccc"},
-        "elementsOptional": {"hex": "#ccc", "rgb": "250, 237, 205"}
+        "primary": {"hex": "#F9FBF2", "rgb": "249, 251, 242"},
+        "secondary": {"hex": "#F7F0ED", "rgb": "247, 240, 237"},
+        "optional": {"hex": "#F3EBE4", "rgb": "243, 235, 228"},
+        "elementsPrimary": {"hex": "#3D442A", "rgb": "61, 68, 42"},
+        "elementsSecondary": {"hex": "#CED7AF", "rgb": "206, 215, 175"},
+        "elementsOptional": {"hex": "#646E45", "rgb": "100, 110, 69"}
       }
     }
   },
   "rating": 4.5,
   "reviews": {
     "countOfReviews": 100,
-    "reviewsSnaphot": {"five": 188, "four": 57, "three": 12, "two": 9, "one": 35},
+    "reviewsSnapshot": {"five": 188, "four": 57, "three": 12, "two": 9, "one": 35},
     "reviewsList": [
-        {"name": "Alina H.", "text": "Very good Very good Very good Very good Very good Very good Very good Very good Very good Very good Very good Very good ", "rating": "5", "attachments": [""]},
-        {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "rating": "1", "attachments": [""]},
-        {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "rating": "1", "attachments": [""]},
-        {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "rating": 1, "attachments": [""]},
-        {"name": "Andrew P.", "text": "", "rating": "1", "attachments": [""]},
-        {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "rating": "1", "attachments": [""]},
-        {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "rating": "1", "attachments": [""]},
-        {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "rating": "1", "attachments": [""]}
-      ]
+      {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "title": "Terrible product", "rating": "1", "attachments": [""]},
+      {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "title": "Terrible product", "rating": "1", "attachments": [""]},
+      {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "title": "Terrible product", "rating": "1", "attachments": [""]},
+      {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "title": "Terrible product", "rating": "1", "attachments": [""]},
+      {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "title": "Terrible product", "rating": "1", "attachments": [""]},
+      {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "title": "Terrible product", "rating": "1", "attachments": [""]},
+      {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "title": "Terrible product", "rating": "1", "attachments": [""]},
+      {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "title": "Terrible product", "rating": "1", "attachments": [""]},
+      {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "title": "Terrible product", "rating": "1", "attachments": [""]},
+      {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "title": "Terrible product", "rating": "1", "attachments": [""]},
+      {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "title": "Terrible product", "rating": "1", "attachments": [""]},
+      {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "title": "Terrible product", "rating": "1", "attachments": [""]},
+      {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "title": "Terrible product", "rating": "1", "attachments": [""]},
+      {"name": "Andrew P.", "text": "Very bed Very bed Very bed Very bed Very bed Very bed Very bed Very bed", "title": "Terrible product", "rating": "1", "attachments": [""]}
+    ]
   },
   "category": {"name": "air humidifier"},
   "title": "LARQ",
   "descriptions": {
-    "short": "Here is description about this air humidifier. It should be short with most important information about this product (model, type, color etc.)",
+    "summary": "Here is description about this air humidifier. It should be short with most important information about this product (model, type, color etc.)",
     "presentable": [
       "Here is should be beatiful description about this thing, beacuse it will be presented for customer.",
       "So, You have to make like it :)"
@@ -59,40 +65,74 @@
   ],
   "mediaContent": {
     "titleContent": {
-      "productLogo": "https://example.com"
+      "productLogo": "https://example.com",
+			"descriptionVideo": "//vitruvi.ca/cdn/shop/files/preview_images/f7e3669e31214c2784b8397c480a6987.thumbnail.0000000000_1500x.jpg?v=1719510183"
     },
     "images": [
       [
-        {"media": "", "src": ""},
-        {"media": "", "src": ""},
-        {"media": "", "src": ""}
+        [
+          {"media": "(max-width: 480px)", "src": "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png"},
+          {"media": "(max-width: 768px)", "src": "https://www.simplelighting.co.uk/media/webp_image/catalog/product/cache/716cb71e4a7f1a549f7cc6339f6037ad/t/b/tbar-led-lifestyle-compressed.effectsresult-scene-4.webp"},
+          {"media": "", "src": "https://vitruvi.ca/cdn/shop/files/pdp_stone-diffuser_front_white_gallery_1_v9_image_36a28caa-4ba6-48d9-aa51-39a0d0867af5.png?v=1719457697&width=713"}
+        ],
+        [
+          {"media": "(max-width: 480px)", "src": "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png"},
+          {"media": "(max-width: 768px)", "src": "https://www.simplelighting.co.uk/media/webp_image/catalog/product/cache/716cb71e4a7f1a549f7cc6339f6037ad/t/b/tbar-led-lifestyle-compressed.effectsresult-scene-4.webp"},
+          {"media": "", "src": "https://vitruvi.ca/cdn/shop/files/pdp_stone-diffuser_front_charcoal_gallery_1_v9_image_a067dcd6-ad3c-4cdc-ae86-2284973f5822.png?v=1719457697&width=713"}
+        ],
+        [
+          {"media": "(max-width: 480px)", "src": "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png"},
+          {"media": "(max-width: 768px)", "src": "https://www.simplelighting.co.uk/media/webp_image/catalog/product/cache/716cb71e4a7f1a549f7cc6339f6037ad/t/b/tbar-led-lifestyle-compressed.effectsresult-scene-4.webp"},
+          {"media": "", "src": "https://vitruvi.ca/cdn/shop/files/pdp_stone-diffuser_front_terracotta_gallery_1_v9_image_9e9dcb8f-d542-46e6-85e9-2c27e595547d.png?v=1719457697&width=713"}
+        ],
+        [
+          {"media": "(max-width: 480px)", "src": "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png"},
+          {"media": "(max-width: 768px)", "src": "https://www.simplelighting.co.uk/media/webp_image/catalog/product/cache/716cb71e4a7f1a549f7cc6339f6037ad/t/b/tbar-led-lifestyle-compressed.effectsresult-scene-4.webp"},
+          {"media": "", "src": "https://vitruvi.ca/cdn/shop/files/pdp_stone-diffuser_front_charcoal_gallery_1_v9_image_a067dcd6-ad3c-4cdc-ae86-2284973f5822.png?v=1719457697&width=713"}
+        ],
+        [
+          {"media": "(max-width: 480px)", "src": "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png"},
+          {"media": "(max-width: 768px)", "src": "https://www.simplelighting.co.uk/media/webp_image/catalog/product/cache/716cb71e4a7f1a549f7cc6339f6037ad/t/b/tbar-led-lifestyle-compressed.effectsresult-scene-4.webp"},
+          {"media": "", "src": "https://vitruvi.ca/cdn/shop/files/pdp_stone-diffuser_front_sea_gallery_1_v9_image_843aee0e-353f-441c-b6f8-26c956b28d57.png?v=1719457697&width=713"}
+        ],
+        [
+          {"media": "(max-width: 480px)", "src": "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png"},
+          {"media": "(max-width: 768px)", "src": "https://www.simplelighting.co.uk/media/webp_image/catalog/product/cache/716cb71e4a7f1a549f7cc6339f6037ad/t/b/tbar-led-lifestyle-compressed.effectsresult-scene-4.webp"},
+          {"media": "", "src": "https://vitruvi.ca/cdn/shop/files/pdp_stone-diffuser_front_Suede_gallery_1_v9_image_80ffad4d-2678-49ce-962e-17615e85b620.png?v=1719457697&width=713"}
+        ]
       ]
     ],
     "videos": [
       
     ]
   },
-  "specifications": [
-    {
-      "name": "Specifications",
-      "array": [
-        {"name": "Model", "value": "Motion Sensor Light"},
-        {"name": "Voltage", "value": "5V"},
-        {"name": "Light Source", "value": "LED Bulbs"},
-        {"name": "Body Material", "value": "Aluminum"},
-        {"name": "Battery Type", "value": "Lithium Metal"},
-        {"name": "Power Source", "value": "Rechargeable Battery"},
-        {"name": "Wattage", "value": "0-5W"}
-      ]
-    },
-    {
-      "name": "Size & Weight",
-      "array": [
-        {"name": "Width", "value": "2cm"},
-        {"name": "Height", "value": "2cm"},
-        {"name": "Length", "value": "20cm"},
-        {"name": "Weight", "value": "1kg"}
-      ]
-    }
-  ]
+  "specifications": {
+    "titles": [
+      { "name": "Specifications"}, 
+      { "name": "Size & Weight"}
+    ],
+    "properties": [
+      {
+        "name": "Specifications",
+        "array": [
+          {"name": "Model", "value": "Motion Sensor Light"},
+          {"name": "Voltage", "value": "5V"},
+          {"name": "Light Source", "value": "LED Bulbs"},
+          {"name": "Body Material", "value": "Aluminum"},
+          {"name": "Battery Type", "value": "Lithium Metal"},
+          {"name": "Power Source", "value": "Rechargeable Battery"},
+          {"name": "Wattage", "value": "0-5W"}
+        ]
+      },
+      {
+        "name": "Size & Weight",
+        "array": [
+          {"name": "Width", "value": "2cm"},
+          {"name": "Height", "value": "2cm"},
+          {"name": "Length", "value": "20cm"},
+          {"name": "Weight", "value": "1kg"}
+        ]
+      }
+    ]
+  }
 }

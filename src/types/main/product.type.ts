@@ -22,7 +22,7 @@ export interface ProductIdType {
   reviews: {
     countOfReviews: number,
     reviewsSnaphot: {five: number, four: number, three: number, two: number, one: number},
-    reviewsList: {name: string, text: string, rating: string, attachments: string[]}[],
+    reviewsList: {name: string, text: string, title: string, rating: string, attachments: string[]}[],
   },
   category: {name: string},
   descriptions: {
@@ -37,14 +37,18 @@ export interface ProductIdType {
   mediaContent: {
     titleContent: {
       productLogo: string
+      descriptionVideo: string
     },
     images: {media: string, src: string}[][],
     videos: []
   },
   specifications: {
-    name: string,
-    array: {name: string, value: string}[]
-  }[],
+    titles: {name: string}[],
+    properties: {
+      name: string,
+      array: {name: string, value: string}[]
+    }[]
+  }
 }
 
 export interface ThemeColorsTypes {hex: string, rgb: string}

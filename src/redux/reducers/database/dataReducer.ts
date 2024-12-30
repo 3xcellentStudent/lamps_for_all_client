@@ -73,7 +73,6 @@ import model from "@/data.models/pages/productId.model.json"
 
 
 export default function dataReducer(state = model, {type, payload}: {type: string, payload: any}){
-  // console.log(state, payload)
   switch (type) {
     // case SAVE_DATA_FROM_DB: {if(payload !== undefined) return {...state, data: payload}}
     case SAVE_DATA_FROM_DB: return {...payload}

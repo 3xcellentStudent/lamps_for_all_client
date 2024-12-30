@@ -3,18 +3,18 @@ import { ReactNode, SyntheticEvent } from "react";
 
 interface Props {
   children: ReactNode
-  cls?: string
+  className?: string
   handleClick: (e: SyntheticEvent) => SyntheticEvent | any
   disabled?: boolean
-  sx: {}
+  sx?: {}
 }
 
 const CustomButton = styled("button")({cursor: "pointer",});
 
-export default function Button({handleClick, disabled, children, cls, sx}: Props){
+export default function Button({handleClick, disabled, children, className, sx}: Props){
 
   return(
-    <CustomButton sx={sx} disabled={disabled || false} onClick={handleClick} className={cls}>
+    <CustomButton sx={sx} disabled={disabled || false} onClick={handleClick} className={className} >
       {children}
     </CustomButton>
   )

@@ -7,15 +7,15 @@ import { ProductIdType } from '@/types/main/product.type'
 
 export default function Description(){
 
-  const {presentable: description, images} = useSelector(({
-    data: {descriptions: {presentable}, mediaContent: {images}}
-  }: {data: ProductIdType}) => ({presentable, images}))
+  const {presentable: description, descriptionVideo} = useSelector(({
+    data: {descriptions: {presentable}, mediaContent: {images, titleContent: {descriptionVideo}}}
+  }: {data: ProductIdType}) => ({presentable, images, descriptionVideo}))
 
   return(
     <Typography component='section' className='P_product_common 
     section_descr flex'>
       <DescriptionText description={description} />
-      <CarouselImages images={images} />
+      <CarouselImages descriptionVideo={descriptionVideo} />
     </Typography>
   )
 }

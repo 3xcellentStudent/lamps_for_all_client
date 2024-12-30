@@ -116,7 +116,6 @@ import cartReducer from '../cart/reducer';
 import dataReducer from './database/dataReducer';
 import openCartReducer from './openCart/openCartReducer';
 import shippingReducer from '../payment/reducer';
-import moveCoordinatesReducer from "../moveCoordinates/reducer"
 // import statusCodeReducer from './cart/statusCodeReducer';
 
 const rootReducer = combineReducers({
@@ -126,7 +125,6 @@ const rootReducer = combineReducers({
   data: dataReducer,
   shipping: shippingReducer,
   isOpenCart: openCartReducer,
-  moveCoordinates: moveCoordinatesReducer
 });
 
 export default rootReducer;

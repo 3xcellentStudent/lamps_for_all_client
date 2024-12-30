@@ -7,19 +7,39 @@ import { useSelector } from 'react-redux';
 // import { useEffect, useState } from 'react';
 // import { ReviewsListType } from '@/types/productPage.types/sectionReviews';
 import { ProductIdType } from '@/types/main/product.type';
+import RatingComp from '../../common/RatingComp';
+import SectionTitle from '@/components/common/SectionElements/SectionTitle/SectionTitle';
+import { Box } from '@mui/material';
+import PaginationComponent from './parts/PaginationComponent/PaginationComponent';
 
 export default function Reviews(){
   // const [state, setState] = useState(dataModel);  
 
-  const {
-    rating, reviewsSnaphot, reviewsList, colors
-  } = useSelector(({
-    data: {rating, reviews: {reviewsSnaphot, reviewsList}, theme: {colors}}
-  }: {data: ProductIdType}) => ({rating, reviewsSnaphot, reviewsList, colors}))
+  const {rating, reviewsList, reviewsSnaphot, countOfReviews, colors} = useSelector(({data: {
+    rating, reviews: {countOfReviews, reviewsList, reviewsSnaphot}, theme: {colors}
+  }}: {data: ProductIdType}) => ({rating, countOfReviews, reviewsList, reviewsSnaphot, colors}))
 
   return(
     <section className='mt-24 px-5'>
-      <div className='min-h-svh'>
+      <SectionTitle fontSize='40px' >Customer Reviews</SectionTitle>
+
+      <div className='flex items-center justify-center flex-row mt-10'>
+        <div className='mr-4 text-5xl'>{rating}</div>
+        <div className='flex flex-col justify-start'>
+          <RatingComp rating={rating} size='large' />
+          <p>Based on {countOfReviews} reviews</p>
+        </div>
+      </div>
+
+      <div className='w-full flex justify-center'>
+        <Box className='w-[80%] h-[2px] my-6' sx={{backgroundColor: colors.backgrounds.elementsOptional.hex}}></Box>
+      </div>
+
+      <div>
+        <PaginationComponent/>
+      </div>
+      
+      {/* <div className='min-h-svh'>
         <div className='flex flex-row justify-between w-full'>
           <div>
             <h3 className='text-3xl'>Reviews</h3>
@@ -35,7 +55,6 @@ export default function Reviews(){
               <div className="text-5xl">{rating}</div>
               <div className='flex flex-col justify-between pt-2'>
                 <div className='block'>
-                  {/* <RatingComp size='small' props={{content: "", sxRating, sxText}} rating={rating} /> */}
                 </div>
                 <div className="text-base">
                   {reviewsSnaphot?.five && `${Object.values(reviewsSnaphot).reduce((acc, value) => acc += value)} Reviews`}
@@ -47,7 +66,8 @@ export default function Reviews(){
         </div>
 
         <ReviewsList reviewsList={reviewsList} theme={colors} />
-      </div>
+      </div> */}
+
         {/* <div>
           <h4 className="text-xl">Review this product</h4>
           <div className='mx-2 mb-2'>

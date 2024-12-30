@@ -11,8 +11,6 @@ import Details from '@/components/pages/productPage/sections/details/Details'
 import Reviews from '@/components/pages/productPage/sections/reviews/Reviews'
 
 import styles from "./styles.module.scss"
-import { useEffect } from 'react'
-import { actionDispatchPageCoordinates } from '@/redux/moveCoordinates/actions'
 
 export default function Product(){
 
@@ -20,14 +18,6 @@ export default function Product(){
   
   const dispatch = useDispatch()
   const isOpenCart = useSelector(({isOpenCart}: {isOpenCart: boolean}) => isOpenCart)
-
-  // useEffect(() => {
-  //   window.onpointerup = ({pageX, pageY, preventDefault}) => {
-  //     const result = {up: {pageY, pageX, isUped: true}}
-  //     console.log(result)
-  //     dispatch(actionDispatchPageCoordinates(result))
-  //   }
-  // }, [])
 
   return(
     <main className={styles.main}>

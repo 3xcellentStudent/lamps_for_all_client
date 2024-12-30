@@ -6,17 +6,15 @@ import {
 
 interface Props {
   action: (checked: boolean, idx: number) => void
-  boxShadow: string
 }
 
 const label = {inputProps: {'aria-label': 'Checkbox demo'}}
 
-export default function ItemSelectionButtom({action, boxShadow}: Props){
+export default function ItemSelectionButtom({action}: Props){
 
   return(
     <Typography component="div" className="flex items-center mr-2">
       <Checkbox onClick={() => action} 
-      sx={{boxShadow}} 
       className="w-[30px] h-[30px]" {...label} 
       icon={<CheckCircleOutlineIcon color="success"/>} 
       checkedIcon={<CheckCircleIcon 

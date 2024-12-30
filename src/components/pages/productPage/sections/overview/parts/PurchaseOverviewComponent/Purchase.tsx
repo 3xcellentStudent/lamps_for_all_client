@@ -90,12 +90,12 @@ export default function Purchase({productId}: Props){
       displayedField: {name, value},
       checked: true,
     }
-    
+
     dispatch(actionChangeCartSaga({type: PUT_CART_ITEM, payload: resultObj}))
   }
 
   return(
-    <Typography component='div' className={`px-11 ${styles.container}`}>
+    <Typography component='div' className={`pl-11 ${styles.container}`}>
       <div>
         <TitleComp />
 

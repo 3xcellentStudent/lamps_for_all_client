@@ -1,4 +1,7 @@
+
+
 export default function DescriptionText({description}: {description: string[]}){
+  
   return(
     <div className='w-[45%] my-auto px-5'>
       <h2 className='text-center text-2xl font-bold line_title_center 
