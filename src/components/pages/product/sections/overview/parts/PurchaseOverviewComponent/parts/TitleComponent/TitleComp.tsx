@@ -1,4 +1,4 @@
-import RatingComp from "@/components/pages/productPage/common/RatingComp";
+import RatingComp from "@/components/pages/product/common/RatingComp";
 import { ProductIdType } from "@/types/main/product.type";
 import { Box } from "@mui/material";
 import { useSelector } from "react-redux";

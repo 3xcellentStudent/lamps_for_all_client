@@ -19,14 +19,10 @@ export default function Purchase({productId}: Props){
 
   const [inStockStatus, setInstockStatus] = useState<boolean>(true)
 
-  const {title, productLogo, price, quantityMax, productOptions, colors, summary} = useSelector(({
+  const {title, images, price, quantityMax, productOptions, colors, summary} = useSelector(({
   data: {
     title, 
-    mediaContent: {
-      titleContent: {
-        productLogo
-      }
-    }, 
+    mediaContent: {images}, 
     stockInfo: {
       price,
       quantityMax
@@ -34,7 +30,7 @@ export default function Purchase({productId}: Props){
     productOptions,
     theme: {colors},
     descriptions: {summary}
-  }}: {data: ProductIdType}) => ({title, productLogo, price, quantityMax, productOptions, colors, summary}))
+  }}: {data: ProductIdType}) => ({title, images, price, quantityMax, productOptions, colors, summary}))
 
   function fieldsRefFunction(){
     return productOptions.length ? 
@@ -75,14 +71,14 @@ export default function Purchase({productId}: Props){
   }
 
   function dispatchToCart(){
-    const {name, value} = fieldsRef.current[0]
+    const {name, value, index} = fieldsRef.current[0]
     
     const fields = createFieldsArray();
     
     const resultObj: CartProduct = {
       productName: title,
       productId,
-      productImg: productLogo || "",
+      productImg: images[index],
       quantity: quantityRef.current,
       quantityMax: quantityMax,
       price,
@@ -120,7 +116,7 @@ export default function Purchase({productId}: Props){
           <>
             <Box className={`${styles.not_instock_status}`} sx={{
               backgroundColor: colors.backgrounds.elementsPrimary.hex, 
-            }} ></Box>
+            }}></Box>
             <div>Not in stock</div>
           </>
         }

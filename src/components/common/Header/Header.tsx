@@ -10,7 +10,6 @@ import "./styles.scss"
 import { useSelector } from 'react-redux';
 import { usePathname } from 'next/navigation';
 import BadgeButton from '../BadgeButton/BadgeButton';
-import { CartObjectType } from '@/types/cartTypes/cartObject.types';
 import { useEffect, useState } from 'react';
 import { ProductIdType } from '@/types/main/product.type';
 
@@ -20,13 +19,7 @@ export default function Header(){
 
   const pathname = usePathname()
 
-  const [{mainBg, secondaryBg}, setColors] = useState<
-    {mainBg: string, secondaryBg: string}
-  >({mainBg: "", secondaryBg: ""})
-
   const {backgrounds, text: {optional}} = useSelector(({data: {theme: {colors}}}: {data: ProductIdType}) => colors)
-
-  const cart = useSelector(({cart}: CartObjectType) => cart)
 
   const [headerState, setHeaderState] = useState<boolean>(true)
 
@@ -36,11 +29,6 @@ export default function Header(){
       else setHeaderState(true);
     }
   }, [])
-
-  // useEffect(() => {
-  //   const {mainBg, secondaryBg} = data.common.theme.colors
-  //   setColors({mainBg, secondaryBg: `rgb(${secondaryBg})`})
-  // }, [data])
 
   return (
     <CustomHeader className={'header'} sx={{"--headerBg": backgrounds.elementsPrimary.rgb, "--headerOpacity": headerState ? 1 : 0}}>

@@ -10,13 +10,8 @@ export interface InitialState {
 }
 
 export interface MoveCoordinates {pageY: number, pageX: number}
-export interface UpCoordinates {pageY: number, pageX: number, isUped: boolean}
 
-// export interface FieldItemType {
-//   name: string
-//   value: string
-//   index: number
-// }
+export interface UpCoordinates {pageY: number, pageX: number, isUped: boolean}
 
 export interface FieldItemType {
   background: string
@@ -30,7 +25,7 @@ export interface FieldItemType {
 export interface CartProduct {
   productName: string
   productId: string
-  productImg: string
+  productImg: ProductIdType["mediaContent"]["images"][0]
   quantity: number
   quantityMax: number
   price: number

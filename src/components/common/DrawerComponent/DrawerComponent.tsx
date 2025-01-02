@@ -1,18 +1,20 @@
-// import Drawer from '@mui/material/Drawer';
+import { actionChangeOpenCart } from '@/redux/actions';
 import { SwipeableDrawer } from '@mui/material';
 import { ReactNode } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface Props {
   children: ReactNode
   anchor: "right"
-  cartOpen: any
-  closeCart: any
 }
 
-export default function DrawerComponent({anchor, cartOpen, closeCart, children}: Props){
+export default function DrawerComponent({anchor, children}: Props){
+
+  const dispatch = useDispatch()
+  const isOpenCart = useSelector(({isOpenCart}: {isOpenCart: boolean}) => isOpenCart)
 
   return (
-    <SwipeableDrawer anchor={anchor} onOpen={() => true} open={cartOpen} onClose={closeCart}>
+    <SwipeableDrawer anchor={anchor} onOpen={() => true} open={isOpenCart} onClose={() => dispatch(actionChangeOpenCart())}>
       {children}
     </SwipeableDrawer>
   );

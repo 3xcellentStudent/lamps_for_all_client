@@ -15,7 +15,7 @@ export default function AddCartComp({action, inStockStatus}: Props){
   before:duration-300 before:z-[0] hover:before:left-0 w-[45%]`
 
   const {
-    backgrounds: {elementsPrimary, elementsOptional}, text: {optional, secondary}
+    backgrounds: {elementsPrimary, elementsOptional}, text: {secondary}
   } = useSelector(({data: {theme: {colors: {backgrounds, text}}}}: {data: ProductIdType}) => ({backgrounds, text}))
 
   return(

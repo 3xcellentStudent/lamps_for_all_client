@@ -1,48 +1,29 @@
 import { useDispatch, useSelector } from "react-redux"
-import Quantity from "@/components/common/Quantity/Quantity"
 import { Fragment, useState, useEffect, useRef } from "react"
-import {
-  CheckCircle as CheckCircleIcon,
-  CheckCircleOutline as CheckCircleOutlineIcon,
-  CloseOutlined as CloseOutlinedIcon
-} from '@mui/icons-material';
-import {Checkbox, Grid, List, Typography} from '@mui/material'
+import { Box, List, ListItem } from '@mui/material'
 import Title from "./parts/Title/Title"
-import SpecificationsList from "./parts/Specifications/SpecificationsList"
-import { CommonType } from "@/types/productPage.types/sectionTitle/sectionTitle"
-import Button from "../Buttons/Button"
 import ViewCartButton from "./parts/ViewCartButton/ViewCartButton"
 import { usePathname } from "next/navigation"
 import { CartObjectType } from "@/types/cartTypes/cartObject.types"
 import { enqueueSnackbar } from "notistack"
 import { DELETE_CART_ELEMENT, HANDLE_CHANGE_QUANTITY_INTO_CART, SELECT_CART_ITEM } from "@/redux/cart/constants"
-import { actionCartSelectedReducer, actionChangeCartSaga } from "@/redux/cart/actions"
-import "./styles.scss"
-import ItemSelectionButtom from "./components/ItemSelectionButton";
-import ItemImage from "./components/ItemImage";
-import ItemSpecificationsList from "./components/ItemSpecificationsList";
+import { actionChangeCartSaga } from "@/redux/cart/actions"
 import { ProductIdType } from "@/types/main/product.type";
+import styles from "./styles.module.scss"
+import "./styles.scss"
+import Quantity from "../Quantity/Quantity"
+import {HighlightOff} from '@mui/icons-material';
 
-
-// interface FieldsLocalType {
-//   type: string
-//   value: string
-//   cartInfo: {border: string, bg: string}
-// }
-
-const quantityCls = "flex w-min flex-col justify-between items-end ml-2 pl-2 border-l border-black"
 
 // export default function CartList({sxQuantity, theme}: Props){
 export default function CartList(){
 
-  const {backgrounds, cart, response} = useSelector(({
-    data: {theme: {colors: {backgrounds}}}, cartObject
-  }: {data: ProductIdType, cartObject: CartObjectType}) => ({backgrounds, ...cartObject}));
+  const {elementsSecondary, primary, cart, response, price} = useSelector(({
+    data: {theme: {colors: {backgrounds}}, stockInfo: {price}}, cartObject
+  }: {data: ProductIdType, cartObject: CartObjectType}) => ({...cartObject, ...backgrounds, price}));
 
   const pathname = usePathname()
   const dispatch = useDispatch()
-
-  // const {cart, response} = useSelector(({cartObject}: CartObjectType) => cartObject)
 
   const itemRef = useRef(null)
 
@@ -66,25 +47,8 @@ export default function CartList(){
   }
 
   return(
-    <div className="h-full">
-      {/* <Grid container className="p-2 text-xs font-bold border-b border-slate-400">
-        <Grid className="py-2 w-[150px]">
-          <div>Product</div>
-        </Grid>
-        <Grid className="py-2 w-[240px]">
-          <div>Options</div>
-        </Grid>
-        <Grid className="py-2 w-[100px] text-center">
-          <div>Quantity</div>
-        </Grid>
-        <Grid className="py-2 w-[100px] text-center">
-          <div>Price</div>
-        </Grid>
-        <Grid className="py-2 w-[24px]">
-        </Grid>
-      </Grid> */}
-
-      <List className="cart_list py-4 h-[calc(100%-49px)] overflow-y-auto relative backdrop-blur-xl">
+    <Box className="h-full" sx={{backgroundColor: primary.hex}}>
+      <List className={`${styles.cart_list} py-4 h-[calc(100%-49px)] overflow-y-auto relative backdrop-blur-xl`}>
         {
           cartState?.length ? (
             cartState?.map((obj, idx) => {
@@ -93,24 +57,55 @@ export default function CartList(){
                 const payload = {quantity: +quantity, idx}
                 dispatch(actionChangeCartSaga({type: HANDLE_CHANGE_QUANTITY_INTO_CART, payload}))
               }
+
               const {
-                productName, productImg, productId, quantity, quantityMax, fields, checked
+                productName, productImg, productId, quantity, fields, checked
               } = obj
 
               return(
-                <Fragment key={idx}>
-                  <li ref={itemRef} className="w-full p-2" key={idx}>
+                  <ListItem ref={itemRef} key={idx} sx={{backgroundColor: elementsSecondary.hex}} 
+                  className={`w-[calc(100%-16px)] rounded-xl flex flex-row justify-between items-center m-2 p-2 pr-4 ${styles.container}`}>
+                    
+                    <div className="flex flex-row h-full">
+                      <div className={`relative h-full ${styles.image_container}`}>
+                        <img className="absolute w-full h-full object-scale-down" src={productImg.at(-1)?.src} alt="logo" />
+                      </div>
 
-                    <Grid container className="text-xs font-bold h-full flex">
-                      <ItemSelectionButtom action={() => selectHandleClick(!checked, idx)} />
+                      <div className="h-full px-2 border-stone-500 border-r-[1px]">
+                        <Title productId={productId} productName={productName} />
+
+                        <div className="w-full text-end w-min font-bold">${price}</div>
+                      </div>
+
+                      <div className="h-[50%] px-2 flex items-center">
+                        <ul className="flex flex-row" key={idx} >
+                          {fields.map(({value}, index) => {
+                            if(index === fields.length - 1) return <li key={index} >{value}</li>;
+                            else return <li key={index} >{value}</li>;
+                          })}
+                        </ul>
+                      </div>
+                    </div>
+
+
+                    <div className="flex flex-row w-min justify-between items-center">
+                      <Quantity inputProps={{disabled: true}} action={dispatchQuantity} btnSize={24} quantity={quantity} />
                       
-                      <ItemImage productId={productId} productImg={productImg} productName={productName} />
+                      <div className="ml-4">
+                        <button><HighlightOff/></button>
+                      </div>
+                    </div>
+                    
+                    {/* <Grid container className="text-xs font-bold h-full flex"> */}
+                      {/* <ItemSelectionButtom action={() => selectHandleClick(!checked, idx)} /> */}
+                      
+                      {/* <ItemImage productId={productId} productImg={productImg} productName={productName} />
 
                       <ItemSpecificationsList fields={fields} />
 
                       <Grid className="w-[100px] text-center flex items-center justify-center">
-                        <Quantity theme={backgrounds} inputProps={{disabled: true}} action={dispatchQuantity} btnSize={24} 
-                        quantity={quantity} quantityMax={quantityMax} />
+                        <Quantity inputProps={{disabled: true}} action={dispatchQuantity} btnSize={24} 
+                        quantity={quantity} />
                       </Grid>
 
                       <Grid className="w-[100px] text-center flex items-center">
@@ -124,12 +119,11 @@ export default function CartList(){
                           <CloseOutlinedIcon className="w-[20px] h-[20px] absolute 
                           pointer-events-none"/>
                         </Button>
-                      </Grid>
-                    </Grid>
-                  </li>
+                      </Grid> */}
+                    {/* </Grid> */}
+                  </ListItem>
 
-                  {pathname.includes("product") && <ViewCartButton/>}
-                </Fragment>
+                  // {pathname.includes("product") && <ViewCartButton/>}
               )
             })
           ) : 
@@ -138,6 +132,6 @@ export default function CartList(){
           </li>
         }
       </List>
-    </div>
+    </Box>
   )
 }

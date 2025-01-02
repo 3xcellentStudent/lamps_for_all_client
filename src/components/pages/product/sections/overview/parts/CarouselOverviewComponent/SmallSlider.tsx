@@ -95,13 +95,11 @@ export default function SmallSlider({carouselIndex, setCarouselIndex}: {carousel
       className={`relative w-full flex flex-col ${styles.small_slider_container}`} 
       sx={wrapperWidthRef.current &&  {transition: conditions.current.isButtonPressed ? "0ms" : "500ms",}} >
         {images.map((element, index) => {
-          console.log(element)
           return(
             <CustomButton id={`carousel-button-id_${index}`} key={index} className={`relative w-full h-full`} 
             sx={{border: carouselIndex === index ? `2px solid ${elementsSecondary.hex}` : ""}}>
               <picture className="w-full h-full block pointer-events-none">
                 {element.map((source, idx) => {
-                  console.log(source)
                   if(!source.media) return <img key={idx} src={source.src} alt="" />
                   else return <source width="100%" height="100%" key={idx} srcSet={source.src} media={source.media} />
                 })}

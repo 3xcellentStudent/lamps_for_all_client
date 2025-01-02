@@ -9,16 +9,11 @@ import { useSelector } from 'react-redux';
 interface Props {
   quantity: number
   action: any
-  quantityMax: number
   text?: string
   btnSize: number
   inputProps?: {}
-  backgrounds: ProductIdType["theme"]["colors"]["backgrounds"]
 }
 
-// export default function Quantity(
-//   {btnSize, quantity, action, quantityMax, text, inputProps, backgrounds: {elementsPrimary, elementsSecondary}}: Props
-// ){
 export default function Quantity(
   {btnSize, quantity, action, text, inputProps}: Props
 ){
