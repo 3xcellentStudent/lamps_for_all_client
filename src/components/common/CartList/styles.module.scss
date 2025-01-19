@@ -1,9 +1,9 @@
 .container {
-  height: 80px;
+  height: 100px;
 }
 
 .image_container {
-  min-width: 70px;
+  min-width: 80px;
 }
 
 .cart_list {
@@ -21,14 +21,14 @@
   @media screen and (max-width: 560px){
     min-width: 320px;
     max-width: 320px;
+  }
+}
 
-    &__btn_buy {
-      min-width: inherit;
-      max-width: inherit;
-    }
-  }
-  &__btn_buy {
-    min-width: inherit;
-    max-width: inherit;
-  }
+.product_options_container {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  transition: .4s ease;
+  display: flex;
+  margin: 10px;
 }

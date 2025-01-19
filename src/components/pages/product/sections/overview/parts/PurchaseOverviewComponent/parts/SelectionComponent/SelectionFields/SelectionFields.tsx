@@ -47,19 +47,15 @@ export default function SelectionFields(
           {options?.items?.length && options?.items?.map(({value, fill, stroke, stockStatus}, idx) => {
             return stockStatus ? 
               <Tooltip key={idx} title={value} placement='top' arrow disableInteractive>
-                <Radio contextMenu={value} size="small"
-                key={idx} value={idx} onChange={handleChange}
-                className={`${styles.radio_button}`}
-                checkedIcon={<SelectedIcon stroke={stroke} fill={fill} />} 
+                <Radio contextMenu={value} size="small" key={idx} value={idx} onChange={handleChange}
+                className={`${styles.radio_button}`} checkedIcon={<SelectedIcon stroke={stroke} fill={fill} />} 
                 icon={<SelectionIcon fill={fill} stroke={stroke} />} />
               </Tooltip> 
               : 
               <Tooltip className={styles.radio_button_disabled} key={idx} title={value} 
               placement='top' arrow disableInteractive>
-                <Radio contextMenu={value} size="small"
-                key={idx} value={idx} onChange={handleChange}
-                className={`${styles.radio_button}`}
-                checkedIcon={<SelectedIcon stroke={stroke} fill={fill} />} 
+                <Radio contextMenu={value} size="small" key={idx} value={idx} onChange={handleChange}
+                className={`${styles.radio_button}`} checkedIcon={<SelectedIcon stroke={stroke} fill={fill} />} 
                 icon={<SelectionIcon fill={fill} stroke={stroke} />} />
               </Tooltip>
           })}

@@ -11,47 +11,10 @@ interface Props {
 
 export default function Overview({productId}: Props){
 
-  // const dispatch = useDispatch()
-  // const quantityRef = useRef<number>(1)
-  // const fieldsRef = useRef<FieldsRefType[]>([])
-
-  // function setTotalObj({elemIdx, index, data}: SetTotalObjType){
-  //   const {value, properties} = data
-  //   console.log(fieldsRef.current[elemIdx])
-  //   console.log(value, properties, index)
-  //   fieldsRef.current[elemIdx].value = value
-  //   fieldsRef.current[elemIdx].properties = properties
-  //   fieldsRef.current[elemIdx].index = index
-  // }
-
-  // const createFieldsArray = () => {
-  //   const fields: {}[] = []
-  //   for(let i = 0; i < fieldsRef.current.length; i++){
-  //     const copyObj = Object.assign({}, fieldsRef.current[i])
-  //     fields.push(copyObj)
-  //   }
-  //   return fields
-  // }
-
-  // function dispatchToCart(){
-  //   const {name, value} = fieldsRef.current[0]
-    
-  //   const resultObj = {
-  //     productName: title,
-  //     productId: pageId,
-  //     productImg: images[0][0].src,
-  //     quantity: quantityRef.current,
-  //     quantityMax: quantityMax,
-  //     fields: createFieldsArray(),
-  //     displayedField: {name, value}
-  //   }
-  //   dispatch(actionCartSaga({type: PUT_CART_ALL, payload: resultObj}))
-  // }
-
   const [carouselIndex, setCarouselIndex] = useState<number>(0)
 
   return(
-    <Typography sx={{}} component="section" className={`${styles.section}`}>
+    <Typography component="section" className={`${styles.section}`}>
       <div className='flex flex-row w-[50%]'>
         <SmallSlider carouselIndex={carouselIndex} setCarouselIndex={setCarouselIndex} />
         <BigSlider carouselIndex={carouselIndex} setCarouselIndex={setCarouselIndex} />

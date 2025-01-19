@@ -1,12 +1,12 @@
-import { styled } from "@mui/material";
+import { styled, SxProps, Theme } from "@mui/material";
 import { ReactNode, SyntheticEvent } from "react";
 
 interface Props {
   children: ReactNode
   className?: string
-  handleClick: (e: SyntheticEvent) => SyntheticEvent | any
+  handleClick?: (e: SyntheticEvent) => SyntheticEvent | any
   disabled?: boolean
-  sx?: {}
+  sx?: SxProps<Theme>
 }
 
 const CustomButton = styled("button")({cursor: "pointer",});

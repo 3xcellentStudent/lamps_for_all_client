@@ -1,7 +1,11 @@
 import { SvgIcon } from "@mui/material";
 import styles from "./styles.module.scss"
 
-export default function InternalCircleSVG({fill}: {fill: string}){
+interface Props {
+  fill: string
+}
+
+export default function InternalCircleSVG({fill}: Props){
   
   return(
     <SvgIcon className={`absolute w-full h-full ${styles.internal_svg}`} 

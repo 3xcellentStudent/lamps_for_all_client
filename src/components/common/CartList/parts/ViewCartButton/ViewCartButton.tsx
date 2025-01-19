@@ -1,17 +1,20 @@
 import { PURCHASE_PAGE_ROUTE } from "@/constats/pageRoutes";
 import Button from "@/components/common/Buttons/Button";
 import Link from "next/link";
-import { MAIN_BUTTON_CLS } from "@/constats/tailwindClasses";
+import { useSelector } from "react-redux";
+import { ProductIdType } from "@/types/main/product.type";
+import styles from "./styles.module.scss"
 
 export default function ViewCartButton(){
 
+  const {backgrounds, text} = useSelector(({data: {theme: {colors: {backgrounds, text}}}}: {data: ProductIdType}) => ({backgrounds, text}))
+
   return(
-    <div className="cart_list__btn_buy fixed h-[80px] right-0 
-      bottom-0">
-        <Link href={PURCHASE_PAGE_ROUTE} 
-        className="flex items-center justify-center h-full">
-          <Button cls={MAIN_BUTTON_CLS + " fixed"} disabled={false} handleClick={() => {}}
-            sx={{"background": "linear-gradient(45deg , #060b17 10%, transparent 10%)", "boxShadow":"2px 2px 4px #909497, -1px -1px 3px 2px #fff", ":before": {"background": "linear-gradient(45deg , #060b17 70%, transparent 30%)", "left": "-100%"}, "color": "#060b17", ":hover": {"color": "#fff"}}}>
+    <div className={`${styles.button_container} fixed w-full right-0 
+      bottom-0`}>
+        <Link href={PURCHASE_PAGE_ROUTE} className="flex items-center justify-center h-full">
+          <Button className={styles.button} disabled={false} 
+          sx={{backgroundColor: backgrounds.elementsPrimary.hex, color: text.secondary.hex}}>
             <span className="relative z-10">View Cart</span>
           </Button>
         </Link>

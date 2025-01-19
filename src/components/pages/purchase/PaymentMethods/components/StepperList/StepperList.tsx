@@ -4,9 +4,9 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import { useState } from 'react';
 import { StepsListType } from '@/types/payment/elements';
-import ShippingForm from '@/components/pages/purchasePage/ShippingForm/ShippingForm';
 import PaymentMethods from '../../PaymentMethods';
 import ButtonCircleArrow from '@/components/common/Buttons/ButtonCircleArrow';
+import ShippingForm from '../../../ShippingForm/ShippingForm';
 
 
 export default function StepperList(){
