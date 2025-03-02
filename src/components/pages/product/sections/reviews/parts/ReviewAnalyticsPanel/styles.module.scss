@@ -1,0 +1,31 @@
+.container {
+  top: 100px;
+  width: 480px;
+  height: max-content;
+}
+
+.reviews_count_container {
+  margin-bottom: 40px;
+}
+
+.arrow_icon {
+  position: absolute;
+  top: -5px;
+  right: 0;
+  animation: arrow_icon 1s ease infinite;
+  will-change: transform;
+
+  @keyframes arrow_icon {
+    0% {
+      transform: translateY(-5px) rotate(30deg);
+    } 50% {
+      transform: translateY(5px) rotate(30deg);
+    } 100% {
+      transform: translateY(-5px) rotate(30deg);
+    }
+  }
+}
+
+.every_star_container {
+  margin-top: 40px;
+}

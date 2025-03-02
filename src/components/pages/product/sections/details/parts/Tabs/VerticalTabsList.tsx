@@ -2,12 +2,14 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { useEffect, useState } from 'react';
-import { ProductIdType } from '@/types/main/product.type';
+import { ProductDataType } from '@/types/main/productData.type';
 import SpecificationsList from '../SpecificationsList/SpecificationsList';
 import { useSelector } from 'react-redux';
+import { GlobalDataType } from '@/types/main/globalData.type';
 
-export default function VerticalTabsList({titles, properties}: ProductIdType["specifications"]){
-  const {elementsOptional} = useSelector(({data: {theme: {colors: {backgrounds}}}}: {data: ProductIdType}) => backgrounds)
+export default function VerticalTabsList({titles, properties}: ProductDataType["specifications"]){
+
+  const {elementsOptionalBg} = useSelector(({globalData: {colors: {backgrounds}}}: {globalData: GlobalDataType}) => ({...backgrounds}))
 
   const [value, setValue] = useState(0);
   const [height, setHeight] = useState(0)
@@ -31,10 +33,10 @@ export default function VerticalTabsList({titles, properties}: ProductIdType["sp
       <Tabs orientation="vertical" variant="scrollable" value={value} onChange={handleChange} 
       sx={{ borderRight: 1, borderColor: 'divider' }}
       >
-        {titles.map(({name}, index) => {
+        {titles.map((title, index) => {
           return(
-            <Tab key={index} label={name} id={`vertical-tab-${index}, aria-controls: vertical-tabpanel-${index}`} 
-            sx={{borderRight: `2px solid ${elementsOptional.hex}`}} />
+            <Tab key={index} label={title} id={`vertical-tab-${index}, aria-controls: vertical-tabpanel-${index}`} 
+            sx={{borderRight: `2px solid ${elementsOptionalBg.hex}`}} />
           )
         })}
       </Tabs>

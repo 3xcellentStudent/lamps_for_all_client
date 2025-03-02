@@ -6,7 +6,7 @@ import { Typography } from "@mui/material";
 import Button from "@/components/common/Buttons/Button";
 import Link from "next/link";
 import { decrement, increment } from "./actions/PositionActions";
-import { ProductIdType } from '@/types/main/product.type';
+import { ProductDataType } from '@/types/main/productData.type';
 
 interface Props {
   descriptionVideo: string

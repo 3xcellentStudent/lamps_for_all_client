@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import { ProductIdType } from "@/types/main/product.type"
+import { ProductDataType } from "@/types/main/productData.type"
 import { SetTotalObjType } from "@/types/pages/product/overview.types"
 import SelectionFields from "./SelectionFields/SelectionFields"
 
@@ -9,7 +9,7 @@ export interface Props {
 
 export default function SelectionComp({setTotalObj}: Props){
 
-  const productOptions = useSelector(({data: {productOptions}}: {data: ProductIdType}) => (productOptions))
+  const {productOptions} = useSelector(({productData}: {productData: ProductDataType}) => ({...productData}))
 
   return(
     <ul className='w-full mt-10' >

@@ -1,10 +1,10 @@
 import { Badge, styled} from "@mui/material"
 import { ReactNode } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import {actionChangeOpenCart} from '@/redux/actions'
 import { CartObjectType } from "@/types/cartTypes/cartObject.types"
 
-import { ProductIdType } from "@/types/main/product.type"
+import { actionCallIsOpenCart } from "@/redux/cart/isOpenCart/actions"
+import { GlobalDataType } from "@/types/main/globalData.type"
 
 interface Props {
   color: string
@@ -25,16 +25,17 @@ export default function BadgeButton({cls, children}: Props){
 
   const dispatch = useDispatch()
 
-  const {cart} = useSelector(({cartObject}: {cartObject: CartObjectType}) => cartObject)
-  const {backgrounds: {secondary}, text: {primary: primaryText}} = useSelector(({
-    data: {theme: {colors: {backgrounds, text}}}
-  }: {data: ProductIdType}) => ({backgrounds, text}))
+  const {cart: {length}} = useSelector(({cartObject}: {cartObject: CartObjectType}) => cartObject)
 
-  function handleClick(){dispatch(actionChangeOpenCart())}
+  const {secondaryBg, primaryText} = useSelector(({
+    globalData: {colors: {backgrounds, text}}
+  }: {globalData: GlobalDataType}) => ({...backgrounds, ...text}))
+
+  function handleClick(){dispatch(actionCallIsOpenCart())}
 
   return(
     <button onClick={handleClick}>
-      <CustomBadge badgeContent={cart?.length} backgroundcolor={secondary.hex} color={primaryText.hex}>
+      <CustomBadge badgeContent={length} backgroundcolor={secondaryBg.hex} color={primaryText.hex}>
         {children}
       </CustomBadge>
     </button>

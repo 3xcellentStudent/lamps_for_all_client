@@ -1,12 +1,12 @@
 import './style.scss'
 import { SyntheticEvent } from 'react';
 import { useSelector } from 'react-redux';
-import { ProductIdType } from '@/types/main/product.type';
+import { ProductDataType } from '@/types/main/productData.type';
 import VerticalTabsList from './parts/Tabs/VerticalTabsList';
 
 export default function Details(){
 
-  const {titles, properties} = useSelector(({data: {specifications}}: {data: ProductIdType}) => specifications)
+  const {titles, properties} = useSelector(({productData: {specifications}}: {productData: ProductDataType}) => specifications)
 
   const listWrapCls = 'w-full flex justify-center items-start flex-wrap tablet:flex-col tablet:justify-center tablet:items-center'
 

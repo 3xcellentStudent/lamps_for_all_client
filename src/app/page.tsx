@@ -8,7 +8,7 @@ export default function Home(){
 
   const redirect = useRouter()
 
-  useEffect(() => {redirect.push('/product/lRfAcb2l6dJ1NPP8PF2R')}, [])
+  useEffect(() => {redirect.push('/product/d41d8cd9-8f00-3204-a980-0998ecf8427e')}, [])
 
   return(
     <body>

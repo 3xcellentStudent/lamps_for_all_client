@@ -1,8 +1,8 @@
-import { PURCHASE_PAGE_ROUTE } from "@/constats/pageRoutes";
+import { PURCHASE_PAGE_ROUTE } from "@/api/routes/routes";
 import Button from "@/components/common/Buttons/Button";
 import Link from "next/link";
 import { useSelector } from "react-redux";
-import { ProductIdType } from "@/types/main/product.type";
+import { ProductIdType } from "@/types/main/productData.type";
 import styles from "./styles.module.scss"
 
 export default function ViewCartButton(){

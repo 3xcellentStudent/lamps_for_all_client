@@ -1,4 +1,4 @@
-import { ProductIdType } from "@/types/main/product.type"
+import { ProductIdType } from "@/types/main/productData.type"
 
 type ProductOptionsItemsProps = ProductIdType["productOptions"][0]["items"][0]
 type StockStatus = ProductOptionsItemsProps["stockStatus"]

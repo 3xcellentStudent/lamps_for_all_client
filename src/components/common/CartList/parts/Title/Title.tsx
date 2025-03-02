@@ -2,7 +2,7 @@ import Link from "next/link";
 import { OpenInNew as OpenInNewIcon, } from "@mui/icons-material";
 import { Box, styled } from "@mui/material";
 import { useSelector } from "react-redux";
-import { ProductIdType } from "@/types/main/product.type";
+import { ProductIdType } from "@/types/main/productData.type";
 import styles from "./styles.module.scss"
 
 interface Props {

@@ -3,7 +3,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import { useEffect, useState } from 'react';
 import Button from '../Buttons/Button';
 import { styled } from '@mui/material';
-import { ProductIdType } from '@/types/main/product.type';
+import { ProductIdType } from '@/types/main/productData.type';
 import { useSelector } from 'react-redux';
 
 interface Props {

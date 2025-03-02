@@ -1,0 +1,21 @@
+{
+  "id": "",
+  "type": "",
+  "colors": {
+    "text": {
+      "primaryText": {"hex": "#1F2215", "rgb": "31, 34, 21"},
+      "secondaryText": {"hex": "#F9FBF2", "rgb": "249, 251, 242"},
+      "optionalText": {"hex": "#646E45", "rgb": "100, 110, 69"}
+    },
+    "backgrounds": {
+      "primaryBg": {"hex": "#F9FBF2", "rgb": "249, 251, 242"},
+      "secondaryBg": {"hex": "#F7F0ED", "rgb": "247, 240, 237"},
+      "optionalBg": {"hex": "#F3EBE4", "rgb": "243, 235, 228"},
+      "elementsPrimaryBg": {"hex": "#3D442A", "rgb": "61, 68, 42"},
+      "elementsSecondaryBg": {"hex": "#CED7AF", "rgb": "206, 215, 175"},
+      "elementsOptionalBg": {"hex": "#646E45", "rgb": "100, 110, 69"}
+    }
+  },
+  "createdAt": 0,
+  "updatedAt": 0
+}

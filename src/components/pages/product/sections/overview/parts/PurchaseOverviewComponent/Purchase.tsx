@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from "react-redux"
 import SelectionComp from "./parts/SelectionComponent/SelectionComp"
 import TitleComp from "./parts/TitleComponent/TitleComp"
 import AddCartComp from "./parts/AddCartComp/AddCartComp"
-import { actionChangeCartSaga } from "@/redux/cart/actions"
-import { PUT_CART_ITEM } from "@/redux/cart/constants"
+// import { actionChangeCartSaga } from "@/redux/cart/isOpenCart/actions"
+// import { PUT_CART_ITEM } from "@/redux/cart/isOpenCart/constants"
 import { CartProduct } from "@/types/storeTypes"
 import { Box, Typography } from "@mui/material"
 import styles from "./styles.module.scss"
-import { ProductIdType } from "@/types/main/product.type"
+import { ProductDataType } from "@/types/main/productData.type"
 import { FieldsRefType, SetTotalObjType } from "@/types/pages/product/overview.types"
+import { GlobalDataType } from "@/types/main/globalData.type"
 
 interface Props {
   productId: string
@@ -19,22 +20,16 @@ export default function Purchase({productId}: Props){
 
   const [inStockStatus, setInstockStatus] = useState<boolean>(true)
 
-  const {title, images, price, quantityMax, productOptions, colors, summary} = useSelector(({
-  data: {
-    title, 
-    mediaContent: {images}, 
-    stockInfo: {
-      price,
-      quantityMax
-    }, 
-    productOptions,
-    theme: {colors},
-    descriptions: {summary}
-  }}: {data: ProductIdType}) => ({title, images, price, quantityMax, productOptions, colors, summary}))
+  const {productData, elementsPrimaryBg, elementsOptionalBg, primaryText} = useSelector(({
+    productData, 
+    globalData: {colors: {backgrounds, text: {primaryText}}}
+  }: {productData: ProductDataType, globalData: GlobalDataType}) => ({
+    productData, ...backgrounds, primaryText
+  }))
 
   function fieldsRefFunction(){
-    return productOptions.length ? 
-    productOptions?.map((options) => {
+    return productData?.productOptions.length ? 
+    productData?.productOptions?.map((options) => {
       const {name, items, type} = options
       const {fill: background, value, stockStatus} = items[0]
       const result = {background, index: 0, name, type, value, stockStatus}
@@ -76,18 +71,18 @@ export default function Purchase({productId}: Props){
     const fields = createFieldsArray();
     
     const resultObj: CartProduct = {
-      productName: title,
+      productName: productData?.title,
       productId,
-      productImg: images[index],
+      productImg: productData?.mediaContent?.images[index],
       quantity: quantityRef.current,
-      quantityMax: quantityMax,
-      price,
+      quantityMax: productData.stockInfo?.quantityMax,
+      price: productData?.stockInfo?.price,
       fields: fields[0].value ? fields : fieldsRefFunction(),
       displayedField: {name, value},
       checked: true,
     }
 
-    dispatch(actionChangeCartSaga({type: PUT_CART_ITEM, payload: resultObj}))
+    // dispatch(actionChangeCartSaga({type: PUT_CART_ITEM, payload: resultObj}))
   }
 
   return(
@@ -108,14 +103,14 @@ export default function Purchase({productId}: Props){
           inStockStatus ? 
           <>
             <Box className={`${styles.instock_status}`} sx={{
-              backgroundColor: colors.backgrounds.elementsPrimary.hex,"&:before": {border: "2px solid " + colors.backgrounds.elementsOptional.hex},
+              backgroundColor: elementsPrimaryBg.hex,"&:before": {border: "2px solid " + elementsOptionalBg.hex},
             }} ></Box>
             <div>In stock: All orders shipping with UPS</div>
           </>
           :
           <>
             <Box className={`${styles.not_instock_status}`} sx={{
-              backgroundColor: colors.backgrounds.elementsPrimary.hex, 
+              backgroundColor: elementsPrimaryBg.hex, 
             }}></Box>
             <div>Not in stock</div>
           </>
@@ -124,7 +119,7 @@ export default function Purchase({productId}: Props){
 
       <AddCartComp inStockStatus={inStockStatus} action={dispatchToCart} />
 
-      <Typography sx={{color: colors.text.primary.hex}} className="text-lg mt-10">{summary}</Typography>
+      <Typography sx={{color: primaryText.hex}} className="text-lg mt-10">{productData?.descriptions?.summary}</Typography>
     </Typography>
   )
 }

@@ -6,7 +6,7 @@ import SelectedIcon from '../../../../../../../../../common/Radio/SelectedIcon';
 import SelectionIcon from '@/components/common/Radio/SelectionIcon';
 import styles from "./styles.module.scss"
 import "./styles.module.scss"
-import { ProductIdType } from '@/types/main/product.type';
+import { ProductIdType } from '@/types/main/productData.type';
 import { SetTotalObjType } from '@/types/pages/product/overview.types';
 
 export interface Props {

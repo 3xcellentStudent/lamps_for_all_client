@@ -1,18 +1,15 @@
 import { List } from "@mui/material"
 import UserReviewCard from "../UserReviewCard/UserReviewCard"
-import { ProductIdType } from "@/types/main/product.type"
+import { ProductDataType } from "@/types/main/productData.type"
+import { ReviewsType } from "@/types/main/reviews.type"
 
-interface Props {
-  reviewsList: ProductIdType["reviews"]["reviewsList"]
-}
-
-export default function ReviewsList({reviewsList}: Props){
+export default function ReviewsList({reviewsList}: {reviewsList: ReviewsType[] | []}){
 
   return(
     <List className='mt-4 flex flex-wrap justify-center'>
-      {reviewsList.map(({name, text, title, rating, attachments}, idx) => {
+      {reviewsList.map(({content, rating, attachments, productName}, idx) => {
         return(
-          <UserReviewCard key={idx} name={name} text={text} rating={rating} attachments={attachments} />
+          <UserReviewCard key={idx} productName={productName} content={content} rating={rating} attachments={attachments} />
         )
       })}
     </List>

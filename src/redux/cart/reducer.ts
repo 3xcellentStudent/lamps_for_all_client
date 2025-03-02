@@ -1,8 +1,9 @@
 import {
   PUT_CART_ITEM, DELETE_CART_ELEMENT,
   HANDLE_CHANGE_QUANTITY_INTO_CART,
-  SELECT_CART_ITEM
-} from './constants'
+  SELECT_CART_ITEM,
+  CART_IS_OPEN_SAVE
+} from './isOpenCart/constants'
 import { CartObjectType } from '@/types/cartTypes/cartObject.types';
 import { addProductToCart } from './helpers/add-product';
 import changeQuantityIntoCart from './helpers/change.quantity';
@@ -95,6 +96,8 @@ export default function cartReducer(state = initialState,
   const {cart} = state
 
   switch(type){
+    case CART_IS_OPEN_SAVE:
+      return {...state, cart}
     case PUT_CART_ITEM:
       if(cart.length > 0) return addProductToCart(cart, payload);
       else return {

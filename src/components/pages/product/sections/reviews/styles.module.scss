@@ -1,0 +1,17 @@
+.main_container {
+  // height: calc(100svh - 90px);
+  // overflow-x: hidden;
+  // overflow-y: auto;
+  flex-direction: row;
+}
+
+.analytics_panel {
+  top: 100px;
+  width: 480px;
+  height: max-content;
+  // align-items: start;
+}
+
+.reviews_container {
+  width: 960px;
+}

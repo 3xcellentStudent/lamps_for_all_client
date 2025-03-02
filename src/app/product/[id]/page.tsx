@@ -1,9 +1,7 @@
 'use client'
 import { useParams } from 'next/navigation'
-import { useDispatch, useSelector } from 'react-redux'
 import DrawerComponent from '@/components/common/DrawerComponent/DrawerComponent'
 import CartList from '@/components/common/CartList/CartList'
-import { actionChangeOpenCart, actionDataFromDb, actionSaveDataFromDb } from '@/redux/actions'
 import { SnackbarProvider } from 'notistack'
 
 import styles from "./styles.module.scss"

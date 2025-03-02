@@ -6,21 +6,23 @@ import ViewCartButton from "./parts/ViewCartButton/ViewCartButton"
 import { usePathname } from "next/navigation"
 import { CartObjectType } from "@/types/cartTypes/cartObject.types"
 import { enqueueSnackbar } from "notistack"
-import { DELETE_CART_ELEMENT, HANDLE_CHANGE_QUANTITY_INTO_CART, SELECT_CART_ITEM } from "@/redux/cart/constants"
-import { actionChangeCartSaga } from "@/redux/cart/actions"
-import { ProductIdType } from "@/types/main/product.type";
+// import { DELETE_CART_ELEMENT, HANDLE_CHANGE_QUANTITY_INTO_CART, SELECT_CART_ITEM } from "@/redux/cart/isOpenCart/constants"
+// import { actionChangeCartSaga } from "@/redux/cart/isOpenCart/actions"
+
 import styles from "./styles.module.scss"
 import Quantity from "../Quantity/Quantity"
 import {HighlightOff} from '@mui/icons-material';
 import InternalCircleSVG from "../Radio/InternalCircleSVG"
+import { GlobalDataType } from "@/types/main/globalData.type"
+import { ProductDataType } from "@/types/main/productData.type"
 
 
 // export default function CartList({sxQuantity, theme}: Props){
 export default function CartList(){
 
-  const {elementsSecondary, primary, cart, response, price} = useSelector(({
-    data: {theme: {colors: {backgrounds}}, stockInfo: {price}}, cartObject
-  }: {data: ProductIdType, cartObject: CartObjectType}) => ({...cartObject, ...backgrounds, price}));
+  const {elementsSecondaryBg, elementsPrimaryBg, cart, response, price} = useSelector(({
+    globalData: {colors: {backgrounds}}, productData: {stockInfo: {price}}, cartObject
+  }: {globalData: GlobalDataType, productData: ProductDataType, cartObject: CartObjectType}) => ({...cartObject, ...backgrounds, price}));
 
   const pathname = usePathname()
   const dispatch = useDispatch()
@@ -47,7 +49,7 @@ export default function CartList(){
   }
 
   return(
-    <Box className="h-full" sx={{backgroundColor: primary.hex}}>
+    <Box className="h-full" sx={{backgroundColor: elementsPrimaryBg.hex}}>
       <List className={`${styles.cart_list} py-4 h-[calc(100%-49px)] overflow-y-auto relative backdrop-blur-xl`}>
         {
           cart?.length ? (
@@ -63,7 +65,7 @@ export default function CartList(){
               } = obj
 
               return(
-                  <ListItem ref={itemRef} key={idx} sx={{backgroundColor: elementsSecondary.hex}} 
+                  <ListItem ref={itemRef} key={idx} sx={{backgroundColor: elementsSecondaryBg.hex}} 
                   className={`w-[calc(100%-16px)] rounded-xl flex flex-row justify-between items-center m-2 p-2 pr-4 ${styles.container}`}>
                     
                     <div className="flex flex-row h-full">

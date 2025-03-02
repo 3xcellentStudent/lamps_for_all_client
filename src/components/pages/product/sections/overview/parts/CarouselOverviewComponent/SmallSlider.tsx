@@ -1,16 +1,17 @@
-import { ProductIdType } from "@/types/main/product.type";
+import { ProductDataType } from "@/types/main/productData.type";
 import { styled, Typography } from "@mui/material";
 import { Dispatch, PointerEvent, SetStateAction, useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./styles.module.scss"
+import { GlobalDataType } from "@/types/main/globalData.type";
 
 const CustomButton = styled("button")({})
 
 export default function SmallSlider({carouselIndex, setCarouselIndex}: {carouselIndex: number, setCarouselIndex: Dispatch<SetStateAction<number>>}){
 
-  const {images, elementsSecondary} = useSelector(({
-    data: {mediaContent: {images}, theme: {colors: {backgrounds: {elementsSecondary}}}}
-  }: {data: ProductIdType}) => ({images, elementsSecondary}));
+  const {images, elementsSecondaryBg} = useSelector(({
+    productData: {mediaContent}, globalData: {colors: {backgrounds}}
+  }: {productData: ProductDataType, globalData: GlobalDataType}) => ({...mediaContent, ...backgrounds}));
 
   const [position, setPosition] = useState<number>(0)
   
@@ -94,10 +95,10 @@ export default function SmallSlider({carouselIndex, setCarouselIndex}: {carousel
       <Typography component="div"  style={{"--small_slider_position": position + "px"}} 
       className={`relative w-full flex flex-col ${styles.small_slider_container}`} 
       sx={wrapperWidthRef.current &&  {transition: conditions.current.isButtonPressed ? "0ms" : "500ms",}} >
-        {images.map((element, index) => {
+        {images?.map((element, index) => {
           return(
             <CustomButton id={`carousel-button-id_${index}`} key={index} className={`relative w-full h-full`} 
-            sx={{border: carouselIndex === index ? `2px solid ${elementsSecondary.hex}` : ""}}>
+            sx={{border: carouselIndex === index ? `2px solid ${elementsSecondaryBg.hex}` : ""}}>
               <picture className="w-full h-full block pointer-events-none">
                 {element.map((source, idx) => {
                   if(!source.media) return <img key={idx} src={source.src} alt="" />

@@ -1,43 +1,35 @@
-// import { List } from '@mui/material';
-// import RatingComp from '../common/RatingComp';
-import './style.scss'
-// import UserReviewCard from './parts/UserReviewCard/UserReviewCard';
-import ReviewsList from './parts/ReviewsList/ReviewsList';
 import { useSelector } from 'react-redux';
-// import { useEffect, useState } from 'react';
-// import { ReviewsListType } from '@/types/productPage.types/sectionReviews';
-import { ProductIdType } from '@/types/main/product.type';
-import RatingComp from '../../common/RatingComp';
+import { ProductDataType } from '@/types/main/productData.type';
+import RatingComp from '../../common/RatingComp/RatingComp';
 import SectionTitle from '@/components/common/SectionElements/SectionTitle/SectionTitle';
-import { Box } from '@mui/material';
 import PaginationComponent from './parts/PaginationComponent/PaginationComponent';
+import { GlobalDataType } from '@/types/main/globalData.type';
+import { Box } from '@mui/material';
+
+import styles from "./styles.module.scss"
+import ReviewAnalyticsPanel from './parts/ReviewAnalyticsPanel/ReviewAnalyticsPanel';
 
 export default function Reviews(){
-  // const [state, setState] = useState(dataModel);  
 
-  const {rating, reviewsList, reviewsSnaphot, countOfReviews, colors} = useSelector(({data: {
-    rating, reviews: {countOfReviews, reviewsList, reviewsSnaphot}, theme: {colors}
-  }}: {data: ProductIdType}) => ({rating, countOfReviews, reviewsList, reviewsSnaphot, colors}))
+  const {elementsOptionalBg, reviewsSnapshot, rating} = useSelector(({
+    globalData: {colors: {backgrounds}}, productData: {stockInfo: {reviewsSnapshot}, rating}
+  }: {globalData: GlobalDataType, productData: ProductDataType}) => ({...backgrounds, reviewsSnapshot, rating}))
 
   return(
     <section className='mt-24 px-5'>
-      <SectionTitle fontSize='40px' >Customer Reviews</SectionTitle>
+      <SectionTitle containerSx={{paddingBottom: "10px"}} fontSize='40px'>Customer Reviews</SectionTitle>
 
-      <div className='flex items-center justify-center flex-row mt-10'>
-        <div className='mr-4 text-5xl'>{rating}</div>
-        <div className='flex flex-col justify-start'>
-          <RatingComp rating={rating} size='large' />
-          <p>Based on {countOfReviews} reviews</p>
+      <Box className={`flex ${styles.main_container}`}>
+        <ReviewAnalyticsPanel/>
+
+        <div className={`${styles.reviews_container}`}>
+          <PaginationComponent/>
         </div>
-      </div>
+      </Box>
 
-      <div className='w-full flex justify-center'>
-        <Box className='w-[80%] h-[2px] my-6' sx={{backgroundColor: colors.backgrounds.elementsOptional.hex}}></Box>
-      </div>
-
-      <div>
-        <PaginationComponent/>
-      </div>
+      {/* <div className='w-full flex justify-center'>
+        <Box className='w-[80%] h-[2px] my-6' sx={{backgroundColor: elementsOptionalBg.hex}}></Box>
+      </div> */}
       
       {/* <div className='min-h-svh'>
         <div className='flex flex-row justify-between w-full'>
