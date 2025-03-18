@@ -9,6 +9,7 @@ interface Props {
 }
 
 export default function AddCartComp({action, inStockStatus}: Props){
+  // console.log(inStockStatus)
 
   const btnCls = `relative duration-200 rounded-md px-5 py-3 uppercase whitespace-nowrap overflow-hidden
   before:absolute before:block before:left-[-175%] before:top-0 before:h-full before:w-[200%] 
@@ -21,12 +22,12 @@ export default function AddCartComp({action, inStockStatus}: Props){
   return(
     <Typography component="div" sx={{pointerEvents: inStockStatus ? "auto" : "none"}} className="flex items-center justify-between w-[100%] mt-3" >
       <Button disabled={!inStockStatus} sx={{backgroundColor: elementsPrimaryBg.hex, color: secondaryText.hex, 
-      "&:hover": inStockStatus && {backgroundColor: elementsOptionalBg.hex, color: secondaryText.hex}}} 
+      "&:hover": inStockStatus ? {backgroundColor: elementsOptionalBg.hex, color: secondaryText.hex} : {}}} 
       className={btnCls} handleClick={action}>
         <span className="relative z-[2]">Add to cart</span>
       </Button>
       <Button disabled={!inStockStatus} sx={{backgroundColor: elementsPrimaryBg.hex, color: secondaryText.hex, 
-      "&:hover": inStockStatus && {backgroundColor: elementsOptionalBg.hex, color: secondaryText.hex}}} 
+      "&:hover": inStockStatus ? {backgroundColor: elementsOptionalBg.hex, color: secondaryText.hex} : {}}} 
       className={`${btnCls} ml-2`} handleClick={action}>
         <span className="relative z-[2]">Buy Now</span>
       </Button>

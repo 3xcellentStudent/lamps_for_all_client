@@ -6,26 +6,25 @@ import ViewCartButton from "./parts/ViewCartButton/ViewCartButton"
 import { usePathname } from "next/navigation"
 import { CartObjectType } from "@/types/cartTypes/cartObject.types"
 import { enqueueSnackbar } from "notistack"
-// import { DELETE_CART_ELEMENT, HANDLE_CHANGE_QUANTITY_INTO_CART, SELECT_CART_ITEM } from "@/redux/cart/isOpenCart/constants"
-// import { actionChangeCartSaga } from "@/redux/cart/isOpenCart/actions"
-
 import styles from "./styles.module.scss"
 import Quantity from "../Quantity/Quantity"
 import {HighlightOff} from '@mui/icons-material';
 import InternalCircleSVG from "../Radio/InternalCircleSVG"
 import { GlobalDataType } from "@/types/main/globalData.type"
 import { ProductDataType } from "@/types/main/productData.type"
+import { CART_CHANGE_QUANTITY_SAVE_CONST, CART_DELETE_ITEM_SAVE_CONST } from "@/redux/cart/constants"
+import { actionCallCartState } from "@/redux/cart/actions"
 
 
-// export default function CartList({sxQuantity, theme}: Props){
 export default function CartList(){
 
-  const {elementsSecondaryBg, elementsPrimaryBg, cart, response, price} = useSelector(({
+  const {elementsSecondaryBg, secondaryBg, cart, response, price} = useSelector(({
     globalData: {colors: {backgrounds}}, productData: {stockInfo: {price}}, cartObject
-  }: {globalData: GlobalDataType, productData: ProductDataType, cartObject: CartObjectType}) => ({...cartObject, ...backgrounds, price}));
+  }: {globalData: GlobalDataType, productData: ProductDataType, cartObject: CartObjectType}) => ({...cartObject, ...backgrounds, price}))
 
   const pathname = usePathname()
   const dispatch = useDispatch()
+  console.log(pathname)
 
   const itemRef = useRef(null)
 
@@ -39,33 +38,34 @@ export default function CartList(){
     )
   }, [response])
 
-  function selectHandleClick(value: boolean, idx: number){
-    dispatch(actionChangeCartSaga({type: SELECT_CART_ITEM, payload: {value, idx}}))
+  function selectHandleClick(value: boolean, index: number){
+    // dispatch(actionChangeCartSaga({type: SELECT_CART_ITEM, payload: {value, index}}))
     // itemRef.current?.classList.toggle("backdrop-brightness-90")
   }
 
-  function deleteHandleClick(idx: number){
-    dispatch(actionChangeCartSaga({type: DELETE_CART_ELEMENT, payload: idx}))
+  function deleteHandleClick(index: number){
+    dispatch(actionCallCartState({type: CART_DELETE_ITEM_SAVE_CONST, payload: index}))
+  }
+
+  function dispatchQuantity(quantity: number, index: number){
+    const payload = {quantity: +quantity, index}
+    dispatch(actionCallCartState({type: CART_CHANGE_QUANTITY_SAVE_CONST, payload}))
+    // dispatch(actionChangeCartSaga({type: HANDLE_CHANGE_QUANTITY_INTO_CART, payload}))
   }
 
   return(
-    <Box className="h-full" sx={{backgroundColor: elementsPrimaryBg.hex}}>
-      <List className={`${styles.cart_list} py-4 h-[calc(100%-49px)] overflow-y-auto relative backdrop-blur-xl`}>
+    <Box className="h-full" sx={{backgroundColor: secondaryBg.hex}}>
+      <List className={`${styles.list} py-4 h-[calc(100%-49px)] overflow-y-auto relative backdrop-blur-xl`}>
         {
           cart?.length ? (
-            cart?.map((obj, idx) => {
-              
-              function dispatchQuantity(quantity: number){
-                const payload = {quantity: +quantity, idx}
-                dispatch(actionChangeCartSaga({type: HANDLE_CHANGE_QUANTITY_INTO_CART, payload}))
-              }
+            cart?.map((obj, index) => {
 
               const {
                 productName, productImg, productId, quantity, fields, checked
               } = obj
 
               return(
-                  <ListItem ref={itemRef} key={idx} sx={{backgroundColor: elementsSecondaryBg.hex}} 
+                  <ListItem ref={itemRef} key={index} sx={{backgroundColor: elementsSecondaryBg.hex}} 
                   className={`w-[calc(100%-16px)] rounded-xl flex flex-row justify-between items-center m-2 p-2 pr-4 ${styles.container}`}>
                     
                     <div className="flex flex-row h-full">
@@ -82,9 +82,9 @@ export default function CartList(){
                       </div>
 
                       <div className="h-full px-2 flex items-center">
-                        <ul className="flex flex-row" key={idx} >
-                          {fields.map(({value, background}, index) => {
-                            if(index === fields.length - 1){
+                        <ul className="flex flex-row" key={index} >
+                          {fields.map(({value, background}, idx) => {
+                            if(idx === fields.length - 1){
                               return(
                                 <Tooltip key={idx} title={value} placement='top' arrow disableInteractive>
                                   <div className={styles.product_options_container}>
@@ -93,7 +93,7 @@ export default function CartList(){
                                 </Tooltip>
                               )
                             }
-                            else return <li key={index} >{value}</li>;
+                            else return <li key={idx} >{value}</li>;
                           })}
                         </ul>
                       </div>
@@ -101,10 +101,10 @@ export default function CartList(){
 
 
                     <div className="flex flex-row w-min justify-between items-center">
-                      <Quantity inputProps={{disabled: true}} action={dispatchQuantity} btnSize={24} quantity={quantity} />
+                      <Quantity inputProps={{disabled: true}} elemIndex={index} action={dispatchQuantity} btnSize={24} quantity={quantity} />
                       
                       <div className="ml-4">
-                        <button onClick={() => deleteHandleClick(idx)} ><HighlightOff/></button>
+                        <button onClick={() => deleteHandleClick(index)} ><HighlightOff/></button>
                       </div>
                     </div>
                   </ListItem>
@@ -115,7 +115,7 @@ export default function CartList(){
             <div>Shopping cart is empty</div>
           </li>
         }
-        {cart.length && <ViewCartButton/>}
+        {cart.length > 0 && <ViewCartButton/>}
       </List>
 
     </Box>

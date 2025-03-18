@@ -12,9 +12,9 @@ export default function Layout({children}: {children: ReactNode}){
           async>
         </script>
       </Head>
-      {/* <body> */}
+      <body>
         {children}
-      {/* </body> */}
+      </body>
     </>
   )
 }

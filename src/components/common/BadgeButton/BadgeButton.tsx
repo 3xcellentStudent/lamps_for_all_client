@@ -3,8 +3,9 @@ import { ReactNode } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { CartObjectType } from "@/types/cartTypes/cartObject.types"
 
-import { actionCallIsOpenCart } from "@/redux/cart/isOpenCart/actions"
+import { actionCallCartState } from "@/redux/cart/actions"
 import { GlobalDataType } from "@/types/main/globalData.type"
+import { CALL_CART_STATE_CONST, CART_IS_OPEN_SAVE_CONST } from "@/redux/cart/constants"
 
 interface Props {
   color: string
@@ -31,7 +32,9 @@ export default function BadgeButton({cls, children}: Props){
     globalData: {colors: {backgrounds, text}}
   }: {globalData: GlobalDataType}) => ({...backgrounds, ...text}))
 
-  function handleClick(){dispatch(actionCallIsOpenCart())}
+  function handleClick(){
+    dispatch(actionCallCartState({type: CART_IS_OPEN_SAVE_CONST, payload: null}))
+  }
 
   return(
     <button onClick={handleClick}>

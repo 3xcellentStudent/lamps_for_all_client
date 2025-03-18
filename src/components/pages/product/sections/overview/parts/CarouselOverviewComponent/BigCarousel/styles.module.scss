@@ -1,0 +1,15 @@
+.big_slider_wrapper {
+  height: 690px;
+  width: calc(100% - ((1vw + 1vh) * 5));
+}
+
+.big_slider_slide_button {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+}
+
+.big_slider_slide {
+  transition: .6s ease;
+}

@@ -1,0 +1,5 @@
+[
+  {"href": "http://localhost:3000", "text": "home"},
+  {"href": "http://localhost:3000/about-us", "text": "about us"},
+  {"href": "http://localhost:3000/contact", "text": "contact"}
+]

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import SelectionComp from "./parts/SelectionComponent/SelectionComp"
 import TitleComp from "./parts/TitleComponent/TitleComp"
@@ -11,12 +11,18 @@ import styles from "./styles.module.scss"
 import { ProductDataType } from "@/types/main/productData.type"
 import { FieldsRefType, SetTotalObjType } from "@/types/pages/product/overview.types"
 import { GlobalDataType } from "@/types/main/globalData.type"
+import { actionCallCartState } from "@/redux/cart/actions"
+import { CART_ADD_ITEM_SAVE_CONST } from "@/redux/cart/constants"
 
 interface Props {
   productId: string
+  carouselState: {
+    state: number
+    action: Dispatch<SetStateAction<number>>
+  }
 }
 
-export default function Purchase({productId}: Props){
+export default function Purchase({productId, carouselState}: Props){
 
   const [inStockStatus, setInstockStatus] = useState<boolean>(true)
 
@@ -32,6 +38,7 @@ export default function Purchase({productId}: Props){
     productData?.productOptions?.map((options) => {
       const {name, items, type} = options
       const {fill: background, value, stockStatus} = items[0]
+      setInstockStatus(stockStatus)
       const result = {background, index: 0, name, type, value, stockStatus}
       return result;
     }) : []
@@ -41,18 +48,24 @@ export default function Purchase({productId}: Props){
   const quantityRef = useRef<number>(1)
   const fieldsRef = useRef<FieldsRefType[]>([])
 
-  useEffect(() => {fieldsRef.current = fieldsRefFunction();}, [])
+  useEffect(() => {
+    fieldsRef.current = fieldsRefFunction();
+  }, [productData.productOptions])
 
   function setTotalObj({
     elemIdx, index, background, name, type, value, stockStatus
   }: SetTotalObjType){
-    fieldsRef.current[elemIdx].background = background
-    fieldsRef.current[elemIdx].index = index
-    fieldsRef.current[elemIdx].name = name
-    fieldsRef.current[elemIdx].type = type
-    fieldsRef.current[elemIdx].value = value
-    fieldsRef.current[elemIdx].stockStatus = stockStatus
-    setInstockStatus(stockStatus)
+    if(fieldsRef.current.length){
+      fieldsRef.current[elemIdx].background = background
+      fieldsRef.current[elemIdx].index = index
+      fieldsRef.current[elemIdx].name = name
+      fieldsRef.current[elemIdx].type = type
+      fieldsRef.current[elemIdx].value = value
+      fieldsRef.current[elemIdx].stockStatus = stockStatus
+      setInstockStatus(stockStatus)
+    } else {
+      return;
+    }
   }
 
   function createFieldsArray(){
@@ -79,20 +92,20 @@ export default function Purchase({productId}: Props){
       price: productData?.stockInfo?.price,
       fields: fields[0].value ? fields : fieldsRefFunction(),
       displayedField: {name, value},
-      checked: true,
+      checked: false,
     }
 
-    // dispatch(actionChangeCartSaga({type: PUT_CART_ITEM, payload: resultObj}))
+    dispatch(actionCallCartState({type: CART_ADD_ITEM_SAVE_CONST, payload: resultObj}))
   }
 
   return(
-    <Typography component='div' className={`pl-11 ${styles.container}`}>
+    <Typography component='div' className={`${styles.container}`}>
       <div>
         <TitleComp />
 
-        <SelectionComp setTotalObj={setTotalObj} />
+        <SelectionComp carouselState={carouselState} setTotalObj={setTotalObj} />
       </div>
-      {/* <div className="mt-3"> */}
+      {/* <div clasclsName="mt-3"> */}
         {/* <Quantity action={(result: number) => quantityRef.current = result} 
         quantityMax={quantityMax} text="amt." btnSize={30} theme={colors} 
         quantity={quantityRef?.current} /> */}
@@ -123,3 +136,77 @@ export default function Purchase({productId}: Props){
     </Typography>
   )
 }
+
+
+
+// [
+//   {
+//     "media": "(max-width: 480px)",
+//     "src": "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png"
+//   },
+//   {
+//     "media": "(max-width: 768px)",
+//     "src": "https://www.simplelighting.co.uk/media/webp_image/catalog/product/cache/716cb71e4a7f1a549f7cc6339f6037ad/t/b/tbar-led-lifestyle-compressed.effectsresult-scene-4.webp"
+//   },
+//   {
+//     "media": "",
+//     "src": "https://vitruvi.ca/cdn/shop/files/pdp_stone-diffuser_front_charcoal_gallery_1_v9_image_a067dcd6-ad3c-4cdc-ae86-2284973f5822.png?v=1719457697&width=713"
+//   }
+// ],
+// [
+//   {
+//     "media": "(max-width: 480px)",
+//     "src": "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png"
+//   },
+//   {
+//     "media": "(max-width: 768px)",
+//     "src": "https://www.simplelighting.co.uk/media/webp_image/catalog/product/cache/716cb71e4a7f1a549f7cc6339f6037ad/t/b/tbar-led-lifestyle-compressed.effectsresult-scene-4.webp"
+//   },
+//   {
+//     "media": "",
+//     "src": "https://vitruvi.ca/cdn/shop/files/pdp_stone-diffuser_front_terracotta_gallery_1_v9_image_9e9dcb8f-d542-46e6-85e9-2c27e595547d.png?v=1719457697&width=713"
+//   }
+// ],
+// [
+//   {
+//     "media": "(max-width: 480px)",
+//     "src": "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png"
+//   },
+//   {
+//     "media": "(max-width: 768px)",
+//     "src": "https://www.simplelighting.co.uk/media/webp_image/catalog/product/cache/716cb71e4a7f1a549f7cc6339f6037ad/t/b/tbar-led-lifestyle-compressed.effectsresult-scene-4.webp"
+//   },
+//   {
+//     "media": "",
+//     "src": "https://vitruvi.ca/cdn/shop/files/pdp_stone-diffuser_front_charcoal_gallery_1_v9_image_a067dcd6-ad3c-4cdc-ae86-2284973f5822.png?v=1719457697&width=713"
+//   }
+// ],
+// [
+//   {
+//     "media": "(max-width: 480px)",
+//     "src": "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png"
+//   },
+//   {
+//     "media": "(max-width: 768px)",
+//     "src": "https://www.simplelighting.co.uk/media/webp_image/catalog/product/cache/716cb71e4a7f1a549f7cc6339f6037ad/t/b/tbar-led-lifestyle-compressed.effectsresult-scene-4.webp"
+//   },
+//   {
+//     "media": "",
+//     "src": "https://vitruvi.ca/cdn/shop/files/pdp_stone-diffuser_front_sea_gallery_1_v9_image_843aee0e-353f-441c-b6f8-26c956b28d57.png?v=1719457697&width=713"
+//   }
+// ],
+// [
+//   {
+//     "media": "(max-width: 480px)",
+//     "src": "https://static.wixstatic.com/media/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png/v1/fill/w_336,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/24fdcf_5ffb83f114b240a881eb09ae019bbfaf~mv2.png"
+//   },
+//   {
+//     "media": "(max-width: 768px)",
+//     "src": "https://www.simplelighting.co.uk/media/webp_image/catalog/product/cache/716cb71e4a7f1a549f7cc6339f6037ad/t/b/tbar-led-lifestyle-compressed.effectsresult-scene-4.webp"
+//   },
+//   {
+//     "media": "",
+//     "src": "https://vitruvi.ca/cdn/shop/files/pdp_stone-diffuser_front_Suede_gallery_1_v9_image_80ffad4d-2678-49ce-962e-17615e85b620.png?v=1719457697&width=713"
+//   }
+// ]
+// ]

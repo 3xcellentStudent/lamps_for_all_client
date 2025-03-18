@@ -1,0 +1,29 @@
+{
+  "id": "",
+  "type": "",
+  "colors": {
+    "primary": {
+      "primaryLightest": {"hex": "#E3F2FD"},
+      "primaryLighter": {"hex": "#90CAF9"},
+      "primaryBase": {"hex": "#2196F3"},
+      "primaryDarker": {"hex": "#1976D2"},
+      "primaryDarkest": {"hex": "#0D47A1"}
+    },
+    "secondary": {
+      "secondaryLightest": {"hex": "#E8F5E9"},
+      "secondaryLighter": {"hex": "#A5D6A7"},
+      "secondaryBase": {"hex": "#4CAF50"},
+      "secondaryDarker": {"hex": "#388E3C"},
+      "secondaryDarkest": {"hex": "#1B5E20"}
+    },
+    "accent": {
+      "accentLightest": {"hex": "#FFF3E0"},
+      "accentLighter": {"hex": "#FFCC80"},
+      "accentBase": {"hex": "#FF9800"},
+      "accentDarker": {"hex": "#F57C00"},
+      "accentDarkest": {"hex": "#E65100"}
+    }
+  },
+  "createdAt": 0,
+  "updatedAt": 0
+}

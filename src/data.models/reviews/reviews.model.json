@@ -3,10 +3,10 @@
   "parentId": "",
   "content": "",
   "firstName": "",
-  "lastname": "",
-  "productName": "",
+  "lastName": "",
+  "title": "",
   "rating": "",
-  "attachments": [""],
+  "attachments": [],
   "createTime": 0,
   "updateTime": 0
 }]

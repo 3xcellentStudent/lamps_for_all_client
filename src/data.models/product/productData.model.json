@@ -20,12 +20,12 @@
   "productOptions": [
     {
       "name": "Color", "type": "color", "items": [
-        {"value": "Blue", "fill": "#29B6F6", "stroke": "transparent", "stockStatus": true},
-        {"value": "White", "fill": "#fff", "stroke": "transparent", "stockStatus": true},
-        {"value": "Yellow", "fill": "#FFEB3B", "stroke": "transparent", "stockStatus": false},
-        {"value": "Brown", "fill": "#9a3412", "stroke": "transparent", "stockStatus": true},
-        {"value": "Black", "fill": "#000", "stroke": "transparent", "stockStatus": true},
-        {"value": "Red", "fill": "#dc2626", "stroke": "transparent", "stockStatus": true}
+        {"value": "Blue", "fill": "#29B6F6", "stroke": "transparent", "stockStatus": true, "mediaIndex": 0},
+        {"value": "White", "fill": "#fff", "stroke": "transparent", "stockStatus": true, "mediaIndex": 2},
+        {"value": "Yellow", "fill": "#FFEB3B", "stroke": "transparent", "stockStatus": false, "mediaIndex": 3},
+        {"value": "Brown", "fill": "#9a3412", "stroke": "transparent", "stockStatus": true, "mediaIndex": 4},
+        {"value": "Black", "fill": "#000", "stroke": "transparent", "stockStatus": true, "mediaIndex": 5},
+        {"value": "Red", "fill": "#dc2626",  "stroke": "transparent", "stockStatus": true}
       ]
     }
   ],

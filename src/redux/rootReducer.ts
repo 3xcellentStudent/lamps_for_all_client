@@ -115,18 +115,14 @@ import { combineReducers } from 'redux';
 import cartReducer from './cart/reducer';
 import globalDataReducer from './database/globalData/reducer';
 import productDataReducer from './database/productData/reducer';
-import isOpenCartReducer from './cart/isOpenCart/reducer';
 import shippingReducer from './payment/reducer';
 // import statusCodeReducer from './cart/statusCodeReducer';
 
 const rootReducer = combineReducers({
-  // statusCode: statusCodeReducer,
-  // cart: cartReducer,
   cartObject: cartReducer,
   globalData: globalDataReducer,
   productData: productDataReducer,
   shipping: shippingReducer,
-  isOpenCart: isOpenCartReducer,
 });
 
 export default rootReducer;

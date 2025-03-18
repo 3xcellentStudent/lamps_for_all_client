@@ -3,10 +3,10 @@ export interface ReviewsType {
   parentId: string
   content: string
   firstName: string
-  lastname: string
-  productName: string
+  lastName: string
+  title: string
   rating: string
   attachments: string[]
-  createTime: number
-  updateTime: number
+  createAt: number
+  updateAt: number
 }

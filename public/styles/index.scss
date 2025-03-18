@@ -1,50 +1,50 @@
-@import './fos.scss';
-@import './colors.scss';
+// @import './fos.scss';
+// @import './colors.scss';
 
-$index: calc(1vw + 1vh);
+// $index: calc(1vw + 1vh);
 
-input {outline: none;}
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  appearance: none;
-  margin: 0;
-}
+// input {outline: none;}
+// input[type="number"]::-webkit-inner-spin-button,
+// input[type="number"]::-webkit-outer-spin-button {
+//   -webkit-appearance: none;
+//   appearance: none;
+//   margin: 0;
+// }
 
-.btn-buy {background: #000;}
+// .btn-buy {background: #000;}
 
-.line {
-  &_title {
+// .line {
+//   &_title {
 
-    &_left::after, &_center::after {
-      content: '';
-      height: 2px;
-      display: block;
-      background: $bg-darkBlue;
-    }
-    &_left::after {
-      width: 130%;
-      margin: calc($index) 0;
-    }
-    &_center::after {
-      width: 60%;
-      margin: $index auto calc($index * 2) auto;
-    }
-  }
+//     &_left::after, &_center::after {
+//       content: '';
+//       height: 2px;
+//       display: block;
+//       background: $bg-darkBlue;
+//     }
+//     &_left::after {
+//       width: 130%;
+//       margin: calc($index) 0;
+//     }
+//     &_center::after {
+//       width: 60%;
+//       margin: $index auto calc($index * 2) auto;
+//     }
+//   }
 
-  &_section_divider {
-    position: relative;
+//   &_section_divider {
+//     position: relative;
     
-    &::before {
-      content: '';
-      position: absolute;
-      width: calc(100% - 4 * $index);
-      height: 2px;
-      top: -46px;
-      background: #d1d5db;
-    }
-  }
-}
+//     &::before {
+//       content: '';
+//       position: absolute;
+//       width: calc(100% - 4 * $index);
+//       height: 2px;
+//       top: -46px;
+//       background: #d1d5db;
+//     }
+//   }
+// }
 
 // body {background: #eee;}
 // body {background: #727d9b;}

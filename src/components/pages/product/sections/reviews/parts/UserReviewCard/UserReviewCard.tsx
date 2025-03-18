@@ -1,47 +1,53 @@
-import { Box, ListItem } from "@mui/material";
-import {
-  FormatQuote as FormatQuoteIcon, Star as StarIcon
-} from '@mui/icons-material';
 import { useSelector } from "react-redux";
 import UserInformation from "./parts/UserInformation/UserInformation";
 import { GlobalDataType } from "@/types/main/globalData.type";
+import { ReviewsType } from "@/types/main/reviews.type";
+import RatingComp from "@/components/pages/product/common/RatingComp/RatingComp";
+import styles from "./styles.module.scss"
 
-interface Props {
-  productName: string
-  rating: string
-  content: string
-  attachments: string[]
-}
+// interface Props {
+//   productName: string
+//   rating: string
+//   content: string
+//   attachments: string[]
+// }
 
-export default function UserReviewCard({content, rating, productName, attachments}: Props){
+export default function UserReviewCard({
+  props: {firstName, lastName, content, rating, createAt, attachments, title}
+}: {props: ReviewsType}){
 
   const {elementsPrimaryBg} = useSelector(({
     globalData: {colors: {backgrounds}}
   }: {globalData: GlobalDataType}) => ({...backgrounds}))
 
   return(
-    <ListItem className={'relative p-4 duration-200 flex flex-col max-w-[750px] mb-6'}>
-      <div className="flex items-center w-full">
-        <UserInformation name={content} />
+    <li className={'relative p-4 duration-200 flex flex-col max-w-[750px] mb-6'}>
+      <div className="flex justify-between w-full">
+        <div className="w-min">
+          <UserInformation firstName={firstName} lastName={lastName} createdAt={createAt} />
+        </div>
 
-        <Box sx={{backgroundColor: elementsPrimaryBg.hex}} className="flex items-center rounded-full ml-8 py-1 px-2 relative z[1]">
-          <div className="text-[16px] font-bold leading-4 mr-1">
-            {rating}
-          </div>
-          <div className="w-[16px] h-[16px] relative">
-            <StarIcon className="absolute w-full h-full"/>
-          </div>
-        </Box>
+        <div className="flex flex-row justify-end h-min w-full">
+          <RatingComp rating={rating} />
+          {/* <div className="w-[2px] h-full bg-slate-950"></div> */}
+          <div className={`${styles.rating_title}`}>{title}</div>
+        </div>
       </div>
-      <div className="relative w-[30px] h-[30px] mt-6">
-        <FormatQuoteIcon htmlColor={elementsPrimaryBg.hex} />
+
+      <div className="flex flex-row">
+        <ul className={`${styles.attachments_ul}`}>
+            {attachments.map((src, index) => {
+              return(
+                <div key={index} className="w-[70px] h-[70px] p-2">
+                  <img src={src} alt="" />
+                </div>
+              )
+            })}
+        </ul>
+        <div className="w-full ml-3 flex justify-end">
+          <p>{content}</p>
+        </div>
       </div>
-      {/* <p className="text-start w-full h-max relative z-[1]">{productName}</p> */}
-      <ul className="inline-block w-full mt-6">
-        {attachments.map((item, idx) => {
-          return <img key={idx} src={item} alt="Attachment" />
-        })}
-      </ul>
-    </ListItem>
+    </li>
   )
 }

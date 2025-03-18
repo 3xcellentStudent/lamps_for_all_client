@@ -38,7 +38,7 @@ export default function ReviewAnalyticsPanel(){
           </div>
         </div>
 
-        <Stack className={`${styles.every_star_container}`} spacing={2}>
+        <Stack>
           <Scale rating={5} value={reviewsSnapshot.five} max={countOfReviews} />
           <Scale rating={4} value={reviewsSnapshot.four} max={countOfReviews} />
           <Scale rating={3} value={reviewsSnapshot.three} max={countOfReviews} />

@@ -1,42 +1,33 @@
-$index: calc(1vw + 1vh);
-
 .section {
-  display: flex;
-  justify-content: center;
+  position: relative;
+  width: 100%;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    border-bottom-right-radius: 100px;
+  }
 }
 
-//     &__purchase_part {width: 300px;}
-//     &__subtitle {font-size: 14px;}
-//     &__title {font-size: 26px;}
-//     &__short_descr {font-size: 14px;}
+.wrapper {
+  max-width: 1440px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin: 0 auto;
+}
 
-//     @media screen and (min-width: 768px) {
-//       &__purchase_part {width: 340px;}
-//       &__subtitle {font-size: 14px;}
-//       &__title {font-size: 26px;}
-//       &__short_descr {font-size: 14px;}
-//     }
-//     @media screen and (min-width: 1024px) {
-//       &__purchase_part {width: 400px;}
-//       &__subtitle {font-size: 14px;}
-//       &__title {font-size: 26px;}
-//       &__short_descr {font-size: 14px;}
-//     }
-//     @media screen and (min-width: 1366px) {
-//       &__purchase_part {width: 500px}
-//       &__subtitle {font-size: 14px;}
-//       &__title {font-size: 26px;}
-//       &__short_descr {font-size: 14px;}
-//     }
-//     @media screen and (min-width: 1600px) {
-//       &__purchase_part {width: 800px;}
-//       &__subtitle {font-size: 14px;}
-//       &__title {font-size: 26px;}
-//       &__short_descr {font-size: 14px;}
-//     }
-//     @media screen and (min-width: 1920px) {
-//       &__purchase_part {width: 1000px;}
-//       &__subtitle {font-size: 14px;}
-//       &__title {font-size: 26px;}
-//       &__short_descr {font-size: 14px;}
-//     }
+.background_frame {
+  position: absolute;
+  width: 50svw;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.slider_container {
+  padding: 100px 40px 40px;
+}

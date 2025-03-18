@@ -43,6 +43,7 @@ export interface ProductOptionItemType {
   fill: string
   stroke: string
   stockStatus: boolean
+  mediaIndex: number
 }
 
 export interface SpecificationsType {

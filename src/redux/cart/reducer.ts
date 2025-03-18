@@ -1,13 +1,15 @@
 import {
-  PUT_CART_ITEM, DELETE_CART_ELEMENT,
-  HANDLE_CHANGE_QUANTITY_INTO_CART,
-  SELECT_CART_ITEM,
-  CART_IS_OPEN_SAVE
-} from './isOpenCart/constants'
+  CART_ADD_ITEM_SAVE_CONST,
+  CART_IS_OPEN_SAVE_CONST,
+  CART_DELETE_ITEM_SAVE_CONST,
+  CART_CHANGE_QUANTITY_SAVE_CONST,
+  CART_SELECT_ITEM_SAVE_CONST,
+} from './constants'
 import { CartObjectType } from '@/types/cartTypes/cartObject.types';
 import { addProductToCart } from './helpers/add-product';
 import changeQuantityIntoCart from './helpers/change.quantity';
 import selectCartItem from './helpers/select-card-item';
+import CartActionsTypes from './types';
 // import statusCodeReducer from './statusCodeReducer';
 
 // function filtration(state: Cart[], payload: Cart){
@@ -86,37 +88,46 @@ import selectCartItem from './helpers/select-card-item';
 
 
 const initialState: CartObjectType = {
+  isOpenCart: false,
   cart: [],
   response: {severity: "success", message: ""},
 }
 
 export default function cartReducer(state = initialState, 
-  {type, payload}: {type: string, payload: any}
-): CartObjectType{
-  const {cart} = state
+  action: {type: CartActionsTypes, payload: any}
+): CartObjectType {
+  const {cart, isOpenCart} = state
 
-  switch(type){
-    case CART_IS_OPEN_SAVE:
-      return {...state, cart}
-    case PUT_CART_ITEM:
-      if(cart.length > 0) return addProductToCart(cart, payload);
-      else return {
+  switch(action.type){
+    case CART_IS_OPEN_SAVE_CONST: return {...state, isOpenCart: !isOpenCart};
+    case CART_ADD_ITEM_SAVE_CONST: {
+      if(cart.length > 0){
+        return addProductToCart(state, action.payload)
+      } else return {...state,
         response: {severity: "success", message: "Product added to cart !"}, 
-        cart: [payload]
+        cart: [action.payload]
       };
+    }
+    // case PUT_CART_ITEM:
+    //   if(cart.length > 0) return addProductToCart(cart, payload);
+      // else return {
+      //   response: {severity: "success", message: "Product added to cart !"}, 
+      //   cart: [payload]
+      // };
 
-    case HANDLE_CHANGE_QUANTITY_INTO_CART: return changeQuantityIntoCart(cart, payload);
+    case CART_CHANGE_QUANTITY_SAVE_CONST: return changeQuantityIntoCart(state, action.payload);
 
-    case SELECT_CART_ITEM: return selectCartItem(cart, payload)
+    case CART_SELECT_ITEM_SAVE_CONST: return selectCartItem(state, action.payload)
 
-    case DELETE_CART_ELEMENT:
-      const filtered = cart.filter(($, index) => index !== payload)
+    case CART_DELETE_ITEM_SAVE_CONST:
+      const filtered = cart.filter(($, index) => index !== action.payload)
       return {
         response: {severity: "warning", message: "Product has been removed from the cart !"}, 
         cart: filtered,
+        isOpenCart
       }
     default: return {
-      response: {severity: undefined, message: ""}, cart
+      ...state, response: {severity: undefined, message: ""}
     }
   }
 }

@@ -17,7 +17,7 @@ export default function TitleComp(){
         <h2 className="text-4xl font-bold">{title}</h2>
         <h3 className="text-xs uppercase mb-1 ml-3 whitespace-nowrap">{category}</h3>
       </div>
-      <RatingComp size="medium" rating={rating} content={`${countOfReviews} reviews`} />
+      <RatingComp iconSize={40} rating={rating} content={`${countOfReviews} reviews`} />
 
       <h5 className="uppercase mt-4 text-3xl" >${price} CAD</h5>
 

@@ -1,0 +1,34 @@
+.container {
+  height: 100px;
+}
+
+.image_container {
+  min-width: 80px;
+}
+
+.list {
+
+  @media screen and (min-width: 560px) {
+    min-width: 400px;
+    max-width: 400px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    min-width: 100%;
+    min-height: 100%;
+  }
+  
+  @media screen and (max-width: 560px){
+    min-width: 320px;
+    max-width: 320px;
+  }
+}
+
+.product_options_container {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  transition: .4s ease;
+  display: flex;
+  margin: 10px;
+}

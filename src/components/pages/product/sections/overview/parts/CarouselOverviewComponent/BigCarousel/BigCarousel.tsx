@@ -9,7 +9,7 @@ import { GlobalDataType } from "@/types/main/globalData.type";
 
 const CustomButton = styled("button")({})
 
-export default function BigSlider({carouselIndex, setCarouselIndex}: {carouselIndex: number, setCarouselIndex: Dispatch<SetStateAction<number>>}){
+export default function BigCarousel({carouselIndex, setCarouselIndex}: {carouselIndex: number, setCarouselIndex: Dispatch<SetStateAction<number>>}){
 
   const {productData, elementsSecondaryBg} = useSelector(({
     productData, globalData: {colors: {backgrounds}}
@@ -52,12 +52,11 @@ export default function BigSlider({carouselIndex, setCarouselIndex}: {carouselIn
         <Typography component="div" className="relative h-full flex overflow-y-hidden" 
         sx={wrapperRef.current &&  {width: productData?.mediaContent?.images?.length * wrapperRef.current?.clientWidth}} >
           {productData?.mediaContent?.images?.map((element, idx) => {
-            // console.log(element)
             return(
               <Typography component="div" sx={{left: position}} className={`relative w-full h-full ${styles.big_slider_slide}`} key={idx}>
                 <picture className="w-full h-full block relative">
                   {element.map((source, idx) => {
-                    if(!source.media) return <img className="object-scale-down absolute" key={idx} src={source.src} alt="" />
+                    if(!source.media) return <img className="object-scale-down absolute w-full h-full" key={idx} src={source.src} alt="" />
                     else return <source className="object-scale-down absolute" width="100%" height="100%" 
                     key={idx} srcSet={source.src} media={source.media} />
                   })}

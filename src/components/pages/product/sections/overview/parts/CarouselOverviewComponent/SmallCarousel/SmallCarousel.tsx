@@ -7,16 +7,16 @@ import { GlobalDataType } from "@/types/main/globalData.type";
 
 const CustomButton = styled("button")({})
 
-export default function SmallSlider({carouselIndex, setCarouselIndex}: {carouselIndex: number, setCarouselIndex: Dispatch<SetStateAction<number>>}){
+export default function SmallCarousel({carouselIndex, setCarouselIndex}: {carouselIndex: number, setCarouselIndex: Dispatch<SetStateAction<number>>}){
 
   const {images, elementsSecondaryBg} = useSelector(({
     productData: {mediaContent}, globalData: {colors: {backgrounds}}
   }: {productData: ProductDataType, globalData: GlobalDataType}) => ({...mediaContent, ...backgrounds}));
 
   const [position, setPosition] = useState<number>(0)
+  // const [slideSize, setSlideSize] = useState<number>(0)
   
-  const wrapperWidthRef = useRef<HTMLDivElement | null>(null)
-  // const containerWidthRef = useRef<HTMLDivElement | null>(null)
+  const wrapperRef = useRef<HTMLDivElement | null>(null)
   const activeElementIndex = useRef<number>(0)
 
   const conditions = useRef({
@@ -33,7 +33,6 @@ export default function SmallSlider({carouselIndex, setCarouselIndex}: {carousel
     const {clientY} = e
     conditions.current.downY = clientY;
     conditions.current.lastPosition = position;
-    // containerWidthRef.current?.classList.add("inactive")
     window.addEventListener("pointermove", carouselPointerMove)
   }
 
@@ -49,12 +48,13 @@ export default function SmallSlider({carouselIndex, setCarouselIndex}: {carousel
   }, [])
 
   const calcFocus = useCallback(() => {
-    const wrapperWidth = wrapperWidthRef.current?.clientWidth || document.getElementById("small_slider_wrapper")?.clientWidth || 0
-    const totalHeight = (images.length - 1) * wrapperWidth
-    const multiplier = Math.round(position / wrapperWidth)
-    if(position < 0) setPosition(0);
-    else if(position > totalHeight) setPosition(totalHeight);
-    else setPosition(multiplier * wrapperWidth)
+    const containerHeight = document.getElementById("small_slider_wrapper")?.clientHeight || 0;
+    const containerWidth = document.getElementById("small_slider_wrapper")?.clientWidth || 0;
+    const totalHeight = images.length * containerWidth
+    const multiplier = Math.round(position / containerWidth)
+    if(position > 0) setPosition(0)
+    else if(position < -(totalHeight - containerHeight)) setPosition(-(totalHeight - containerHeight))
+    else setPosition(multiplier * containerWidth)
   }, [position])
 
   const handlePointerUp = useCallback((e: any) => {
@@ -66,20 +66,18 @@ export default function SmallSlider({carouselIndex, setCarouselIndex}: {carousel
       const index = target.getAttribute("id")?.split("_")[1] || 0 + 1
       setCarouselIndex(+index)
       activeElementIndex.current = +index
+    } else {
+      calcFocus()
     }
     conditions.current.isButtonPressed = false;
     conditions.current.isButtonUnpressed = true;
     conditions.current.downY = position;
     conditions.current.mainLock = true
-    // containerWidthRef.current?.classList.remove("inactive")
     window.removeEventListener("pointermove", carouselPointerMove)
-    calcFocus()
   }, [position]);
 
-  // useCallback(() => setPosition(wrapperWidthRef.current?.clientWidth * -carouselIndex), [carouselIndex])
-
-  useEffect(() => {setPosition(wrapperWidthRef.current?.clientWidth + (wrapperWidthRef.current?.clientWidth * -(carouselIndex)))}, 
-  [carouselIndex !== activeElementIndex.current])
+  // useEffect(() => {setPosition(wrapperRef.current?.clientWidth + (wrapperRef.current?.clientWidth * -(carouselIndex)))}, 
+  // [carouselIndex !== activeElementIndex.current])
 
   useEffect(() => {
     window.addEventListener("pointerup", handlePointerUp);
@@ -88,16 +86,31 @@ export default function SmallSlider({carouselIndex, setCarouselIndex}: {carousel
     };
   }, [position]);
 
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     if(window.innerWidth > 1280){
+  //       console.log(wrapperRef.current?.clientHeight / (images.length - 1))
+  //       setSlideSize(wrapperRef.current?.clientHeight / (images.length - 1))
+  //     }
+  //   };
+
+  //   setSlideSize(wrapperRef.current?.clientHeight / (images.length - 1))
+
+  //   window.addEventListener("resize", handleResize);
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
+
   return(
-    <div ref={wrapperWidthRef} id="small_slider_wrapper" 
-    className={`relative flex-col flex items-center justify-center ${styles.small_slider_wrapper}`}>
-      <div className="absolute w-full overflow-hidden" onPointerDown={carouselPointerDown}>
-      <Typography component="div"  style={{"--small_slider_position": position + "px"}} 
+    <div ref={wrapperRef} id="small_slider_wrapper" 
+    className={`relative flex-col flex items-center justify-center overflow-hidden ${styles.small_slider_wrapper}`}>
+      <div className="absolute w-full top-0" onPointerDown={carouselPointerDown}>
+      <Typography component="div" style={{transform: `translateY(${position}px)`}} 
       className={`relative w-full flex flex-col ${styles.small_slider_container}`} 
-      sx={wrapperWidthRef.current &&  {transition: conditions.current.isButtonPressed ? "0ms" : "500ms",}} >
+      // sx={wrapperRef.current &&  {transition: conditions.current.isButtonPressed ? "0ms" : "500ms",}} >
+      sx={{transition: conditions.current.isButtonPressed ? "0ms" : "500ms", }} >
         {images?.map((element, index) => {
           return(
-            <CustomButton id={`carousel-button-id_${index}`} key={index} className={`relative w-full h-full`} 
+            <CustomButton id={`carousel-button-id_${index}`} key={index} className={`relative w-full h-full ${styles.small_carousel_button}`} 
             sx={{border: carouselIndex === index ? `2px solid ${elementsSecondaryBg.hex}` : ""}}>
               <picture className="w-full h-full block pointer-events-none">
                 {element.map((source, idx) => {

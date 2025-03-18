@@ -22,10 +22,10 @@ export default function RatingComp({rating, content, iconSize: fontSize}: Props)
 
   return (
     <div className="h-min flex items-center">
-      <Stack spacing={1}>
+      <Stack>
         <Rating value={+rating} precision={0.1} readOnly
-        icon={<StarRoundedIcon sx={{fontSize, stroke: "#fff"}} />} 
-        emptyIcon={<StarBorderRoundedIcon sx={{fontSize, stroke: "#fff"}} />} 
+        icon={<StarRoundedIcon sx={{fontSize, color: elementsOptionalBg.hex, stroke: "#fff"}} />} 
+        emptyIcon={<StarBorderRoundedIcon sx={{fontSize, color: elementsOptionalBg.hex, stroke: "#fff"}} />} 
         />
       </Stack>
       <Typography className='ml-2.5 whitespace-nowrap text-xl' sx={{color: primaryText.hex}} component="span">{content}</Typography>

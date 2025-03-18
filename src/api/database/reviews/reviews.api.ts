@@ -6,11 +6,8 @@ export default async function getReviewsRecursive(reviewsId: string[], action: D
   const separator = "&id="
   const url = REVIEWS_GET_RECURSIVE_DATA_ROUTE + "?id=" + reviewsId.join(separator)
 
-  console.log(url)
-
   const request = await fetch(url);
   const response: ReviewsType[] = await request.json()
-  console.log(response)
   action(response)
 
   return response;

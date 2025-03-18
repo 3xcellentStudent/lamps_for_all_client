@@ -1,9 +1,5 @@
-import { useSelector } from 'react-redux';
-import { ProductDataType } from '@/types/main/productData.type';
-import RatingComp from '../../common/RatingComp/RatingComp';
-import SectionTitle from '@/components/common/SectionElements/SectionTitle/SectionTitle';
+import SectionTitle from '@/components/common/SectionTitle/SectionTitle';
 import PaginationComponent from './parts/PaginationComponent/PaginationComponent';
-import { GlobalDataType } from '@/types/main/globalData.type';
 import { Box } from '@mui/material';
 
 import styles from "./styles.module.scss"
@@ -11,13 +7,9 @@ import ReviewAnalyticsPanel from './parts/ReviewAnalyticsPanel/ReviewAnalyticsPa
 
 export default function Reviews(){
 
-  const {elementsOptionalBg, reviewsSnapshot, rating} = useSelector(({
-    globalData: {colors: {backgrounds}}, productData: {stockInfo: {reviewsSnapshot}, rating}
-  }: {globalData: GlobalDataType, productData: ProductDataType}) => ({...backgrounds, reviewsSnapshot, rating}))
-
   return(
     <section className='mt-24 px-5'>
-      <SectionTitle containerSx={{paddingBottom: "10px"}} fontSize='40px'>Customer Reviews</SectionTitle>
+      <SectionTitle containerSx={{paddingBottom: "10px"}} >Customer Reviews</SectionTitle>
 
       <Box className={`flex ${styles.main_container}`}>
         <ReviewAnalyticsPanel/>
