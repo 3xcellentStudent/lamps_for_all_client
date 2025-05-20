@@ -5,4 +5,5 @@ export interface CartObjectType {
   cart: CartProduct[], response: CartObjectResponse, isOpenCart: boolean
 }
 
-export interface CartObjectResponse {message: string, severity: AlertColor | undefined}
+// export interface CartObjectResponse {message: string, severity: AlertColor | undefined}
+export interface CartObjectResponse {message: string, severity: "success" | "info" | "warning" | "error" | "default" | undefined}

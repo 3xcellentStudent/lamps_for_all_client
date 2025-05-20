@@ -5,7 +5,6 @@ import Title from "./parts/Title/Title"
 import ViewCartButton from "./parts/ViewCartButton/ViewCartButton"
 import { usePathname } from "next/navigation"
 import { CartObjectType } from "@/types/cartTypes/cartObject.types"
-import { enqueueSnackbar } from "notistack"
 import styles from "./styles.module.scss"
 import Quantity from "../Quantity/Quantity"
 import {HighlightOff} from '@mui/icons-material';
@@ -24,24 +23,8 @@ export default function CartList(){
 
   const pathname = usePathname()
   const dispatch = useDispatch()
-  console.log(pathname)
 
   const itemRef = useRef(null)
-
-  // const [cartState, setCartState] = useState(cart)
-  
-  // useEffect(() => {setCartState(cart)}, [cart])
-
-  useEffect(() => {
-    if(!!response?.message) enqueueSnackbar(
-      response?.message, {variant: response?.severity, autoHideDuration: 1500}
-    )
-  }, [response])
-
-  function selectHandleClick(value: boolean, index: number){
-    // dispatch(actionChangeCartSaga({type: SELECT_CART_ITEM, payload: {value, index}}))
-    // itemRef.current?.classList.toggle("backdrop-brightness-90")
-  }
 
   function deleteHandleClick(index: number){
     dispatch(actionCallCartState({type: CART_DELETE_ITEM_SAVE_CONST, payload: index}))
@@ -50,7 +33,6 @@ export default function CartList(){
   function dispatchQuantity(quantity: number, index: number){
     const payload = {quantity: +quantity, index}
     dispatch(actionCallCartState({type: CART_CHANGE_QUANTITY_SAVE_CONST, payload}))
-    // dispatch(actionChangeCartSaga({type: HANDLE_CHANGE_QUANTITY_INTO_CART, payload}))
   }
 
   return(

@@ -1,11 +1,10 @@
 import { useDispatch, useSelector } from "react-redux"
 import { PointerEvent, useEffect } from "react"
-import { Box, List, ListItem, Tooltip } from '@mui/material'
+import { Box, Checkbox, List, ListItem, Tooltip, Typography } from '@mui/material'
 import { usePathname } from "next/navigation"
 import { CartObjectType } from "@/types/cartTypes/cartObject.types"
 import { enqueueSnackbar } from "notistack"
 import styles from "./styles.module.scss"
-import {HighlightOff} from '@mui/icons-material';
 import { GlobalDataType } from "@/types/main/globalData.type"
 import { ProductDataType } from "@/types/main/productData.type"
 import { CART_CHANGE_QUANTITY_SAVE_CONST, CART_DELETE_ITEM_SAVE_CONST, CART_SELECT_ITEM_SAVE_CONST } from "@/redux/cart/constants"
@@ -13,11 +12,14 @@ import { actionCallCartState } from "@/redux/cart/actions"
 import Quantity from "@/components/common/Quantity/Quantity"
 import InternalCircleSVG from "@/components/common/Radio/InternalCircleSVG"
 import Title from "@/components/common/CartList/parts/Title/Title"
+import CheckedCircleIcon from '@mui/icons-material/CheckCircle';
+import UncheckedCircleIcon from '@mui/icons-material/CheckCircleOutline';
+import ClearIcon from '@mui/icons-material/Clear';
 
 
 export default function CartListPurchase(){
 
-  const {elementsSecondaryBg, secondaryBg, cart, response, price} = useSelector(({
+  const {elementsPrimaryBg, secondaryBg, cart, response, price} = useSelector(({
     globalData: {colors: {backgrounds}}, productData: {stockInfo: {price}}, cartObject
   }: {globalData: GlobalDataType, productData: ProductDataType, cartObject: CartObjectType}) => ({...cartObject, ...backgrounds, price}))
 
@@ -28,12 +30,6 @@ export default function CartListPurchase(){
   // const [cartState, setCartState] = useState(cart)
   
   // useEffect(() => {setCartState(cart)}, [cart])
-
-  useEffect(() => {
-    if(!!response?.message) enqueueSnackbar(
-      response?.message, {variant: response?.severity, autoHideDuration: 1500}
-    )
-  }, [response])
 
   function selectHandleClick(event: PointerEvent<HTMLButtonElement>, value: boolean, index: number){
     // console.log(event.target.parentElement.parentElement)
@@ -53,7 +49,7 @@ export default function CartListPurchase(){
 
   return(
     <Box className="h-full" sx={{backgroundColor: secondaryBg.hex}}>
-      <List className={`${styles.list} py-4 h-[calc(100%-49px)] overflow-y-auto relative backdrop-blur-xl`}>
+      <List className={`${styles.list} py-4  overflow-y-auto relative backdrop-blur-xl`}>
         {
           cart?.length ? (
             cart?.map((obj, index) => {
@@ -63,13 +59,13 @@ export default function CartListPurchase(){
               } = obj
 
               return(
-                  <ListItem key={index} sx={{backgroundColor: elementsSecondaryBg.hex}} 
+                  <ListItem key={index} sx={{}} 
                   className={`w-[calc(100%-16px)] rounded-xl flex flex-row justify-between items-center ${styles.container}`}>
 
                     <div>
-                      <button onPointerUp={(e) => selectHandleClick(e, !checked, index)}>
-                        X
-                      </button>
+                      <Checkbox className={`${styles.selection_button}`} onPointerUp={(e) => selectHandleClick(e, !checked, index)} 
+                      component="button" icon={<UncheckedCircleIcon className={`${styles.selection_button_icon}`} sx={{color: elementsPrimaryBg.hex}} />} 
+                      checkedIcon={<CheckedCircleIcon className={`${styles.selection_button_icon}`} sx={{color: elementsPrimaryBg.hex}} />} />
                     </div>
                     
                     <div className="flex flex-row h-full">
@@ -108,7 +104,8 @@ export default function CartListPurchase(){
                       <Quantity inputProps={{disabled: true}} elemIndex={index} action={dispatchQuantity} btnSize={24} quantity={quantity} />
                       
                       <div className="ml-4">
-                        <button onClick={() => deleteHandleClick(index)} ><HighlightOff/></button>
+                        <Checkbox className={`${styles.clear_button}`} onPointerUp={() => deleteHandleClick(index)} 
+                        component="button" icon={<ClearIcon className={`${styles.clear_button_icon}`} sx={{color: elementsPrimaryBg.hex}} />} />
                       </div>
                     </div>
                   </ListItem>

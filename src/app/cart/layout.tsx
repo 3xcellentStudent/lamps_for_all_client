@@ -1,5 +1,11 @@
+'use client'
+
+import { CartObjectType } from "@/types/cartTypes/cartObject.types"
+import { Box } from "@mui/material"
 import Head from "next/head"
+import { enqueueSnackbar, SnackbarProvider } from "notistack"
 import { ReactNode, useEffect } from "react"
+import { useSelector } from "react-redux"
 
 export default function Layout({children}: {children: ReactNode}){
 
@@ -12,9 +18,11 @@ export default function Layout({children}: {children: ReactNode}){
           async>
         </script>
       </Head>
-      <body>
-        {children}
-      </body>
+      <Box component="body">
+        <SnackbarProvider maxSnack={3}>
+          {children}
+        </SnackbarProvider>
+      </Box>
     </>
   )
 }

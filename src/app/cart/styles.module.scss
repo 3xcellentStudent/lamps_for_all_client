@@ -1,0 +1,27 @@
+.main {
+  height: calc(100svh - 100px);
+  max-width: 1440px;
+  margin: 100px auto 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.cart_list {
+
+  &_container {
+    width: 55%;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &_wrapper {
+    min-width: 650px;
+    height: calc(100% - 54px);
+    padding: 0 20px;
+  }
+}
+
+.stepper_list_container {
+  width: 418px;
+}

@@ -1,5 +1,6 @@
 import { CartObjectType } from "@/types/cartTypes/cartObject.types";
 import { CartProduct } from "@/types/storeTypes";
+import { enqueueSnackbar } from "notistack";
 
 export function addProductToCart(
   state: CartObjectType, payload: CartProduct
@@ -37,8 +38,7 @@ export function addProductToCart(
           }
         }
         break;
-      }
-      else {
+      } else {
         const indexes = payload.fields.map(({index}) => index)
         payload.productId = `${payload.productId}=${indexes.join('-')}`;
         resultObject = {
@@ -54,9 +54,12 @@ export function addProductToCart(
       continue
     }
   }
-  if(coincidences || uniqueId){
-    return resultObject
-  } else {
-    return resultObject;
-  }
+
+  enqueueSnackbar(resultObject.response?.message, {variant: resultObject.response?.severity, autoHideDuration: 1500})
+  return resultObject;
+  // if(coincidences || uniqueId){
+  //   return resultObject
+  // } else {
+  //   return resultObject;
+  // }
 }

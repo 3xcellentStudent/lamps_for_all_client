@@ -2,19 +2,18 @@ import Address from "./parts/Address/AddressHOC";
 import Country from "./parts/Country";
 import EmailField from "./parts/EmailField";
 import FullName from "./parts/FullName";
+import styles from "./styles.module.scss"
 
 export default function ShippingForm(){
 
   return(
-    <section id="shipping-form-section" className="w-full py-4">
-      <div className="">
-        <EmailField/>
-        <div>
-          <h3 className="font-bold text-2xl">Shipping address</h3>
-          <Country/>
-          <FullName/>
-          <Address/>
-        </div>
+    <section id="shipping-form-section" className={`${styles.container}`}>
+      <EmailField/>
+      <div>
+        <h3 className="font-bold text-2xl">Shipping address</h3>
+        <Country/>
+        <FullName/>
+        <Address/>
       </div>
     </section>
   )

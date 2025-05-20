@@ -16,15 +16,13 @@ export default function Product(){
 
   return(
     <main className={styles.main}>
-      <SnackbarProvider maxSnack={3}>
-        <Overview productId={id}/>
-        <Description />
-        <Details />
-        <Reviews />
-        <DrawerComponent anchor='right'>
-          <CartList />
-        </DrawerComponent>
-      </SnackbarProvider>
+      <Overview productId={id}/>
+      <Description />
+      <Details />
+      <Reviews />
+      <DrawerComponent anchor='right'>
+        <CartList />
+      </DrawerComponent>
     </main>
   )
 }

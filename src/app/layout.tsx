@@ -28,7 +28,7 @@ const roboto = Roboto({
   subsets: ['latin'],
 })
 
-export default function RootLayout({children}: {children: ReactNode}) {
+export default function RootLayout({children}: {children: ReactNode}){
 
   return (
     <html className={roboto.className} lang="en">

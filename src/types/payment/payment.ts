@@ -30,9 +30,7 @@ export type ShippingAddressProps = {email: {value: string, error: boolean}} |
   {coungtryCode: string} | 
   {phoneNumber: string}
 
-export type PaymentMethodsType = "paypal" | "google_pay" | "apple_pay" | "card"
-
-export interface PaymentMethodsObjectType {value: PaymentMethodsType, text: string, svg: ReactElement}
+export type ShippingOptions = "regular" | "express"
 
 export interface CreateOrderActionType {
   intent: "CAPTURE" | "AUTHORIZE"

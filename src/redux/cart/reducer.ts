@@ -5,11 +5,12 @@ import {
   CART_CHANGE_QUANTITY_SAVE_CONST,
   CART_SELECT_ITEM_SAVE_CONST,
 } from './constants'
-import { CartObjectType } from '@/types/cartTypes/cartObject.types';
+import { CartObjectResponse, CartObjectType } from '@/types/cartTypes/cartObject.types';
 import { addProductToCart } from './helpers/add-product';
 import changeQuantityIntoCart from './helpers/change.quantity';
 import selectCartItem from './helpers/select-card-item';
 import CartActionsTypes from './types';
+import { enqueueSnackbar } from 'notistack';
 // import statusCodeReducer from './statusCodeReducer';
 
 // function filtration(state: Cart[], payload: Cart){
@@ -103,7 +104,13 @@ export default function cartReducer(state = initialState,
     case CART_ADD_ITEM_SAVE_CONST: {
       if(cart.length > 0){
         return addProductToCart(state, action.payload)
-      } else return {...state,
+      } else {
+        const resultObject: CartObjectType = {...state,
+          response: {severity: "success", message: "Product added to cart !"}, 
+          cart: [action.payload]
+        }
+        enqueueSnackbar(resultObject.response.message, {variant: resultObject.response.severity, autoHideDuration: 1500})
+      } return {...state,
         response: {severity: "success", message: "Product added to cart !"}, 
         cart: [action.payload]
       };
@@ -115,19 +122,26 @@ export default function cartReducer(state = initialState,
       //   cart: [payload]
       // };
 
-    case CART_CHANGE_QUANTITY_SAVE_CONST: return changeQuantityIntoCart(state, action.payload);
+    case CART_CHANGE_QUANTITY_SAVE_CONST: {
+      const resultObject = changeQuantityIntoCart(state, action.payload)
+      enqueueSnackbar(resultObject.response.message, {variant: resultObject.response.severity, autoHideDuration: 1500})
+      return changeQuantityIntoCart(state, action.payload);
+    }
 
     case CART_SELECT_ITEM_SAVE_CONST: return selectCartItem(state, action.payload)
 
-    case CART_DELETE_ITEM_SAVE_CONST:
+    case CART_DELETE_ITEM_SAVE_CONST: {
       const filtered = cart.filter(($, index) => index !== action.payload)
-      return {
+      const resultObject: CartObjectType = {
         response: {severity: "warning", message: "Product has been removed from the cart !"}, 
         cart: filtered,
         isOpenCart
       }
+      enqueueSnackbar(resultObject.response?.message, {variant: resultObject.response?.severity, autoHideDuration: 1500})
+      return resultObject;
+    }
     default: return {
-      ...state, response: {severity: undefined, message: ""}
+      ...state, response: {severity: undefined, message: ""}, isOpenCart
     }
   }
 }

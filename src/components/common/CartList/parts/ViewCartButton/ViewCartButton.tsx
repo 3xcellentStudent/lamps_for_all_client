@@ -14,7 +14,7 @@ export default function ViewCartButton(){
   return(
     <div className={`${styles.button_container} fixed w-full right-0 
       bottom-0`}>
-        <Link href="/purchase" className="flex items-center justify-center h-full">
+        <Link href="/cart" className="flex items-center justify-center h-full">
           <Button className={styles.button} disabled={false} 
           sx={{backgroundColor: elementsPrimaryBg.hex, color: secondaryText.hex}}>
             <span className="relative z-10">View Cart</span>

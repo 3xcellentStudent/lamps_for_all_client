@@ -3,14 +3,16 @@
 import Header from '@/components/common/Header/Header'
 import { ProductDataType } from '@/types/main/productData.type'
 import { useCallback, useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import globalData from "@/data.models/global/globalData.model.json"
 import productDataModel from "@/data.models/product/productData.model.json"
-import { Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { GLOBAL_DATA_ROUTE, PRODUCT_DATA_ROUTE } from '@/api/routes/routes'
 import { GlobalDataType } from '@/types/main/globalData.type'
 import { actionCallProductData, actionCallGlobalData } from '@/redux/database/actions'
+import { enqueueSnackbar, SnackbarProvider } from 'notistack'
+import { CartObjectType } from '@/types/cartTypes/cartObject.types'
 
 export default function RootLayout({children,}: {children: React.ReactNode}){
   
@@ -65,15 +67,27 @@ export default function RootLayout({children,}: {children: React.ReactNode}){
     getGlobalData();
   }, [])
 
+  // const response = useSelector(({
+  //   cartObject: {response}
+  // }: {cartObject: CartObjectType}) => (response))
+
+  // useEffect(() => {
+  //   if(!!response?.message) enqueueSnackbar(
+  //     response?.message, {variant: response?.severity, autoHideDuration: 1500}
+  //   )
+  // }, [response])
+
   return (
     <>
       <head>
         <title>{productState.title}</title>
       </head>
-      <Typography component="body" sx={{backgroundColor: themeState.colors.backgrounds.primaryBg.hex, color: themeState.colors.text.primaryText.hex}}>
-        <Header/>
-        {children}
-      </Typography>
+      <Box component="body" sx={{backgroundColor: themeState.colors.backgrounds.primaryBg.hex, color: themeState.colors.text.primaryText.hex}}>
+        <SnackbarProvider maxSnack={3}>
+          <Header/>
+          {children}
+        </SnackbarProvider>
+      </Box>
     </>
   )
 }

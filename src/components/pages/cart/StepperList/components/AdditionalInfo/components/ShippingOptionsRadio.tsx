@@ -1,16 +1,15 @@
-import SVGPayPal from "@/components/SVG/payments/SVGPayPal";
-import { PaymentMethodsType } from "@/types/payment/payment";
+import { ShippingOptions } from "@/types/payment/payment";
 import { FormControlLabel, Radio } from "@mui/material";
 import { ReactNode } from "react";
 
 interface Props {
-  value: PaymentMethodsType
+  value: ShippingOptions
   text: string
   svgProps?: {}
   children: ReactNode
 }
 
-export default function PaymentMethodRadio({value, text, svgProps, children}: Props){
+export default function ShippingOptionsRadio({value, text, svgProps, children}: Props){
 
   return(
     <li className="flex flex-row items-center">

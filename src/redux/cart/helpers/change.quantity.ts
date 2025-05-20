@@ -1,4 +1,5 @@
 import { CartObjectType } from "@/types/cartTypes/cartObject.types";
+import { enqueueSnackbar } from "notistack";
 
 export default function changeQuantityIntoCart(
   state: CartObjectType, payload: {quantity: number, index: number}
@@ -9,9 +10,8 @@ export default function changeQuantityIntoCart(
 
   if(quantityCart + 1 <= quantityMaxCart || quantityCart - 1 >= 0){
     cartItem.quantity = payload.quantity
-    return {response: {severity: "info", message: "Quantity changed !"}, cart, isOpenCart};
-  }
-  else {
+    return {response: {severity: "info", message: "Quantity changed !"}, cart, isOpenCart}
+  } else {
     return {response: {severity: "warning", message: "You cannot change quantity !"}, cart, isOpenCart}
   }
 }
