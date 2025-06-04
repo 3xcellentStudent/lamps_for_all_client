@@ -18,33 +18,37 @@ export default function StripePayment(){
     {betas: ['custom_checkout_beta_6'],}
   );
 
-  const [requestBody, setRequestBody] = useState<ProductOptionsDto[]>([]);
-
   const cart = useSelector(({cartObject: {cart}}: {cartObject: CartObjectType}) => (cart))
 
   const [clientSecret, setClientSecret] = useState<string | null>(null)
-  useEffect(() => {
-    if(requestBody.length){
-      StripeApi.fetchClientSecret(setClientSecret, requestBody);
-    }
-  }, [requestBody])
+  // useEffect(() => {
+  //   if(!!requestBody.length){
+  //     console.log("ASLKJDLKASJDLKASJDLJASLKDJALKSDLKADLASDKLJDLKASDJALSKDJLKASJDLKASD")
+  //     StripeApi.fetchClientSecret(setClientSecret, requestBody);
+  //   }
+  // }, [requestBody])
 
   useEffect(() => {
-    getRequestDto(cart)
+    console.log(clientSecret)
+  }, [clientSecret])
+
+  useEffect(() => {
+    if(!!cart.length){
+      getRequestDto(cart)
+    }
   }, [cart])
 
   function getRequestDto(cart: CartProduct[]){
-    const cartItemsDto = cart.map((object, index) => {
+    const cartItemsDto = cart.map((object) => {
       const value = object.fields[0].value
       const stockStatus = object.fields[0].stockStatus
 
-      const productOptionsDto = new ProductOptionsDto({...object, value, stockStatus})
+      const productOptionsDto = new ProductOptionsDto({...object, unitAmount: object.price, value, stockStatus})
 
       return productOptionsDto;
-      // setRequestDto(prev => [...prev, productOptionsDto])
     })
 
-    setRequestBody(cartItemsDto)
+    StripeApi.fetchClientSecret(setClientSecret, cartItemsDto);
   }
 
   // async function fetchClientSecret(){

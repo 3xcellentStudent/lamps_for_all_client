@@ -5,7 +5,7 @@ export default class ProductOptionsDto {
   productName: string
   productId: string
   quantity: number
-  price: string
+  unitAmount: string
   stockStatus: boolean
   value: string
 
@@ -13,7 +13,7 @@ export default class ProductOptionsDto {
     this.productName = obj.productName
     this.productId = obj.productId
     this.quantity = obj.quantity
-    this.price = obj.price
+    this.unitAmount = obj.unitAmount
     this.stockStatus = obj.stockStatus
     this.value = obj.value
   }
